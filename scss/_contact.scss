@@ -1,0 +1,56 @@
+/* -------------------------------------------- CONTACT ------------------------------------------------- */
+
+.container-h2 {
+    margin-top: 4em;
+    width: 60vw;
+    height: auto;
+
+    img {
+        position: relative;
+        z-index: -1;
+        opacity: 90%;
+    }
+}
+
+.Form {
+    text-align: center;
+    margin-top: -14%;
+    padding: 3em;
+
+    .mb-3 {
+        justify-content: center;
+        display: flex;
+
+        input {
+            width: 60vw;
+        }
+
+        textarea {
+            resize: none;
+            width: 60vw;
+            height: 30vh;
+        }
+    }
+
+    .send {
+        margin: 1em;
+        transition-duration: 0.003s;
+        box-shadow: 0 5px 0 rgb(129, 129, 129);
+        
+        &:hover {
+            color: white;
+            background-color: black;
+        }
+
+        &:focus {
+            color: white;
+            background-color: black;
+        }
+
+        &:active {
+            transition-duration: 0.003s;
+            box-shadow: none;
+            transform: translateY(5px);
+        }
+    }
+}

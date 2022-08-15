@@ -1,0 +1,278 @@
+/* -------------------------------------------- MEDIA QUERIES ------------------------------------------------- */
+
+@media screen and (max-width: 864px) {
+
+    /* INDEX */
+
+    .home {
+        .photoAndName {
+
+            margin-top: -2em;
+
+            .ProfilePic {
+                img {
+                    width: 500px;
+                    height: 335px;
+                }
+            }
+
+            .Headline {
+                margin-top: -19.5em;
+                margin-bottom: 10em;
+                padding: 1em 7em 0em 0em;
+
+                h1 {
+                    font-size: 2em;
+                }
+            }
+        }
+
+        .copy{
+            padding-top: 4em;
+            p{
+                font-size: 0.8em;
+            }
+        }
+
+        .TopSocials {
+            margin-bottom: 8em;
+            padding: 0em 1em 0em 0;
+            font-size: 0.8em;
+        }
+    }
+
+    .work-h2 {
+        width: 100vw;
+    }
+
+    .projects {
+        .Thumbnail {
+            margin: 0em 0 0.3em 0;
+        }
+    }
+
+    .BioPic {
+        margin-top: 0px;
+        padding: 6em;
+
+        p {
+            font-size: 0.8em;
+        }
+    }
+
+    .awards{
+        .award-thumb {
+            width: 80px; 
+            height: 80px;
+        }
+    }
+
+    /* PROJECTS */
+
+    .cover {
+        h1 {
+            font-size: 1.5em;
+        }
+
+        .behance-button {
+            font-size: 0.6em;
+            padding: 0.8em;
+            width: 150px;
+            height: 30px;
+        }
+
+        .lineas {
+            width: 151px;
+            height: 33px;
+            top: 72%;
+            left: 50.3%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .case-study{
+        margin: -1.5em 5em 0 5em;
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+
+    /* INDEX */
+
+    .home {
+        padding: 2em 0em 2em 0em;
+
+        .photoAndName {
+            margin-top: -5em;
+        }
+
+        .TopSocials {
+            margin-bottom: 2em;
+            font-size: 0.7em;
+        }
+    }
+
+    .bio-h2 {
+        width: 100vw;
+        height: auto;
+    }
+
+    .projects {
+        .Thumbnail {
+            opacity: 100%;
+        }
+    }
+
+    .logos {
+        margin: 5em 0 5em 0;
+
+        .JobLogo {
+            height: 130px;
+            width: 130px;
+        }
+
+        .ClientLogo {
+            height: 50px;
+            width: 50px;
+        }
+    }
+
+    .BioPic {
+
+        padding: 4em;
+
+        p {
+            font-size: 0.7em;
+        }
+    }
+
+    /* PROJECTS */
+
+    .cover {
+        h1 {
+            font-size: 1em;
+        }
+
+        .behance-button {
+            font-size: 0.45em;
+            padding: 0.5em;
+            width: 100px;
+            height: 20px;
+        }
+
+        .lineas {
+            width: 101px;
+            height: 23px;
+            top: 70%;
+            left: 50.3%;
+        }
+    }
+
+    .carousel {
+        margin-top: -2em;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+
+    /* INDEX */
+
+    .home {
+
+        padding: 1em 0em 2em 0em;
+
+        .photoAndName {
+            margin-top: 0em;
+
+            .ProfilePic {
+                padding-top: 5em;
+
+                img {
+                    width: 300px;
+                    height: 200px;
+                }
+            }
+
+            .Headline {
+                margin-top: -11.5em;
+                margin-bottom: 5em;
+                padding: 0.2em 4.2em 0em 0em;
+
+                h1 {
+                    font-size: 1.3em;
+                }
+            }
+        }
+
+        .copy{
+            padding-top: 4em;
+            p{
+                font-size: 0.55em;
+            }
+        }
+
+        .TopSocials {
+            padding-top: 0em;
+            margin-bottom: 0em;
+
+            li {
+                font-size: 0.8em;
+            }
+        }
+    }
+
+    .work-h2 {
+        margin: 3em 0em 2em 0em;
+    }
+
+
+    .projects {
+        .Thumbnail {
+            margin: 0em 0 0.2em 0;
+        }
+    }
+
+    .BioPic {
+        padding: 2em;
+
+        p {
+            font-size: 0.6em;
+        }
+    }
+
+    .awards {
+        .award-thumb {
+            width: 70px;
+            height: 70px;
+        }
+    }
+
+    footer{
+        div{
+            div{
+                a{font-size: 0.8em;}
+            }
+        }
+    }
+
+    /* PROJECTS */
+
+    .cover h1 {
+        font-size: 0.8em;
+    }
+
+    .h2-campaign {
+        width: 50vw;
+        height: auto;
+    }
+
+    .carousel {
+        margin-top: -1em;
+    }
+
+    .case-study{
+        margin: -0.5em 2em 0 2em;
+    }
+}

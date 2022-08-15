@@ -1,0 +1,93 @@
+/* -------------------------------------------- PROJECTS ------------------------------------------------- */
+
+
+.cover {
+    position: relative;
+    margin-top: 2.6em;
+ 
+    h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -150%);
+        display: block;
+        margin: 0;
+        font-size: 2em;
+        font-family: $cover-font;
+        color: $color-2;
+        z-index: 1;
+    }
+
+    img {
+        width: 100%;
+        opacity: 40%;
+    }
+
+    .behance-button {
+        font-family: $copy-font;
+        font-weight: bold;
+        font-size: 0.79em;
+        text-transform: uppercase;
+        width: 200px;
+        height: 40px;
+        border: 1px solid $color-2;
+        background-color: $color-1;
+        color: white;
+        padding: 11px;
+        text-align: center;
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition-duration: 0.3s;
+
+        &:hover {
+            transition-duration: 0.5s;
+            background-color: $color-2;
+            color: $color-1;
+        }
+    }
+
+    .lineas {
+        position: absolute;
+        width: 200px;
+        height: 40px;
+        top: 71%;
+        left: 50.3%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.carousel {
+    margin-top: -3.5em;
+    margin-bottom: 5em;
+
+    .carousel-indicators {
+        bottom: -50px;
+    }
+
+    .carousel-inner {
+        text-align: center;
+        padding: 10px 10px 0 10px;
+        width: 80%;
+        margin: auto;
+    }
+
+    .carousel-control-next,
+    .carousel-control-prev {
+        width: 10%;
+    }
+}
+
+.board {
+    display: flex;
+    margin: auto;
+    margin-bottom: 5em;  //Esto está momentáneamente
+    width: 70vw;
+    padding-top: 3em;
+}
+
+.case-study{
+    margin: -3em 10em 0 10em;
+    margin-bottom: 5em;
+}

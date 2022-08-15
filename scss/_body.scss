@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $color-1;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* -------------------------------------------- GRID ------------------------------------------------- */
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    gap: 0px 0px;
+    grid-template-areas:
+        "header"
+        "main"
+        "work"
+        "xp"
+        "bio"
+        "form"
+        "footer";
+}
+
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+}
+
+#WORK {
+    grid-area: work;
+}
+
+#XP {
+    grid-area: xp;
+}
+
+#BIO {
+    grid-area: bio;
+}
+
+.form {
+    grid-area: form;
+}
+
+footer {
+    grid-area: footer;
+}

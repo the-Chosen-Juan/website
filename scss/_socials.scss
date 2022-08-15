@@ -1,0 +1,40 @@
+/* -------------------------------------------- SOCIALS ------------------------------------------------- */
+
+
+.TopSocials {
+    text-align: center;
+    padding: 1em 1em 0em 0;
+    margin-bottom: 10em;
+
+    li {
+        display: inline-block;
+        margin: 0em 1em 0em 1em;
+        padding-right: 1em;
+    }
+}
+
+.social-icon {
+    color: $color-2;
+    transition-duration: 0.3s; 
+}
+
+$socials: (
+    Linkedin: #0e76a8,
+    Behance: #053eff,
+    Spotify: #1DB954,
+    Whatsapp: #25d366,
+    Github: midnightblue,
+    Mail: #DB4437,
+);
+
+@each $network, $color in $socials {
+    
+    .#{$network} {
+        @extend .social-icon;
+        
+        &:hover {
+            color: $color;
+            transition-duration: 0.3s;  
+        }
+    }    
+}

@@ -1,0 +1,16 @@
+// Variables
+
+$color-1: #000000;
+$color-2: #fff;
+
+$handwritten-font: 'Gloria Hallelujah';
+$cover-font: 'Merriweather', serif;
+$copy-font: 'Open Sans', sans-serif;
+
+// Mixins
+
+@mixin image ($height, $width, $opacity) {
+    height: $height;
+    width: $width;
+    opacity: $opacity;
+}

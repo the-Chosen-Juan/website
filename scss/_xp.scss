@@ -1,0 +1,13 @@
+/* -------------------------------------------- XP ------------------------------------------------- */
+.logos {
+    margin: 8em 0 8em 0;
+    pointer-events: none;
+
+    .JobLogo {
+        @include image(200px, 200px, 80%)
+    }
+
+    .ClientLogo {
+        @include image(100px, 100px, 15%)
+    }
+}

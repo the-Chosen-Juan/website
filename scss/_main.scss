@@ -1,0 +1,74 @@
+/* -------------------------------------------- MAIN ------------------------------------------------- */
+
+.home {
+    background-image: url(../img/Diseño/Untitled-3.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    .photoAndName {
+        .ProfilePic {
+            padding-top: 8em;
+            text-align: center;
+
+            img {
+                @include image(500px, 750px, 100%);
+                pointer-events: none;
+            }
+        }
+
+        .Headline {
+            position: relative;
+            text-align: center;
+            margin-top: -28em;
+            margin-bottom: 22em;
+            padding: 0em 8em 0em 0em;
+
+            h1 {
+                font-family: $handwritten-font;
+                font-size: 3em;
+                padding: 0.4em 0 0em 0.1em;
+                color: $color-2;
+                display: inline-block;
+                text-align: left;
+
+                transform: rotate(-10deg);
+
+                .Role {
+                    background: linear-gradient(45deg, #00d2ff, #3a7bd5, #8026C6, #F80284, #FF554B, #F9C629, #F9C629);
+                    background-size: 500% 500%;
+                    -webkit-background-clip: text;
+                        background-clip: text;
+                    -webkit-text-fill-color: transparent;
+
+                    animation: rotation 100s ease infinite;
+                }
+
+                @keyframes rotation {
+                    0% {
+                        background-position: 0% 68%
+                    }
+
+                    50% {
+                        background-position: 100% 33%
+                    }
+
+                    100% {
+                        background-position: 0% 68%
+                    }
+                }
+            }
+
+        }
+    }
+
+    .copy{
+        text-align: center;
+        p{
+            font-family: $copy-font;
+            color: rgb(165, 165, 165);
+        }
+    }
+
+}
