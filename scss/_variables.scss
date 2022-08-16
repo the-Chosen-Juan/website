@@ -7,6 +7,8 @@ $handwritten-font: 'Gloria Hallelujah';
 $cover-font: 'Merriweather', serif;
 $copy-font: 'Open Sans', sans-serif;
 
+$animationSpeed: 40s;
+
 // Mixins
 
 @mixin image ($height, $width, $opacity) {
@@ -14,3 +16,8 @@ $copy-font: 'Open Sans', sans-serif;
     width: $width;
     opacity: $opacity;
 }
+
+@mixin black-gradient {
+	background: linear-gradient(to right,  rgb(0, 0, 0) 0%,rgba(255,255,255,0) 100%);
+}
+

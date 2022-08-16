@@ -1,13 +1,61 @@
 /* -------------------------------------------- XP ------------------------------------------------- */
-.logos {
-    margin: 8em 0 8em 0;
-    pointer-events: none;
+.xp-title{
+    margin: 3em 0 1em 0;
+}
 
-    .JobLogo {
-        @include image(200px, 200px, 80%)
-    }
+.slider {
+	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+	height: 100px;
+	margin: auto;
+	overflow: hidden;
+	position: relative;
+	width: 80vw;
+	
+	&::before,
+	&::after {
+		@include black-gradient;
+		content: "";
+		height: 100px;
+		position: absolute;
+		width: 200px;
+		z-index: 2;
+	}
+	
+	&::after {
+		right: 0;
+		top: 0;
+		transform: rotateZ(180deg);
+	}
+
+	&::before {
+		left: 0;
+		top: 0;
+	}
+	
+	.slide-track {
+		animation: scroll $animationSpeed linear infinite;
+		display: flex;
+		width: calc(250px * 14);
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 7))}
+        }
+	}
+	
+	.slide {
+		height: 100px;
+		width: 250px;
+	}
+}
+
+.logos {
+    margin: 2em 0 8em 0;
+    pointer-events: none;
 
     .ClientLogo {
         @include image(100px, 100px, 15%)
     }
 }
+
+
