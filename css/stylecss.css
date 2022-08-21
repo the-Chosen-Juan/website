@@ -342,7 +342,7 @@ footer {
     z-index: 1; }
   .cover img {
     width: 100%;
-    opacity: 40%; }
+    opacity: 60%; }
   .cover .behance-button {
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
@@ -401,8 +401,7 @@ footer {
   display: flex;
   margin: auto;
   margin-bottom: 5em;
-  width: 70vw;
-  padding-top: 3em; }
+  width: 70vw; }
 
 .case-study {
   margin: -3em 10em 0 10em;
