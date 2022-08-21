@@ -58,6 +58,18 @@
     }
 }
 
+.campaign-description {
+    height: auto;
+    width: 70vw;
+    padding: 1em;
+    margin: auto;
+    margin-bottom: 4em;
+    font-family: $copy-font;
+    color: white;
+    background-color: black;
+    text-align: left;
+}
+
 .carousel {
     margin-top: -3.5em;
     margin-bottom: 5em;

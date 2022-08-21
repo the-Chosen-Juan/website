@@ -71,7 +71,6 @@ footer {
 /* -------------------------------------------- MAIN ------------------------------------------------- */
 .home {
   background-image: url(../img/Diseño/Untitled-3.png);
-  min-height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -216,7 +215,7 @@ footer {
   .logos .ClientLogo {
     height: 100px;
     width: 100px;
-    opacity: 15%; }
+    opacity: 30%; }
 
 /* -------------------------------------------- BIO ------------------------------------------------- */
 .BioPic {
@@ -372,6 +371,17 @@ footer {
     top: 71%;
     left: 50.3%;
     transform: translate(-50%, -50%); }
+
+.campaign-description {
+  height: auto;
+  width: 70vw;
+  padding: 1em;
+  margin: auto;
+  margin-bottom: 4em;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  background-color: black;
+  text-align: left; }
 
 .carousel {
   margin-top: -3.5em;
