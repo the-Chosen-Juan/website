@@ -455,6 +455,8 @@ footer {
     top: 72%;
     left: 50.3%;
     transform: translate(-50%, -50%); }
+  .campaign-description {
+    font-size: 0.8em; }
   .case-study {
     margin: -1.5em 5em 0 5em; } }
 
@@ -544,5 +546,7 @@ footer {
     height: auto; }
   .carousel {
     margin-top: -1em; }
+  .campaign-description {
+    font-size: 0.6em; }
   .case-study {
     margin: -0.5em 2em 0 2em; } }
