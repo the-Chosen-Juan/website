@@ -16,7 +16,13 @@ a {
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto auto auto auto auto;
   gap: 0px 0px;
-  grid-template-areas: "header" "main" "work" "xp" "bio" "form" "footer"; }
+  grid-template-areas: "header"
+ "main"
+ "work"
+ "xp"
+ "bio"
+ "form"
+ "footer"; }
 
 header {
   grid-area: header; }
@@ -266,7 +272,7 @@ h3 {
 
 .Form {
   text-align: center;
-  margin-top: -14%;
+  margin-top: -12%;
   padding: 3em; }
   .Form .mb-3 {
     justify-content: center;
