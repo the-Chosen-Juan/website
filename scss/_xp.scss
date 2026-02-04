@@ -37,24 +37,50 @@
 		display: flex;
 		width: calc(250px * 14);
 
+		// Pause animation on hover for better UX
+		&:hover {
+			animation-play-state: paused;
+		}
+
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(calc(-250px * 7))}
         }
 	}
-	
+
 	.slide {
 		height: 100px;
 		width: 250px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			transition: transform 0.3s ease, filter 0.3s ease;
+
+			&:hover {
+				transform: scale(1.1);
+				filter: brightness(1.2);
+			}
+		}
 	}
 }
 
 .logos {
     margin: 5em 0 10em 0;
-    pointer-events: none;
 
     .ClientLogo {
-        @include image(100px, 100px, 30%)
+        height: 100px;
+        width: 100px;
+        opacity: 30%;
+        transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+        filter: grayscale(100%);
+
+        &:hover {
+            opacity: 80%;
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
     }
 }
 
