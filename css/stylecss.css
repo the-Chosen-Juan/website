@@ -1040,12 +1040,14 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
   border: 1px solid #404040;
   border-radius: 4px;
   background: #252526;
   transition: border-color 150ms ease;
+  min-height: 100px;
 }
 .awards-section .award-item:hover {
   border-color: #ebcb8b;
@@ -1054,9 +1056,12 @@ img {
   color: #ebcb8b;
 }
 .awards-section .award-item .award-icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .awards-section .award-item .award-icon img {
   width: 100%;
@@ -1065,9 +1070,10 @@ img {
 }
 .awards-section .award-item .award-name {
   color: #808080;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   text-align: center;
   transition: color 150ms ease;
+  line-height: 1.2;
 }
 
 .stats-section {
@@ -1204,7 +1210,7 @@ img {
   color: #1e1e1e;
 }
 .contact-form .form-submit::before {
-  content: "$ ";
+  content: "~ ";
 }
 
 .terminal-footer {

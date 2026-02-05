@@ -594,31 +594,61 @@
             fadeObserver.observe(el);
         });
 
-        // Typewriter effect for text elements
-        const typewriterObserver = new IntersectionObserver((entries) => {
+        // Queue system for sequential typewriter effect
+        let typewriterQueue = [];
+        let isTyping = false;
+
+        // Process the queue - type one element at a time
+        function processTypewriterQueue() {
+            if (isTyping || typewriterQueue.length === 0) return;
+
+            isTyping = true;
+            const element = typewriterQueue.shift();
+            typewriterEffect(element, () => {
+                isTyping = false;
+                processTypewriterQueue();
+            });
+        }
+
+        // Add element to queue
+        function queueTypewriter(element) {
+            if (!element.dataset.queued) {
+                element.dataset.queued = 'true';
+                typewriterQueue.push(element);
+                processTypewriterQueue();
+            }
+        }
+
+        // Section observer - triggers sequential typing for all text in a section
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.typed) {
-                    entry.target.dataset.typed = 'true';
-                    typewriterEffect(entry.target);
+                if (entry.isIntersecting && !entry.target.dataset.triggered) {
+                    entry.target.dataset.triggered = 'true';
+                    // Get all typeable elements in this section in order
+                    const elements = entry.target.querySelectorAll('.terminal-text, .section-command');
+                    elements.forEach(el => queueTypewriter(el));
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.2 });
 
-        // Apply typewriter to section commands and various text elements
-        document.querySelectorAll('.section-command').forEach(el => {
-            typewriterObserver.observe(el);
+        // Observe sections
+        document.querySelectorAll('section, .hero').forEach(section => {
+            sectionObserver.observe(section);
         });
 
-        // Apply typewriter animation to paragraphs in specific sections
+        // Mark text elements for typing
+        document.querySelectorAll('.section-command').forEach(el => {
+            el.classList.add('terminal-text');
+        });
+
         document.querySelectorAll('.output-block p, .bio-text p, .form-intro, .login-message, .skills-header, .clients-header, .awards-header').forEach(el => {
             if (!el.closest('.ascii-art')) {
                 el.classList.add('terminal-text');
-                typewriterObserver.observe(el);
             }
         });
 
-        // Typewriter effect function
-        function typewriterEffect(element) {
+        // Typewriter effect function with callback
+        function typewriterEffect(element, onComplete) {
             const originalHTML = element.innerHTML;
             const text = element.textContent;
             element.innerHTML = '';
@@ -629,8 +659,8 @@
             cursor.className = 'typing-cursor';
             element.appendChild(cursor);
 
-            // Faster typing speed for longer text
-            const speed = text.length > 50 ? 15 : text.length > 30 ? 25 : 40;
+            // Fast typing speed
+            const speed = Math.max(8, Math.min(20, 400 / text.length));
 
             const typeInterval = setInterval(() => {
                 if (i < text.length) {
@@ -639,16 +669,16 @@
                     i++;
                 } else {
                     clearInterval(typeInterval);
+                    cursor.remove();
                     // Restore original HTML to preserve spans/formatting
-                    setTimeout(() => {
-                        element.innerHTML = originalHTML;
-                    }, 100);
+                    element.innerHTML = originalHTML;
+                    if (onComplete) onComplete();
                 }
             }, speed);
         }
 
         // Initialize text elements as hidden
-        document.querySelectorAll('.section-command, .terminal-text').forEach(el => {
+        document.querySelectorAll('.terminal-text').forEach(el => {
             el.style.opacity = '0';
         });
     </script>
