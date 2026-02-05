@@ -1,40 +1,18 @@
-/* -------------------------------------------- SOCIALS ------------------------------------------------- */
+// Socials - Terminal Style (kept minimal, main styles in _main.scss and _footer.scss)
 
-
-.TopSocials {
-    text-align: center;
-    padding: 1em 1em 0em 0;
-    margin-bottom: 10em;
-
-    li {
-        display: inline-block;
-        margin: 0em 1em 0em 1em;
-        padding-right: 1em;
-    }
-}
-
-.social-icon {
-    color: $color-2;
-    transition-duration: 0.3s; 
-}
-
+// Social color map for hover effects
 $socials: (
-    Linkedin: #0e76a8,
-    Behance: #053eff,
-    Spotify: #1DB954,
-    Whatsapp: #25d366,
-    Github: midnightblue,
-    Mail: #DB4437,
+    linkedin: #0e76a8,
+    behance: #053eff,
+    spotify: #1DB954,
+    whatsapp: #25d366,
+    github: #6e5494,
+    mail: #DB4437,
 );
 
+// Generate social hover classes
 @each $network, $color in $socials {
-    
-    .#{$network} {
-        @extend .social-icon;
-        
-        &:hover {
-            color: $color;
-            transition-duration: 0.3s;  
-        }
-    }    
+    .social-#{$network}:hover {
+        color: $color !important;
+    }
 }

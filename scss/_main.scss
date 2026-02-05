@@ -1,74 +1,161 @@
-/* -------------------------------------------- MAIN ------------------------------------------------- */
+// Main Hero Section - Terminal Style
 
-.home {
-    background-image: url(../img/Diseño/Untitled-3.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+.hero {
+    padding-top: 80px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    .photoAndName {
-        .ProfilePic {
-            padding-top: 8em;
-            text-align: center;
+    .welcome-box {
+        @include terminal-border;
+        background: rgba($bg-terminal, 0.8);
+        padding: $spacing-md $spacing-lg;
+        margin-bottom: $spacing-2xl;
+        display: inline-block;
 
-            img {
-                @include image(500px, 750px, 100%);
-                pointer-events: none;
+        .welcome-text {
+            color: $text-primary;
+            margin: 0;
+
+            .highlight {
+                color: $accent-primary;
+                font-weight: bold;
             }
         }
+    }
+}
 
-        .Headline {
-            position: relative;
-            text-align: center;
-            margin-top: -28em;
-            margin-bottom: 22em;
-            padding: 0em 8em 0em 0em;
+// ASCII Art Title
+.ascii-art {
+    color: $accent-primary;
+    font-size: clamp(0.35rem, 1.2vw, 0.75rem);
+    line-height: 1.1;
+    white-space: pre;
+    margin-bottom: $spacing-xl;
+    overflow-x: auto;
 
-            h1 {
-                font-family: $handwritten-font;
-                font-size: 3em;
-                padding: 0.4em 0 0em 0.1em;
-                color: $color-2;
-                display: inline-block;
-                text-align: left;
+    &.small {
+        font-size: clamp(0.25rem, 0.8vw, 0.5rem);
+    }
 
-                transform: rotate(-10deg);
+    &.large {
+        font-size: clamp(0.4rem, 1.5vw, 0.9rem);
+    }
+}
 
-                .Role {
-                    background: linear-gradient(45deg, #00d2ff, #3a7bd5, #8026C6, #F80284, #FF554B, #F9C629, #F9C629);
-                    background-size: 500% 500%;
-                    -webkit-background-clip: text;
-                        background-clip: text;
-                    -webkit-text-fill-color: transparent;
+// Login message
+.login-message {
+    color: $text-secondary;
+    margin-top: $spacing-xl;
+    font-size: 0.95rem;
 
-                    animation: rotation 100s ease infinite;
-                }
+    .success-icon {
+        color: $accent-warning;
+        margin-right: $spacing-sm;
+    }
 
-                @keyframes rotation {
-                    0% {
-                        background-position: 0% 68%
-                    }
+    .enter-key {
+        color: $accent-primary;
+        font-weight: bold;
+    }
+}
 
-                    50% {
-                        background-position: 100% 33%
-                    }
+// Command line intro
+.intro-section {
+    margin-top: $spacing-2xl;
 
-                    100% {
-                        background-position: 0% 68%
-                    }
-                }
-            }
+    .command-line {
+        margin-bottom: $spacing-md;
 
+        .prompt-user {
+            color: $accent-success;
+        }
+
+        .prompt-at {
+            color: $text-secondary;
+        }
+
+        .prompt-host {
+            color: $accent-secondary;
+        }
+
+        .prompt-symbol {
+            color: $accent-primary;
+            margin: 0 $spacing-sm;
+        }
+
+        .command {
+            color: $text-primary;
         }
     }
 
-    .copy{
-        text-align: center;
-        p{
-            font-family: $copy-font;
-            color: rgb(165, 165, 165);
+    .output-block {
+        margin-left: $spacing-md;
+        padding: $spacing-md;
+        border-left: 2px solid $border-color;
+        margin-bottom: $spacing-lg;
+
+        p {
+            color: $text-primary;
+            margin-bottom: $spacing-sm;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .info-label {
+            color: $accent-secondary;
+            min-width: 120px;
+            display: inline-block;
+        }
+
+        .info-value {
+            color: $text-primary;
         }
     }
+}
 
+// Social links terminal style
+.social-links {
+    display: flex;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+    margin-top: $spacing-lg;
+
+    .social-link {
+        color: $text-secondary;
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+        transition: color $transition-fast;
+
+        &::before {
+            content: '>';
+            color: $accent-primary;
+        }
+
+        i {
+            width: 20px;
+        }
+
+        &:hover {
+            color: $accent-primary;
+        }
+
+        &.linkedin:hover { color: #0e76a8; }
+        &.behance:hover { color: #053eff; }
+        &.spotify:hover { color: #1DB954; }
+        &.github:hover { color: #6e5494; }
+        &.whatsapp:hover { color: #25d366; }
+        &.mail:hover { color: #DB4437; }
+    }
+}
+
+// Section divider
+.section-divider {
+    border: none;
+    border-top: 1px dashed $border-color;
+    margin: $spacing-3xl 0;
 }

@@ -1,58 +1,208 @@
-* {
-    margin: 0;
-    padding: 0;
+// Base body styles - Terminal aesthetic
+
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
 body {
-    background-color: $color-1;
+    font-family: $font-mono;
+    background-color: $bg-primary;
+    color: $text-primary;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-    text-decoration: none;
-}
-
-/* -------------------------------------------- GRID ------------------------------------------------- */
-
+// Main wrapper - terminal window simulation
 .wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto auto auto;
-    gap: 0px 0px;
-    grid-template-areas:
-        "header"
-        "main"
-        "work"
-        "xp"
-        "bio"
-        "form"
-        "footer";
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: $spacing-md;
+    min-height: 100vh;
 }
 
-header {
-    grid-area: header;
+.wrapper-project {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing-md;
+    min-height: 100vh;
 }
 
-main {
-    grid-area: main;
+// Terminal window container
+.terminal-window {
+    @include terminal-box;
+    border-radius: $radius-md;
+    overflow: hidden;
+    margin-bottom: $spacing-xl;
+
+    .terminal-header {
+        background: $bg-card;
+        padding: $spacing-sm $spacing-md;
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        border-bottom: 1px solid $border-color;
+
+        .terminal-buttons {
+            display: flex;
+            gap: 6px;
+
+            span {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+
+                &.btn-close { background: #ff5f56; }
+                &.btn-minimize { background: #ffbd2e; }
+                &.btn-maximize { background: #27ca40; }
+            }
+        }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            color: $text-secondary;
+            font-size: 0.85rem;
+        }
+    }
+
+    .terminal-content {
+        padding: $spacing-lg;
+        background: $bg-terminal;
+    }
 }
 
-#WORK {
-    grid-area: work;
+// Prompt styling
+.prompt {
+    color: $accent-success;
+
+    &::before {
+        content: '> ';
+        color: $accent-primary;
+    }
 }
 
-#XP {
-    grid-area: xp;
+// Command output styling
+.output {
+    color: $text-primary;
+    margin-left: $spacing-md;
 }
 
-#BIO {
-    grid-area: bio;
+// Cursor
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background: $accent-primary;
+    animation: $cursor-blink;
+    vertical-align: text-bottom;
+    margin-left: 2px;
 }
 
-.form {
-    grid-area: form;
+// Selection styling
+::selection {
+    background: rgba($accent-primary, 0.3);
+    color: $text-primary;
 }
 
-footer {
-    grid-area: footer;
+// Scrollbar styling
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: $bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $border-color;
+    border-radius: $radius-sm;
+
+    &:hover {
+        background: $text-muted;
+    }
+}
+
+// Links
+a {
+    color: $accent-secondary;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+        color: $accent-primary;
+    }
+}
+
+// Paragraphs
+p {
+    margin-bottom: $spacing-md;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Lists with terminal markers
+ul.terminal-list {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        padding-left: $spacing-lg;
+        position: relative;
+        margin-bottom: $spacing-sm;
+
+        &::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: $accent-primary;
+        }
+    }
+}
+
+// Code blocks
+code, pre {
+    font-family: $font-mono;
+    background: $bg-terminal;
+    border-radius: $radius-sm;
+}
+
+code {
+    padding: 2px 6px;
+    color: $accent-warning;
+}
+
+pre {
+    padding: $spacing-md;
+    overflow-x: auto;
+    border: 1px solid $border-color;
+
+    code {
+        background: none;
+        padding: 0;
+    }
+}
+
+// Horizontal rule - terminal style
+hr {
+    border: none;
+    border-top: 1px solid $border-color;
+    margin: $spacing-xl 0;
+}
+
+// Images container
+img {
+    max-width: 100%;
+    height: auto;
 }

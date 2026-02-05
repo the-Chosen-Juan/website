@@ -1,23 +1,98 @@
-// Variables
+// Terminal Theme Variables
 
-$color-1: #000000;
-$color-2: #fff;
+// Colors - Terminal aesthetic (inspired by retro consoles)
+$bg-primary: #1e1e1e;
+$bg-secondary: #252526;
+$bg-terminal: #0d0d0d;
+$bg-card: #2d2d30;
 
-$handwritten-font: 'Gloria Hallelujah';
-$cover-font: 'Merriweather', serif;
-$copy-font: 'Open Sans', sans-serif;
+$text-primary: #d4d4d4;
+$text-secondary: #808080;
+$text-muted: #5a5a5a;
 
-$animationSpeed: 40s;
+$accent-primary: #d08770;      // Warm amber/terracotta (like Claude Code bricks)
+$accent-secondary: #81a1c1;    // Cool blue for links
+$accent-success: #a3be8c;      // Green for success states
+$accent-warning: #ebcb8b;      // Yellow for warnings
+$accent-error: #bf616a;        // Red for errors
+
+$border-color: #404040;
+$border-accent: #d08770;
+
+// Fonts - Monospace for terminal aesthetic
+$font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+$font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+// Sizing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 3rem;
+$spacing-3xl: 4rem;
+
+// Border radius (minimal for terminal look)
+$radius-sm: 2px;
+$radius-md: 4px;
+
+// Transitions
+$transition-fast: 150ms ease;
+$transition-normal: 250ms ease;
+
+// Terminal box characters
+$box-top-left: '┌';
+$box-top-right: '┐';
+$box-bottom-left: '└';
+$box-bottom-right: '┘';
+$box-horizontal: '─';
+$box-vertical: '│';
+
+// Animation
+$cursor-blink: cursor-blink 1s step-end infinite;
 
 // Mixins
-
-@mixin image ($height, $width, $opacity) {
-    height: $height;
-    width: $width;
-    opacity: $opacity;
+@mixin terminal-box {
+    border: 1px solid $border-color;
+    background: $bg-secondary;
 }
 
-@mixin black-gradient {
-	background: linear-gradient(to right,  rgb(0, 0, 0) 0%,rgba(255,255,255,0) 100%);
+@mixin terminal-border {
+    border: 1px solid $border-accent;
 }
 
+@mixin text-glow {
+    text-shadow: 0 0 2px rgba($accent-primary, 0.3);
+}
+
+@mixin scanlines {
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.1) 2px,
+            rgba(0, 0, 0, 0.1) 4px
+        );
+        pointer-events: none;
+        z-index: 1;
+    }
+}
+
+// Cursor blink animation
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+// Typing animation
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}

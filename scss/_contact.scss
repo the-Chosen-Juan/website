@@ -1,56 +1,125 @@
-/* -------------------------------------------- CONTACT ------------------------------------------------- */
+// Contact Section - Terminal Style
 
-.container-h2 {
-    margin-top: 4em;
-    width: 60vw;
-    height: auto;
-
-    img {
-        position: relative;
-        z-index: -1;
-        opacity: 90%;
-    }
+.section-contact {
+    padding: $spacing-3xl 0;
 }
 
-.Form {
-    text-align: center;
-    margin-top: -14%;
-    padding: 3em;
+// Contact form - terminal input style
+.contact-form {
+    @include terminal-box;
+    border-radius: $radius-md;
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
 
-    .mb-3 {
-        justify-content: center;
+    .form-header {
+        background: $bg-card;
+        padding: $spacing-sm $spacing-md;
+        border-bottom: 1px solid $border-color;
         display: flex;
+        align-items: center;
+        gap: $spacing-sm;
 
-        input {
-            width: 60vw;
+        .window-buttons {
+            display: flex;
+            gap: 6px;
+
+            span {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+
+                &:nth-child(1) { background: #ff5f56; }
+                &:nth-child(2) { background: #ffbd2e; }
+                &:nth-child(3) { background: #27ca40; }
+            }
         }
 
-        textarea {
-            resize: none;
-            width: 60vw;
-            height: 30vh;
+        .form-title {
+            flex: 1;
+            text-align: center;
+            color: $text-secondary;
+            font-size: 0.85rem;
         }
     }
 
-    .send {
-        margin: 1em;
-        transition-duration: 0.003s;
-        box-shadow: 0 5px 0 rgb(129, 129, 129);
-        
+    .form-body {
+        padding: $spacing-lg;
+        background: $bg-terminal;
+
+        .form-intro {
+            color: $text-secondary;
+            margin-bottom: $spacing-lg;
+            font-size: 0.9rem;
+
+            .cmd {
+                color: $accent-success;
+            }
+        }
+    }
+
+    .form-group {
+        margin-bottom: $spacing-md;
+
+        .form-label {
+            display: block;
+            color: $accent-primary;
+            margin-bottom: $spacing-xs;
+            font-size: 0.85rem;
+
+            &::before {
+                content: '> ';
+                color: $accent-success;
+            }
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            background: $bg-secondary;
+            border: 1px solid $border-color;
+            border-radius: $radius-sm;
+            padding: $spacing-sm $spacing-md;
+            color: $text-primary;
+            font-family: $font-mono;
+            font-size: 0.9rem;
+            transition: border-color $transition-fast;
+
+            &:focus {
+                outline: none;
+                border-color: $accent-primary;
+            }
+
+            &::placeholder {
+                color: $text-muted;
+            }
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+    }
+
+    .form-submit {
+        width: 100%;
+        background: $bg-secondary;
+        border: 1px solid $accent-primary;
+        color: $accent-primary;
+        padding: $spacing-sm $spacing-lg;
+        font-family: $font-mono;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all $transition-fast;
+        border-radius: $radius-sm;
+
         &:hover {
-            color: white;
-            background-color: black;
+            background: $accent-primary;
+            color: $bg-primary;
         }
 
-        &:focus {
-            color: white;
-            background-color: black;
-        }
-
-        &:active {
-            transition-duration: 0.003s;
-            box-shadow: none;
-            transform: translateY(5px);
+        &::before {
+            content: '$ ';
         }
     }
 }

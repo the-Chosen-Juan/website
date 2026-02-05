@@ -1,281 +1,281 @@
-/* -------------------------------------------- MEDIA QUERIES ------------------------------------------------- */
+// Media Queries - Terminal Theme Responsive Design
 
-@media screen and (max-width: 864px) {
-
-    /* INDEX */
-
-    .home {
-        .photoAndName {
-
-            margin-top: -2em;
-
-            .ProfilePic {
-                img {
-                    width: 500px;
-                    height: 335px;
-                }
-            }
-
-            .Headline {
-                margin-top: -19.5em;
-                margin-bottom: 10em;
-                padding: 1em 7em 0em 0em;
-
-                h1 {
-                    font-size: 2em;
-                }
-            }
-        }
-
-        .copy{
-            padding-top: 4em;
-            p{
-                font-size: 0.8em;
-            }
-        }
-
-        .TopSocials {
-            margin-bottom: 8em;
-            padding: 0em 1em 0em 0;
-            font-size: 0.8em;
-        }
+// Tablet breakpoint
+@media screen and (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .work-h2 {
-        width: 100vw;
+    .video-grid {
+        grid-template-columns: 1fr;
     }
 
-    .projects {
-        .Thumbnail {
-            margin: 0em 0 0.3em 0;
-        }
-    }
-
-    .BioPic {
-        margin-top: 0px;
-        padding: 6em;
-
-        p {
-            font-size: 0.8em;
-        }
-    }
-
-    .awards{
-        .award-thumb {
-            width: 80px; 
-            height: 80px;
-        }
-    }
-
-    /* PROJECTS */
-
-    .cover {
-        h1 {
-            font-size: 1.5em;
-        }
-
-        .behance-button {
-            font-size: 0.6em;
-            padding: 0.8em;
-            width: 150px;
-            height: 30px;
-        }
-
-        .lineas {
-            width: 151px;
-            height: 33px;
-            top: 72%;
-            left: 50.3%;
-            transform: translate(-50%, -50%);
-        }
-    }
-
-    .campaign-description {
-        font-size: 0.8em;
-    }
-
-    .case-study{
-        margin: -1.5em 5em 0 5em;
+    .ascii-art {
+        font-size: clamp(0.3rem, 1vw, 0.6rem);
     }
 }
 
+// Mobile landscape / small tablet
+@media screen and (max-width: 768px) {
+    .wrapper {
+        padding: $spacing-sm;
+    }
 
-@media screen and (max-width: 650px) {
-
-    /* INDEX */
-
-    .home {
-        padding: 2em 0em 2em 0em;
-
-        .photoAndName {
-            margin-top: -5em;
+    // Navigation
+    .terminal-nav {
+        .nav-links {
+            display: none;
         }
 
-        .TopSocials {
-            margin-bottom: 2em;
-            font-size: 0.7em;
+        .nav-toggle {
+            display: block;
+        }
+
+        &.nav-open .nav-links {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: $bg-secondary;
+            flex-direction: column;
+            padding: $spacing-md;
+            border-bottom: 1px solid $border-color;
+
+            a {
+                padding: $spacing-sm;
+                display: block;
+            }
         }
     }
 
-    .bio-h2 {
-        width: 100vw;
-        height: auto;
+    // Hero
+    .hero {
+        padding-top: 70px;
+        min-height: auto;
+        padding-bottom: $spacing-2xl;
     }
 
-    .projects {
-        .Thumbnail {
-            opacity: 100%;
-        }
+    .ascii-art {
+        font-size: clamp(0.25rem, 0.9vw, 0.5rem);
+        overflow-x: auto;
     }
 
-    .logos {
-        margin: 2em 0 5em 0;
-
-        .ClientLogo {
-            height: 70px;
-            width: 70px;
-        }
+    .intro-section .output-block {
+        margin-left: 0;
     }
 
-    .BioPic {
-
-        padding: 4em;
-
-        p {
-            font-size: 0.7em;
-        }
+    // Projects grid
+    .projects-grid {
+        grid-template-columns: 1fr;
     }
 
-    /* PROJECTS */
+    // Skills
+    .skills-section .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
 
-    .cover {
-        h1 {
-            font-size: 1em;
-        }
+    .clients-section .clients-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    }
 
-        .behance-button {
-            font-size: 0.45em;
-            padding: 0.5em;
-            width: 100px;
-            height: 20px;
-        }
+    // Awards
+    .awards-section .awards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
 
-        .lineas {
-            width: 101px;
-            height: 23px;
-            top: 70%;
-            left: 50.3%;
+    .award-item {
+        padding: $spacing-sm;
+
+        .award-icon {
+            width: 50px;
+            height: 50px;
         }
     }
 
-    .carousel {
-        margin-top: -2em;
+    // Social links
+    .social-links {
+        flex-direction: column;
+        gap: $spacing-sm;
+    }
+
+    // Footer
+    .terminal-footer .footer-links {
+        gap: $spacing-md;
+    }
+
+    // Project pages
+    .project-header .project-meta {
+        flex-direction: column;
+        gap: $spacing-sm;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .image-grid {
+        grid-template-columns: 1fr;
     }
 }
 
+// Mobile portrait
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
 
-@media screen and (max-width: 500px) {
+    .wrapper {
+        padding: $spacing-xs;
+    }
 
-    /* INDEX */
+    // ASCII art scaling for mobile
+    .ascii-art {
+        font-size: clamp(0.18rem, 0.7vw, 0.35rem);
 
-    .home {
-
-        padding: 1em 0em 2em 0em;
-
-        .photoAndName {
-            margin-top: 0em;
-
-            .ProfilePic {
-                padding-top: 5em;
-
-                img {
-                    width: 300px;
-                    height: 200px;
-                }
-            }
-
-            .Headline {
-                margin-top: -11.5em;
-                margin-bottom: 5em;
-                padding: 0.2em 4.2em 0em 0em;
-
-                h1 {
-                    font-size: 1.3em;
-                }
-            }
+        &.mobile-hide {
+            display: none;
         }
+    }
 
-        .copy{
-            padding-top: 4em;
-            p{
-                font-size: 0.55em;
-            }
-        }
+    // Show simplified title on mobile
+    .mobile-title {
+        display: block;
+        color: $accent-primary;
+        font-size: 1.5rem;
+        margin-bottom: $spacing-lg;
+    }
 
-        .TopSocials {
-            padding-top: 0em;
-            margin-bottom: 0em;
+    // Welcome box
+    .welcome-box {
+        padding: $spacing-sm $spacing-md;
+    }
 
-            li {
-                font-size: 0.8em;
+    // Project cards
+    .project-card {
+        .project-header {
+            padding: $spacing-xs;
+
+            .project-title {
+                font-size: 0.7rem;
             }
         }
     }
 
-    .work-h2 {
-        margin: 3em 0em 2em 0em;
+    // Skills
+    .skills-section .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
+    .skill-item {
+        font-size: 0.8rem;
+    }
 
-    .projects {
-        .Thumbnail {
-            margin: 0em 0 0.2em 0;
+    // Clients
+    .clients-section .clients-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: $spacing-sm;
+    }
+
+    // Bio
+    .bio-content .bio-body {
+        padding: $spacing-md;
+    }
+
+    // Contact form
+    .contact-form {
+        .form-body {
+            padding: $spacing-md;
+        }
+
+        .form-group .form-label {
+            font-size: 0.8rem;
         }
     }
 
-    .BioPic {
-        padding: 2em;
+    // Footer
+    .terminal-footer {
+        padding: $spacing-lg 0;
 
-        p {
-            font-size: 0.6em;
+        .footer-links {
+            flex-direction: column;
+            align-items: center;
+            gap: $spacing-sm;
+        }
+
+        .footer-ascii {
+            display: none;
         }
     }
 
-    .awards {
-        .award-thumb {
-            width: 70px;
-            height: 70px;
+    // Project pages
+    .project-header {
+        .header-content {
+            padding: $spacing-md;
+        }
+
+        .project-ascii-title {
+            font-size: clamp(0.2rem, 0.8vw, 0.4rem);
+        }
+
+        .project-links {
+            flex-direction: column;
         }
     }
 
-    footer{
-        div{
-            div{
-                a{font-size: 0.8em;}
-            }
-        }
+    .video-container .video-bar .video-title,
+    .image-container .image-bar .image-name {
+        font-size: 0.65rem;
     }
 
-    /* PROJECTS */
+    .campaign-section .campaign-body {
+        padding: $spacing-md;
+    }
+}
 
-    .cover h1 {
-        font-size: 0.8em;
+// Very small screens
+@media screen and (max-width: 360px) {
+    html {
+        font-size: 13px;
     }
 
-    .h2-campaign {
-        width: 50vw;
-        height: auto;
+    .ascii-art {
+        display: none;
     }
 
-    .carousel {
-        margin-top: -1em;
+    .mobile-title {
+        display: block;
     }
 
-    .campaign-description {
-        font-size: 0.6em;
+    .clients-section .clients-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    .case-study{
-        margin: -0.5em 2em 0 2em;
+    .awards-section .awards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+// Print styles
+@media print {
+    .terminal-nav,
+    .nav-mobile,
+    .social-links,
+    .terminal-footer {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .ascii-art {
+        color: black;
+    }
+
+    a {
+        color: black;
+        text-decoration: underline;
     }
 }

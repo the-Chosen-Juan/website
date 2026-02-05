@@ -9,213 +9,249 @@
     <meta name="keywords"
         content="advertising, publicidad, creativo, creative, copywriting, portfolio, cannes lions, director creativo, front-end, css, html, copywriter, copy, argentina, Nacho Grosman, Ignacio Grosman, Grosman, Philco, Film, Air conditioning, advert, Case study, A/C, Messi, Tony Stark, Robert Downey Jr, Tyrion Lannister, Funny TV ads, celebrity ad">
     <meta name="description" content="This is Philco's advertising campaign to promote air conditioning sales">
-    <!------------------------------------------------------------------------------- FAVICON ---------------------------------------------------------------------------------->
+
     <link rel="icon" href="img/Diseño//icons/claqueta.png">
-    <!------------------------------------------------------------------------------- FONTAWESOME ---------------------------------------------------------------------------------->
+
     <script src="https://kit.fontawesome.com/e82d982690.js" crossorigin="anonymous"></script>
-    <!------------------------------------------------------------------------------- BOOTSTRAP ---------------------------------------------------------------------------------->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <!------------------------------------------------------------------------------- CSS ---------------------------------------------------------------------------------->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/stylecss.css">
-    <!------------------------------------------------------------------------------- FONTS ---------------------------------------------------------------------------------->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
-
-    <!--------------------------------------------------------------------------ANIMATE.CSS----------------------------------------------------------------------------->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <!------------------------------------------------------------------------------------------------------------------------------------------------------------------>
-    <title>Philco - Tenés un aire</title>
-
+    <title>Philco - Tenes un Aire | Terminal</title>
 </head>
 
 <body>
+    <!-- Terminal Navigation -->
+    <nav class="terminal-nav" id="nav">
+        <div class="nav-container">
+            <div class="nav-prompt">
+                <span class="prompt-symbol">~</span>
+                <span class="nav-path">/projects/philco</span>
+            </div>
+            <button class="nav-toggle" onclick="toggleNav()">menu</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">home</a></li>
+                <li><a href="index.html#work">work</a></li>
+                <li><a href="index.html#xp">xp</a></li>
+                <li><a href="index.html#bio">bio</a></li>
+                <li><a href="index.html#contact">contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="wrapperProject">
-        <header>
-            <!------------------------------------------------------------------------------- HEADER ---------------------------------------------------------------------------------->
-            <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
-                <div class="container-fluid justify-content-center">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a aria-current="page" href="index.html">HOME</a>
-                            <a href="index.html#WORK">WORK</a>
-                            <a href="index.html#XP">XP</a>
-                            <a href="index.html#BIO">BIO</a>
-                            <a href="index.html#CONTACT">CONTACT</a>
-                        </div>
+    <div class="wrapper-project">
+        <!-- Back Navigation -->
+        <div class="breadcrumb-terminal">
+            <a href="index.html">home</a>
+            <span class="separator">/</span>
+            <a href="index.html#work">projects</a>
+            <span class="separator">/</span>
+            <span class="current">philco</span>
+        </div>
+
+        <!-- Project Header -->
+        <div class="project-header">
+            <div class="header-bar">
+                <div class="window-buttons">
+                    <span></span><span></span><span></span>
+                </div>
+                <span class="header-title">philco_tenes-un-aire.exe</span>
+            </div>
+            <div class="header-content">
+<pre class="project-ascii-title">
+██████╗ ██╗  ██╗██╗██╗      ██████╗ ██████╗
+██╔══██╗██║  ██║██║██║     ██╔════╝██╔═══██╗
+██████╔╝███████║██║██║     ██║     ██║   ██║
+██╔═══╝ ██╔══██║██║██║     ██║     ██║   ██║
+██║     ██║  ██║██║███████╗╚██████╗╚██████╔╝
+╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═════╝
+</pre>
+                <h1 class="mobile-title" style="display: none;">Philco - Tenes un Aire</h1>
+
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">client:</span>
+                        <span class="meta-value">Philco</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">type:</span>
+                        <span class="meta-value">Integrated Campaign</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">role:</span>
+                        <span class="meta-value">Creative / Copywriter</span>
                     </div>
                 </div>
-            </nav>
 
-
-            <div class="cover">
-                <h1 class="title">Philco - Tenés un aire</h1>
-                <img src="img/Projects/Philco/thumb-philco.png" alt="Philco Tenés un aire">
-
-                <div class="lineas">
-                    <img src="img/Diseño/linitasBe-03.png" alt="background button">
+                <div class="project-links">
+                    <a href="https://www.behance.net/gallery/88055753/Philco-Tens-un-Aire" target="_blank" class="project-link">
+                        view on behance
+                    </a>
+                    <a href="index.html#work" class="project-link">
+                        back to projects
+                    </a>
                 </div>
+            </div>
+        </div>
 
-                <a href="https://www.behance.net/gallery/88055753/Philco-Tens-un-Aire" target="blank_"
-                    class="behance-button">See on Behance</a>
+        <!-- Videos Section -->
+        <div class="video-section">
+            <div class="video-header">
+                cat ./videos/ <span class="video-count">(5 files)</span>
             </div>
 
-        </header>
-
-        <main>
-
-            <div class="container-h2 h2-campaign container">
-                <img src="img/Diseño/h2 campaign.png" class="img-fluid"
-                    alt="Contact">
-            </div>
-
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
-
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                        aria-label="Slide 4"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
-                        aria-label="Slide 5"></button>
+            <div class="video-grid">
+                <div class="video-container">
+                    <div class="video-bar">
+                        <div class="dots"><span></span><span></span><span></span></div>
+                        <span class="video-title">spot_01.mp4</span>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/0bdum0cLStU" allowfullscreen></iframe>
+                    </div>
                 </div>
 
-                <div class="carousel-inner">
-                    <div class="carousel-item ratio ratio-16x9 active">
-                        <iframe class="embed-responsive-item" width="1280" height="720"
-                            src="https://www.youtube.com/embed/0bdum0cLStU" frameborder="0" allowfullscreen></iframe>
+                <div class="video-container">
+                    <div class="video-bar">
+                        <div class="dots"><span></span><span></span><span></span></div>
+                        <span class="video-title">spot_02.mp4</span>
                     </div>
-                    <div class="carousel-item ratio ratio-16x9 ">
-                        <iframe class="embed-responsive-item" width="1280" height="720"
-                            src="https://www.youtube.com/embed/04kh3bhMMrI" frameborder="0" allowfullscreen></iframe>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/04kh3bhMMrI" allowfullscreen></iframe>
                     </div>
-                    <div class="carousel-item ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" width="1280" height="720"
-                            src="https://www.youtube.com/embed/5oF2wn4fEWw" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="carousel-item ratio ratio-16x9 ">
-                        <iframe class="embed-responsive-item" width="1280" height="720"
-                            src="https://www.youtube.com/embed/tmuN84U_NkA" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="carousel-item ratio ratio-16x9 ">
-                        <iframe class="embed-responsive-item" width="1280" height="720"
-                            src="https://www.youtube.com/embed/g_NBZ1oi-vo" frameborder="0" allowfullscreen></iframe>
-                    </div>>
-
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+
+                <div class="video-container">
+                    <div class="video-bar">
+                        <div class="dots"><span></span><span></span><span></span></div>
+                        <span class="video-title">spot_03.mp4</span>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/5oF2wn4fEWw" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <div class="video-bar">
+                        <div class="dots"><span></span><span></span><span></span></div>
+                        <span class="video-title">spot_04.mp4</span>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/tmuN84U_NkA" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <div class="video-bar">
+                        <div class="dots"><span></span><span></span><span></span></div>
+                        <span class="video-title">spot_05.mp4</span>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/g_NBZ1oi-vo" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <h3>CASE STUDY</h3>
+        <!-- Campaign Description -->
+        <div class="campaign-section">
+            <div class="campaign-header">
+                <span class="file-icon">*</span>
+                <span class="file-name">case_study.md</span>
+            </div>
+            <div class="campaign-body">
+                <div class="campaign-text">
+                    <p>This was a humorous campaign we had fun creating. Its concept revolves around a word play based on a popular phrase ("Tenes un aire a" / "Having an air of someone") that literally means "You kinda look like someone" (That 'someone' usually being a celebrity).</p>
 
-            <div class="campaign-description">
-                <p>
-                    This was a humorous campaign we had fun creating. <br>
-                    Its concept revolves around a word play based on a popular phrase ("Tenés un aire a" / "Having an air of someone") that literally means "You kinda look like someone" (That 'someone' usually being a celebrity).
-                    So, the essence of it was the following: If you 'had an air' of a celebrity, you could get an air conditioning.
-                    <br>
-                    <br>
-                    We developed a site that used facial recognition to analyze how much you looked like that someone and gave you the exact percentage. In the same website you could use that exact percentage for a discount on one of Philco's A/Cs.
-                    So if you you were 86% similar to, for example, Harry Styles; you were given an 86% discount on air conditioning.
-                    <br>
-                    <br>
-                    This blew up. For real. The ad was trending during a whole day on social media, the case study won a ton of local & international awards, and I've been told many families even talked about it during their christmas dinner.
-                    Talk about advertising goals. <br>
-                    So, anyways, don't skip this ad. 
+                    <p>So, the essence of it was the following: If you 'had an air' of a celebrity, you could get an air conditioning.</p>
+
+                    <p>We developed a site that used facial recognition to analyze how much you looked like that someone and gave you the exact percentage. In the same website you could use that exact percentage for a discount on one of Philco's A/Cs. So if you were 86% similar to, for example, Harry Styles; you were given an 86% discount on air conditioning.</p>
+
+                    <p>This blew up. For real. The ad was trending during a whole day on social media, the case study won a ton of local & international awards, and I've been told many families even talked about it during their christmas dinner.</p>
+
+                    <p>Talk about advertising goals. So, anyways, don't skip this ad.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study Video -->
+        <div class="video-section">
+            <div class="video-header">
+                play case_study.mp4
+            </div>
+            <div class="video-container">
+                <div class="video-bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <span class="video-title">case_study_full.mp4</span>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/ri5h316uwuc" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campaign Image -->
+        <div class="gallery-section">
+            <div class="gallery-header">
+                ls ./assets/
+            </div>
+            <div class="image-container">
+                <div class="image-bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <span class="image-name">promo_board.jpg</span>
+                </div>
+                <div class="image-wrapper">
+                    <img src="img/Projects/Philco/Doppelganger promo.jpg" alt="Philco Campaign Board">
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://wa.me/5491149475884" target="_blank" class="footer-link whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ignaciohgrosman@gmail.com" target="_blank" class="footer-link mail">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ignacio-grosman-6b61189b/" target="_blank" class="footer-link linkedin">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/the-Chosen-Juan" target="_blank" class="footer-link github">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.behance.net/nachogrosman" target="_blank" class="footer-link behance">
+                        <i class="fa-brands fa-behance"></i>
+                    </a>
+                    <a href="https://open.spotify.com/user/elbuffaloo?si=2d8787accf5d4c98" target="_blank" class="footer-link spotify">
+                        <i class="fa-brands fa-spotify"></i>
+                    </a>
+                </div>
+
+                <div class="footer-resume">
+                    <a href="https://drive.google.com/uc?export=download&id=1KiDL5LfgyWtHPuimqZ0pccKqPuZvwpf2" class="resume-link">
+                        <i class="fa-solid fa-download"></i> download resume.pdf
+                    </a>
+                </div>
+
+                <p class="footer-copyright">
+                    <span class="year">2026</span> Nacho Grosman. All rights reserved.
                 </p>
             </div>
-
-            <div class="case-study">
-                <div class="ratio ratio-16x9">
-                    <iframe class="embed-responsive-item"
-                        src="https://www.youtube.com/embed/ri5h316uwuc" frameborder="0" allowfullscreen></iframe>
-                </div>>
-            </div>
-
-            <img src="img/Projects/Philco/Doppelganger promo.jpg" class="board" alt="...">
-
-
-        </main>
-
-        <!--------------------------------- FOOTER --------------------------------->
-        <footer>
-
-            <div class="bg-black text-center text-white">
-
-                <div class="container mb-4 info">
-
-                    <!-- Whatsapp -->
-                    <a href="https://wa.me/5491149475884" target="_blank" class="Whatsapp"><i
-                            class="fa-brands fa-whatsapp fa-md"></i></a>
-
-                    <!-- Mail -->
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ignaciohgrosman@gmail.com" target="_blank"
-                        class="Mail"><i class="fa-solid fa-envelope fa-md"></i></a>
-
-                    <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/in/ignacio-grosman-6b61189b/" target="_blank" class="Linkedin"><i
-                            class="fa-brands fa-linkedin-in fa-md"></i></a>
-
-                    <!-- Github -->
-                    <a href="https://github.com/the-Chosen-Juan" target="_blank" class="Github"><i
-                            class="fa-brands fa-github fa-md"></i></a>
-
-                    <!-- Behance -->
-                    <a href="https://www.behance.net/nachogrosman" target="_blank" class="Behance"><i
-                            class="fa-brands fa-behance fa-md"></i></a>
-
-                    <!-- Spotify -->
-                    <a href="https://open.spotify.com/user/elbuffaloo?si=2d8787accf5d4c98" target="_blank"
-                        class="Spotify"><i class="fa-brands fa-spotify fa-md"></i></a>
-                </div>
-
-                <div class="resume">
-                    Download my <a
-                        href="https://drive.google.com/uc?export=download&id=1KiDL5LfgyWtHPuimqZ0pccKqPuZvwpf2">resume</a>
-                </div>
-
-                <div class="text-center p-3 copyright">
-                    © 2026 all rights reserved
-                </div>
-
-            </div>
-
         </footer>
     </div>
-    <!----------------------------------------------------------------- WRAPPER-END --------------------------------------------------------------->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
+    <script>
+        function toggleNav() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('nav-open');
+        }
+    </script>
 </body>
 
 </html>

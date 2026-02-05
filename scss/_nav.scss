@@ -1,39 +1,142 @@
-/* -------------------------------------------- NAV ------------------------------------------------- */
+// Terminal Navigation
 
-.navbar {
-    background: rgba(0,0,0,0.8);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-    transition-duration: 0.3s;
+.terminal-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: $bg-secondary;
+    border-bottom: 1px solid $border-color;
+    z-index: 1000;
+    padding: $spacing-sm $spacing-md;
 
-    &:hover {
-        background: rgb(0, 0, 0);
-        opacity: 100%;
-        transition-duration: 0.3s;
+    .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    a {
-        color: darkgrey;
-        font-family: $copy-font;
-        font-size: 0.8em;
-        font-weight: bold;
-        padding: 0.3em 1.5em 0.3em 1.5em;
-        transition-duration: 0.3s;
+    .nav-prompt {
+        color: $accent-primary;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+
+        .prompt-symbol {
+            color: $accent-success;
+        }
+
+        .nav-path {
+            color: $text-secondary;
+        }
+    }
+
+    .nav-links {
+        display: flex;
+        gap: $spacing-xs;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        a {
+            color: $text-secondary;
+            padding: $spacing-xs $spacing-sm;
+            font-size: 0.85rem;
+            transition: color $transition-fast;
+            display: inline-block;
+
+            &::before {
+                content: '[';
+                color: $border-color;
+            }
+
+            &::after {
+                content: ']';
+                color: $border-color;
+            }
+
+            &:hover, &.active {
+                color: $accent-primary;
+
+                &::before, &::after {
+                    color: $accent-primary;
+                }
+            }
+        }
+    }
+
+    .nav-toggle {
+        display: none;
+        background: none;
+        border: 1px solid $border-color;
+        color: $text-primary;
+        padding: $spacing-xs $spacing-sm;
+        cursor: pointer;
+        font-family: $font-mono;
+        font-size: 0.85rem;
 
         &:hover {
-            color: $color-2;
-            transition-duration: 0.3s;
+            border-color: $accent-primary;
+            color: $accent-primary;
         }
     }
 }
 
-.navbar-toggler {
-    border: 0;
-    font-size: 0.8em;
+// Mobile navigation
+.nav-mobile {
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    background: $bg-secondary;
+    border-bottom: 1px solid $border-color;
+    padding: $spacing-md;
+    z-index: 999;
 
-    &:focus, &:active, .navbar-toggler-icon:focus {
-        outline: none;
-        box-shadow: none;
-        border: 0;    
-    } 
+    &.active {
+        display: block;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: $spacing-sm;
+
+        a {
+            display: block;
+            padding: $spacing-sm;
+
+            &:hover {
+                background: $bg-card;
+            }
+        }
+    }
+}
+
+// Breadcrumb for project pages
+.breadcrumb-terminal {
+    color: $text-secondary;
+    font-size: 0.85rem;
+    margin-bottom: $spacing-lg;
+    padding-top: 70px;
+
+    a {
+        color: $accent-secondary;
+
+        &:hover {
+            color: $accent-primary;
+        }
+    }
+
+    .separator {
+        color: $text-muted;
+        margin: 0 $spacing-sm;
+    }
+
+    .current {
+        color: $text-primary;
+    }
 }

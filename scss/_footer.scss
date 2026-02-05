@@ -1,56 +1,88 @@
-/* -------------------------------------------- FOOTER ------------------------------------------------- */
+// Footer - Terminal Style
 
-footer {
-    margin-top: 1em;
-    margin-bottom: 0;
+.terminal-footer {
+    padding: $spacing-2xl 0;
+    border-top: 1px solid $border-color;
+    margin-top: $spacing-3xl;
 
-    .info {
-        a {
-            padding: 0 1em 0 1em;
-            line-height: 1em;
+    .footer-content {
+        text-align: center;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: $spacing-lg;
+        margin-bottom: $spacing-lg;
+        flex-wrap: wrap;
+
+        .footer-link {
+            color: $text-secondary;
+            display: flex;
+            align-items: center;
+            gap: $spacing-xs;
+            transition: color $transition-fast;
+
+            i {
+                font-size: 1.1rem;
+            }
+
+            &:hover {
+                color: $accent-primary;
+            }
+
+            &.linkedin:hover { color: #0e76a8; }
+            &.behance:hover { color: #053eff; }
+            &.spotify:hover { color: #1DB954; }
+            &.github:hover { color: #6e5494; }
+            &.whatsapp:hover { color: #25d366; }
+            &.mail:hover { color: #DB4437; }
         }
     }
 
-    div{
-        .resume {
-            margin-top: -0.5em;
-            margin-bottom: 2em;
+    .footer-resume {
+        margin-bottom: $spacing-lg;
 
-            a{
-                border-radius: 15px;
-                padding: 0em 0.5em 0.2em 0.4em;
-                font-size: 0.95em;
-                color: $color-1;
-                font-weight: bold;
+        .resume-link {
+            display: inline-flex;
+            align-items: center;
+            gap: $spacing-sm;
+            padding: $spacing-sm $spacing-md;
+            border: 1px solid $border-color;
+            border-radius: $radius-sm;
+            color: $text-secondary;
+            transition: all $transition-fast;
 
-                background: linear-gradient(45deg, #0abfbc, #833AB4, #ff4e50, #0072ff, #ee0979, #ff6a00, #ff00cc, #333399, #c471ed, #f64f59);
-                background-size: 1000% 1000%;
-                -webkit-background-clip: border;
-                    background-clip: border;
-                animation: rotation 40s ease infinite;
+            &::before {
+                content: '>';
+                color: $accent-primary;
+            }
 
-                @keyframes rotation {
-                    0% {
-                        background-position: 0% 50%
-                    }
-                
-                    50% {
-                        background-position: 100% 50%
-                    }
-                
-                    100% {
-                        background-position: 0% 50%
-                    }
-                }
+            &:hover {
+                border-color: $accent-primary;
+                color: $accent-primary;
+            }
 
+            i {
+                font-size: 0.9rem;
             }
         }
     }
 
-    div{
-        .copyright {
-            margin-top: -3em;
-            font-size: 0.7em;
+    .footer-copyright {
+        color: $text-muted;
+        font-size: 0.8rem;
+
+        .year {
+            color: $text-secondary;
         }
+    }
+
+    .footer-ascii {
+        margin-top: $spacing-lg;
+        color: $text-muted;
+        font-size: 0.7rem;
+        white-space: pre;
+        line-height: 1.2;
     }
 }
