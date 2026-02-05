@@ -73,7 +73,7 @@
                     <span class="prompt-user">nacho</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-symbol">~</span>
                     <span class="command">who.am.i</span>
                 </div>
-                <div class="output-block typewriter">
+                <div class="output-block">
                     <p>Creative Director | Copywriter | UX Writer | Front-end Developer | AI Enthusiast</p>
                     <p>Based in Buenos Aires, Argentina</p>
                 </div>
@@ -114,7 +114,7 @@
                 <p class="section-command">./work/</p>
             </div>
 
-            <div class="projects-grid terminal-reveal">
+            <div class="projects-grid ">
                 <!-- Philco -->
                 <a href="Philco.html" class="project-card">
                     <div class="project-header">
@@ -298,7 +298,7 @@
                 <div class="skills-header">
                     <span class="path">~/skills/</span> - tools & technologies
                 </div>
-                <div class="skills-grid stagger-reveal">
+                <div class="skills-grid ">
                     <div class="skill-item">
                         <div class="skill-icon"><img src="img/Diseño/Skills/skills-01.png" alt="Premiere"></div>
                         <span class="skill-name">Premiere</span>
@@ -355,7 +355,7 @@
                 <div class="clients-header">
                     clients/ <span class="count">(24 items)</span>
                 </div>
-                <div class="clients-grid stagger-reveal">
+                <div class="clients-grid ">
                     <div class="client-logo"><img src="img/Clients/coca.png" alt="Coca-Cola"></div>
                     <div class="client-logo"><img src="img/Clients/danone.png" alt="Danone"></div>
                     <div class="client-logo"><img src="img/Clients/samsung.png" alt="Samsung"></div>
@@ -400,7 +400,7 @@
                 <p class="section-command">./bio/</p>
             </div>
 
-            <div class="bio-content typewriter">
+            <div class="bio-content">
                 <div class="bio-header">
                     <span class="file-icon">*</span>
                     <span class="file-name">about.md</span>
@@ -425,7 +425,7 @@
                 <div class="awards-header">
                     achievements.log <span class="timestamp">[verified]</span>
                 </div>
-                <div class="awards-grid stagger-reveal">
+                <div class="awards-grid ">
                     <div class="award-item">
                         <div class="award-icon"><img src="img/Awards/Awards-25.png" alt="Gold Diente"></div>
                         <span class="award-name">Diente Gold</span>
@@ -573,86 +573,50 @@
             });
         });
 
-        // Typewriter scroll animation using Intersection Observer
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+        // Sequential reveal system - everything appears like terminal output
+        let revealQueue = [];
+        let isRevealing = false;
 
-        // Observer for fade-in and terminal-reveal elements
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+        // Process queue - reveal one element at a time
+        function processRevealQueue() {
+            if (isRevealing || revealQueue.length === 0) return;
 
-        // Observe all typewriter, stagger-reveal, and terminal-reveal elements
-        document.querySelectorAll('.typewriter, .stagger-reveal, .terminal-reveal').forEach(el => {
-            fadeObserver.observe(el);
-        });
+            isRevealing = true;
+            const item = revealQueue.shift();
 
-        // Queue system for sequential typewriter effect
-        let typewriterQueue = [];
-        let isTyping = false;
-
-        // Process the queue - type one element at a time
-        function processTypewriterQueue() {
-            if (isTyping || typewriterQueue.length === 0) return;
-
-            isTyping = true;
-            const element = typewriterQueue.shift();
-            typewriterEffect(element, () => {
-                isTyping = false;
-                processTypewriterQueue();
-            });
+            if (item.type === 'typewriter') {
+                typewriterEffect(item.element, () => {
+                    isRevealing = false;
+                    processRevealQueue();
+                });
+            } else {
+                // Quick slide-in reveal for non-text elements
+                item.element.style.transition = 'opacity 0.12s ease, transform 0.12s ease';
+                item.element.style.opacity = '1';
+                item.element.style.transform = 'translateX(0)';
+                setTimeout(() => {
+                    isRevealing = false;
+                    processRevealQueue();
+                }, 60);
+            }
         }
 
         // Add element to queue
-        function queueTypewriter(element) {
+        function queueReveal(element, type = 'fade') {
             if (!element.dataset.queued) {
                 element.dataset.queued = 'true';
-                typewriterQueue.push(element);
-                processTypewriterQueue();
+                revealQueue.push({ element, type });
+                processRevealQueue();
             }
         }
 
-        // Section observer - triggers sequential typing for all text in a section
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.triggered) {
-                    entry.target.dataset.triggered = 'true';
-                    // Get all typeable elements in this section in order
-                    const elements = entry.target.querySelectorAll('.terminal-text, .section-command');
-                    elements.forEach(el => queueTypewriter(el));
-                }
-            });
-        }, { threshold: 0.2 });
-
-        // Observe sections
-        document.querySelectorAll('section, .hero').forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // Mark text elements for typing
-        document.querySelectorAll('.section-command').forEach(el => {
-            el.classList.add('terminal-text');
-        });
-
-        document.querySelectorAll('.output-block p, .bio-text p, .form-intro, .login-message, .skills-header, .clients-header, .awards-header').forEach(el => {
-            if (!el.closest('.ascii-art')) {
-                el.classList.add('terminal-text');
-            }
-        });
-
-        // Typewriter effect function with callback
+        // Typewriter effect function
         function typewriterEffect(element, onComplete) {
             const originalHTML = element.innerHTML;
             const text = element.textContent;
             element.innerHTML = '';
             element.style.opacity = '1';
+            element.style.transform = 'translateX(0)';
 
             let i = 0;
             const cursor = document.createElement('span');
@@ -660,7 +624,7 @@
             element.appendChild(cursor);
 
             // Fast typing speed
-            const speed = Math.max(8, Math.min(20, 400 / text.length));
+            const speed = Math.max(4, Math.min(12, 250 / text.length));
 
             const typeInterval = setInterval(() => {
                 if (i < text.length) {
@@ -670,16 +634,54 @@
                 } else {
                     clearInterval(typeInterval);
                     cursor.remove();
-                    // Restore original HTML to preserve spans/formatting
                     element.innerHTML = originalHTML;
                     if (onComplete) onComplete();
                 }
             }, speed);
         }
 
-        // Initialize text elements as hidden
-        document.querySelectorAll('.terminal-text').forEach(el => {
+        // Section observer - triggers sequential reveal for all content
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.triggered) {
+                    entry.target.dataset.triggered = 'true';
+                    // Get all revealable elements in DOM order
+                    const elements = entry.target.querySelectorAll('.reveal-item');
+                    elements.forEach(el => {
+                        const isText = el.classList.contains('reveal-text');
+                        queueReveal(el, isText ? 'typewriter' : 'fade');
+                    });
+                }
+            });
+        }, { threshold: 0.05 });
+
+        // Observe sections
+        document.querySelectorAll('section, .hero').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Mark ALL elements for sequential reveal
+        // Text elements get typewriter effect
+        document.querySelectorAll('.section-command, .output-block p, .bio-text p, .form-intro, .login-message, .skills-header, .clients-header, .awards-header, .footer-copyright').forEach(el => {
+            if (!el.closest('.ascii-art')) {
+                el.classList.add('reveal-item', 'reveal-text');
+            }
+        });
+
+        // Visual elements get slide-in reveal
+        document.querySelectorAll('.project-card, .skill-item, .client-item, .award-item, .form-group, .form-submit, .footer-link, .resume-link').forEach(el => {
+            el.classList.add('reveal-item');
+        });
+
+        // Larger containers
+        document.querySelectorAll('.section-header, .bio-content, .contact-form, .skills-section, .clients-section, .awards-section, .footer-links, .footer-resume').forEach(el => {
+            el.classList.add('reveal-item');
+        });
+
+        // Initialize all reveal items as hidden
+        document.querySelectorAll('.reveal-item').forEach(el => {
             el.style.opacity = '0';
+            el.style.transform = 'translateX(-8px)';
         });
     </script>
 </body>
