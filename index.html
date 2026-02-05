@@ -573,7 +573,7 @@
             });
         });
 
-        // Sequential reveal system - everything appears like terminal output
+        // Sequential reveal system - EVERYTHING appears like terminal output
         let revealQueue = [];
         let isRevealing = false;
 
@@ -590,14 +590,14 @@
                     processRevealQueue();
                 });
             } else {
-                // Quick slide-in reveal for non-text elements
-                item.element.style.transition = 'opacity 0.12s ease, transform 0.12s ease';
+                // Quick slide-in reveal
+                item.element.style.transition = 'opacity 0.1s ease, transform 0.1s ease';
                 item.element.style.opacity = '1';
                 item.element.style.transform = 'translateX(0)';
                 setTimeout(() => {
                     isRevealing = false;
                     processRevealQueue();
-                }, 60);
+                }, 50);
             }
         }
 
@@ -623,8 +623,7 @@
             cursor.className = 'typing-cursor';
             element.appendChild(cursor);
 
-            // Fast typing speed
-            const speed = Math.max(4, Math.min(12, 250 / text.length));
+            const speed = Math.max(3, Math.min(10, 200 / text.length));
 
             const typeInterval = setInterval(() => {
                 if (i < text.length) {
@@ -640,46 +639,108 @@
             }, speed);
         }
 
-        // Section observer - triggers sequential reveal for all content
+        // Get all direct children that should be revealed
+        function getRevealableChildren(container) {
+            const items = [];
+
+            // Get all meaningful elements in order
+            const selectors = [
+                '.ascii-art',
+                '.section-command',
+                '.command-line',
+                '.output-block',
+                '.output-block p',
+                '.login-message',
+                '.social-links',
+                '.social-links a',
+                '.section-header',
+                '.project-card',
+                '.skills-header',
+                '.skill-item',
+                '.clients-header',
+                '.client-item',
+                '.bio-header',
+                '.bio-text',
+                '.bio-text p',
+                '.awards-header',
+                '.award-item',
+                '.form-header',
+                '.form-intro',
+                '.form-group',
+                '.form-submit',
+                '.footer-link',
+                '.resume-link',
+                '.footer-copyright',
+                'hr',
+                'img',
+                'pre'
+            ];
+
+            // Collect elements in DOM order
+            const allElements = container.querySelectorAll(selectors.join(', '));
+            allElements.forEach(el => {
+                // Don't add if parent is already in list (avoid duplicates)
+                if (!el.dataset.queued && !items.includes(el)) {
+                    items.push(el);
+                }
+            });
+
+            return items;
+        }
+
+        // Section observer
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.dataset.triggered) {
                     entry.target.dataset.triggered = 'true';
-                    // Get all revealable elements in DOM order
-                    const elements = entry.target.querySelectorAll('.reveal-item');
+                    const elements = getRevealableChildren(entry.target);
                     elements.forEach(el => {
-                        const isText = el.classList.contains('reveal-text');
+                        // Text elements get typewriter, others get fade
+                        const isText = el.matches('p, .section-command, .login-message, .skills-header, .clients-header, .awards-header, .form-intro, .footer-copyright, .bio-header, .form-header');
                         queueReveal(el, isText ? 'typewriter' : 'fade');
                     });
                 }
             });
-        }, { threshold: 0.05 });
+        }, { threshold: 0.02 });
 
-        // Observe sections
-        document.querySelectorAll('section, .hero').forEach(section => {
+        // Observe all sections including nav and footer
+        document.querySelectorAll('section, .hero, footer').forEach(section => {
             sectionObserver.observe(section);
         });
 
-        // Mark ALL elements for sequential reveal
-        // Text elements get typewriter effect
-        document.querySelectorAll('.section-command, .output-block p, .bio-text p, .form-intro, .login-message, .skills-header, .clients-header, .awards-header, .footer-copyright').forEach(el => {
-            if (!el.closest('.ascii-art')) {
-                el.classList.add('reveal-item', 'reveal-text');
-            }
-        });
+        // Hide EVERYTHING initially
+        const hideSelectors = [
+            '.ascii-art',
+            '.section-command',
+            '.command-line',
+            '.output-block',
+            '.output-block p',
+            '.login-message',
+            '.social-links a',
+            '.section-header',
+            '.project-card',
+            '.skills-header',
+            '.skill-item',
+            '.clients-header',
+            '.client-item',
+            '.bio-content',
+            '.bio-header',
+            '.bio-text',
+            '.bio-text p',
+            '.awards-header',
+            '.award-item',
+            '.contact-form',
+            '.form-header',
+            '.form-intro',
+            '.form-group',
+            '.form-submit',
+            '.footer-link',
+            '.resume-link',
+            '.footer-copyright',
+            '.section-divider'
+        ];
 
-        // Visual elements get slide-in reveal
-        document.querySelectorAll('.project-card, .skill-item, .client-item, .award-item, .form-group, .form-submit, .footer-link, .resume-link').forEach(el => {
-            el.classList.add('reveal-item');
-        });
-
-        // Larger containers
-        document.querySelectorAll('.section-header, .bio-content, .contact-form, .skills-section, .clients-section, .awards-section, .footer-links, .footer-resume').forEach(el => {
-            el.classList.add('reveal-item');
-        });
-
-        // Initialize all reveal items as hidden
-        document.querySelectorAll('.reveal-item').forEach(el => {
+        document.querySelectorAll(hideSelectors.join(', ')).forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateX(-8px)';
         });
