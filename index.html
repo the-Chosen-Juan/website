@@ -46,10 +46,6 @@
     <div class="wrapper">
         <!-- Hero Section -->
         <section class="hero" id="home">
-            <div class="welcome-box">
-                <p class="welcome-text">Welcome to the <span class="highlight">Nacho Grosman</span> portfolio!</p>
-            </div>
-
             <!-- ASCII Art Name -->
 <pre class="ascii-art">
  ███╗   ██╗ █████╗  ██████╗██╗  ██╗ ██████╗
@@ -68,16 +64,16 @@
             <h1 class="mobile-title" style="display: none;">Nacho Grosman</h1>
 
             <p class="login-message">
-                <span class="success-icon">*</span> Login successful. Press <span class="enter-key">Enter</span> to continue
+                <span class="success-icon">*</span> Login successful. Welcome to my portfolio.
             </p>
 
             <!-- Intro Section -->
             <div class="intro-section">
                 <div class="command-line">
-                    <span class="prompt-user">nacho</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-symbol">$</span>
-                    <span class="command">whoami</span>
+                    <span class="prompt-user">nacho</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-symbol">~</span>
+                    <span class="command">who.am.i</span>
                 </div>
-                <div class="output-block">
+                <div class="output-block typewriter">
                     <p>Creative Director | Copywriter | UX Writer | Front-end Developer | AI Enthusiast</p>
                     <p>Based in Buenos Aires, Argentina</p>
                 </div>
@@ -115,10 +111,10 @@
 ╚███╔███╔╝╚██████╔╝██║  ██║██║  ██╗
  ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 </pre>
-                <p class="section-command"><span class="cmd">$</span> ls -la ./projects/</p>
+                <p class="section-command">./work/</p>
             </div>
 
-            <div class="projects-grid">
+            <div class="projects-grid stagger-reveal">
                 <!-- Philco -->
                 <a href="Philco.html" class="project-card">
                     <div class="project-header">
@@ -294,7 +290,7 @@
 ██╔╝ ██╗██║
 ╚═╝  ╚═╝╚═╝
 </pre>
-                <p class="section-command"><span class="cmd">$</span> cat skills.txt && ls ./clients/</p>
+                <p class="section-command">./xp/</p>
             </div>
 
             <!-- Skills Section -->
@@ -302,7 +298,7 @@
                 <div class="skills-header">
                     <span class="path">~/skills/</span> - tools & technologies
                 </div>
-                <div class="skills-grid">
+                <div class="skills-grid stagger-reveal">
                     <div class="skill-item">
                         <div class="skill-icon"><img src="img/Diseño/Skills/skills-01.png" alt="Premiere"></div>
                         <span class="skill-name">Premiere</span>
@@ -347,6 +343,10 @@
                         <div class="skill-icon"><img src="img/Diseño/Skills/skills-11.png" alt="Gemini"></div>
                         <span class="skill-name">Gemini</span>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-icon"><img src="img/Diseño/Skills/skills-12.svg" alt="Claude"></div>
+                        <span class="skill-name">Claude</span>
+                    </div>
                 </div>
             </div>
 
@@ -355,7 +355,7 @@
                 <div class="clients-header">
                     clients/ <span class="count">(24 items)</span>
                 </div>
-                <div class="clients-grid">
+                <div class="clients-grid stagger-reveal">
                     <div class="client-logo"><img src="img/Clients/coca.png" alt="Coca-Cola"></div>
                     <div class="client-logo"><img src="img/Clients/danone.png" alt="Danone"></div>
                     <div class="client-logo"><img src="img/Clients/samsung.png" alt="Samsung"></div>
@@ -397,10 +397,10 @@
 ██████╔╝██║╚██████╔╝
 ╚═════╝ ╚═╝ ╚═════╝
 </pre>
-                <p class="section-command"><span class="cmd">$</span> cat about.md</p>
+                <p class="section-command">./bio/</p>
             </div>
 
-            <div class="bio-content">
+            <div class="bio-content typewriter">
                 <div class="bio-header">
                     <span class="file-icon">*</span>
                     <span class="file-name">about.md</span>
@@ -425,7 +425,7 @@
                 <div class="awards-header">
                     achievements.log <span class="timestamp">[verified]</span>
                 </div>
-                <div class="awards-grid">
+                <div class="awards-grid stagger-reveal">
                     <div class="award-item">
                         <div class="award-icon"><img src="img/Awards/Awards-25.png" alt="Gold Diente"></div>
                         <span class="award-name">Diente Gold</span>
@@ -444,11 +444,11 @@
                     </div>
                     <div class="award-item">
                         <div class="award-icon"><img src="img/Awards/Clio.png" alt="Clio"></div>
-                        <span class="award-name">Clio</span>
+                        <span class="award-name">Clio Gold</span>
                     </div>
                     <div class="award-item">
                         <div class="award-icon"><img src="img/Awards/Awards-30.png" alt="Cannes Lions"></div>
-                        <span class="award-name">Cannes Shortlist</span>
+                        <span class="award-name">Cannes Lions Shortlist</span>
                     </div>
                 </div>
             </div>
@@ -467,7 +467,7 @@
 ╚██████╗╚██████╔╝██║ ╚████║   ██║   ██║  ██║╚██████╗   ██║
  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝   ╚═╝
 </pre>
-                <p class="section-command"><span class="cmd">$</span> ./send-message.sh</p>
+                <p class="section-command">./contact/</p>
             </div>
 
             <form action="https://formspree.io/f/xwkygavo" method="POST" class="contact-form">
@@ -528,14 +528,6 @@
                 <p class="footer-copyright">
                     <span class="year">2026</span> Nacho Grosman. All rights reserved.
                 </p>
-
-<pre class="footer-ascii">
-  _____
- |_   _|__ _ __ _ __ ___
-   | |/ _ \ '__| '_ ` _ \
-   | |  __/ |  | | | | | |
-   |_|\___|_|  |_| |_| |_|
-</pre>
             </div>
         </footer>
     </div>
@@ -579,6 +571,69 @@
                     link.classList.add('active');
                 }
             });
+        });
+
+        // Typewriter scroll animation using Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        // Observer for fade-in elements
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all typewriter and stagger-reveal elements
+        document.querySelectorAll('.typewriter, .stagger-reveal').forEach(el => {
+            fadeObserver.observe(el);
+        });
+
+        // Typewriter effect for section commands
+        const typewriterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.typed) {
+                    entry.target.dataset.typed = 'true';
+                    typewriterEffect(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.section-command').forEach(el => {
+            typewriterObserver.observe(el);
+        });
+
+        // Typewriter effect function
+        function typewriterEffect(element) {
+            const text = element.textContent;
+            element.textContent = '';
+            element.style.opacity = '1';
+
+            let i = 0;
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            element.appendChild(cursor);
+
+            const typeInterval = setInterval(() => {
+                if (i < text.length) {
+                    const char = document.createTextNode(text.charAt(i));
+                    element.insertBefore(char, cursor);
+                    i++;
+                } else {
+                    clearInterval(typeInterval);
+                    setTimeout(() => cursor.remove(), 500);
+                }
+            }, 50);
+        }
+
+        // Initialize section commands as hidden
+        document.querySelectorAll('.section-command').forEach(el => {
+            el.style.opacity = '0';
         });
     </script>
 </body>

@@ -34,6 +34,10 @@
     white-space: pre;
     margin-bottom: $spacing-xl;
     overflow-x: auto;
+    // Remove terminal window styling from ASCII art
+    background: transparent;
+    border: none;
+    padding: 0;
 
     &.small {
         font-size: clamp(0.25rem, 0.8vw, 0.5rem);
@@ -158,4 +162,65 @@
     border: none;
     border-top: 1px dashed $border-color;
     margin: $spacing-3xl 0;
+}
+
+// Typewriter scroll animation
+.typewriter {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.1s ease, transform 0.3s ease;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Typewriter text reveal animation
+.typewriter-text {
+    .char {
+        opacity: 0;
+        display: inline-block;
+        transition: opacity 0.02s ease;
+
+        &.typed {
+            opacity: 1;
+        }
+    }
+}
+
+// Terminal typing cursor for animation
+.typing-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1em;
+    background: $accent-primary;
+    margin-left: 2px;
+    animation: blink 0.7s step-end infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+// Staggered reveal for list items and grid items
+.stagger-reveal {
+    > * {
+        opacity: 0;
+        transform: translateY(15px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    &.visible > * {
+        opacity: 1;
+        transform: translateY(0);
+
+        @for $i from 1 through 24 {
+            &:nth-child(#{$i}) {
+                transition-delay: #{$i * 0.03}s;
+            }
+        }
+    }
 }

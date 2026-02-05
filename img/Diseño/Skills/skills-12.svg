@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 101" width="101" height="101">
+  <defs>
+    <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d08770;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bf616a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="50.5" cy="50.5" r="45" fill="url(#claudeGrad)"/>
+  <text x="50.5" y="65" font-family="JetBrains Mono, monospace" font-size="40" font-weight="bold" fill="#1e1e1e" text-anchor="middle">C</text>
+</svg>
