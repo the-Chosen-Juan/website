@@ -1,10 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 101" width="101" height="101">
-  <defs>
-    <linearGradient id="claudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#d08770;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#bf616a;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <circle cx="50.5" cy="50.5" r="45" fill="url(#claudeGrad)"/>
-  <text x="50.5" y="65" font-family="JetBrains Mono, monospace" font-size="40" font-weight="bold" fill="#1e1e1e" text-anchor="middle">C</text>
+  <g transform="translate(50.5, 50.5)">
+    <!-- 12-ray sunburst Claude logo -->
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(0)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(30)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(60)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(90)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(120)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(150)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(180)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(210)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(240)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(270)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(300)"/>
+    <polygon fill="#d9896c" points="0,-45 6,-12 0,0 -6,-12" transform="rotate(330)"/>
+    <circle fill="#d9896c" cx="0" cy="0" r="14"/>
+  </g>
 </svg>

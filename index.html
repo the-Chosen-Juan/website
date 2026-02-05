@@ -114,7 +114,7 @@
                 <p class="section-command">./work/</p>
             </div>
 
-            <div class="projects-grid stagger-reveal">
+            <div class="projects-grid terminal-reveal">
                 <!-- Philco -->
                 <a href="Philco.html" class="project-card">
                     <div class="project-header">
@@ -409,9 +409,9 @@
                     <div class="bio-text">
                         <p>Born in the city of Buenos Aires and raised by a single mother who didn't bother to tell him that writing about himself in the 3rd person isn't cool anymore.</p>
 
-                        <p>I started working in advertising in my early 20's for <span class="highlight">Boca Juniors</span> (Huge fan), and a few local politicians (Not a fan).</p>
+                        <p>I started working in advertising in my early 20's for Boca Juniors (Huge fan), and a few local politicians (Not a fan).</p>
 
-                        <p>Making ads that slip into people's conversations is my passion. Having said that, I do have adblock installed in my browser. <span class="comment">// Ironic, huh?</span></p>
+                        <p>Making ads that slip into people's conversations is my passion. Having said that, I do have adblock installed in my browser. <span class="highlight">// Ironic, huh?</span></p>
 
                         <p>I am a huge fan of football, creativity in all of its forms, VR, Gaming, AI, and a little bit of coding - which I used to build this very website.</p>
 
@@ -478,7 +478,7 @@
                     <span class="form-title">compose_message.sh</span>
                 </div>
                 <div class="form-body">
-                    <p class="form-intro"><span class="cmd">$</span> Initialize message protocol...</p>
+                    <p class="form-intro"><span class="cmd">~</span> Initialize message protocol...</p>
 
                     <div class="form-group">
                         <label class="form-label" for="email">email</label>
@@ -580,7 +580,7 @@
             threshold: 0.1
         };
 
-        // Observer for fade-in elements
+        // Observer for fade-in and terminal-reveal elements
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -589,12 +589,12 @@
             });
         }, observerOptions);
 
-        // Observe all typewriter and stagger-reveal elements
-        document.querySelectorAll('.typewriter, .stagger-reveal').forEach(el => {
+        // Observe all typewriter, stagger-reveal, and terminal-reveal elements
+        document.querySelectorAll('.typewriter, .stagger-reveal, .terminal-reveal').forEach(el => {
             fadeObserver.observe(el);
         });
 
-        // Typewriter effect for section commands
+        // Typewriter effect for text elements
         const typewriterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.dataset.typed) {
@@ -602,22 +602,35 @@
                     typewriterEffect(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
 
+        // Apply typewriter to section commands and various text elements
         document.querySelectorAll('.section-command').forEach(el => {
             typewriterObserver.observe(el);
         });
 
+        // Apply typewriter animation to paragraphs in specific sections
+        document.querySelectorAll('.output-block p, .bio-text p, .form-intro, .login-message, .skills-header, .clients-header, .awards-header').forEach(el => {
+            if (!el.closest('.ascii-art')) {
+                el.classList.add('terminal-text');
+                typewriterObserver.observe(el);
+            }
+        });
+
         // Typewriter effect function
         function typewriterEffect(element) {
+            const originalHTML = element.innerHTML;
             const text = element.textContent;
-            element.textContent = '';
+            element.innerHTML = '';
             element.style.opacity = '1';
 
             let i = 0;
             const cursor = document.createElement('span');
             cursor.className = 'typing-cursor';
             element.appendChild(cursor);
+
+            // Faster typing speed for longer text
+            const speed = text.length > 50 ? 15 : text.length > 30 ? 25 : 40;
 
             const typeInterval = setInterval(() => {
                 if (i < text.length) {
@@ -626,13 +639,16 @@
                     i++;
                 } else {
                     clearInterval(typeInterval);
-                    setTimeout(() => cursor.remove(), 500);
+                    // Restore original HTML to preserve spans/formatting
+                    setTimeout(() => {
+                        element.innerHTML = originalHTML;
+                    }, 100);
                 }
-            }, 50);
+            }, speed);
         }
 
-        // Initialize section commands as hidden
-        document.querySelectorAll('.section-command').forEach(el => {
+        // Initialize text elements as hidden
+        document.querySelectorAll('.section-command, .terminal-text').forEach(el => {
             el.style.opacity = '0';
         });
     </script>

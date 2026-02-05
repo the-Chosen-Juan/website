@@ -322,17 +322,18 @@ img {
 }
 
 .hero {
-  padding-top: 80px;
-  min-height: 100vh;
+  padding-top: 60px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-bottom: 2rem;
 }
 .hero .welcome-box {
   border: 1px solid #d08770;
   background: rgba(13, 13, 13, 0.8);
   padding: 1rem 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   display: inline-block;
 }
 .hero .welcome-box .welcome-text {
@@ -377,7 +378,7 @@ img {
 }
 
 .intro-section {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 }
 .intro-section .command-line {
   margin-bottom: 1rem;
@@ -465,7 +466,7 @@ img {
 .section-divider {
   border: none;
   border-top: 1px dashed #404040;
-  margin: 4rem 0;
+  margin: 2rem 0;
 }
 
 .typewriter {
@@ -587,6 +588,67 @@ img {
   transition-delay: 0.72s;
 }
 
+.terminal-reveal .project-card {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.terminal-reveal.visible .project-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+.terminal-reveal.visible .project-card:nth-child(1) {
+  transition-delay: 0.08s;
+}
+.terminal-reveal.visible .project-card:nth-child(2) {
+  transition-delay: 0.16s;
+}
+.terminal-reveal.visible .project-card:nth-child(3) {
+  transition-delay: 0.24s;
+}
+.terminal-reveal.visible .project-card:nth-child(4) {
+  transition-delay: 0.32s;
+}
+.terminal-reveal.visible .project-card:nth-child(5) {
+  transition-delay: 0.4s;
+}
+.terminal-reveal.visible .project-card:nth-child(6) {
+  transition-delay: 0.48s;
+}
+.terminal-reveal.visible .project-card:nth-child(7) {
+  transition-delay: 0.56s;
+}
+.terminal-reveal.visible .project-card:nth-child(8) {
+  transition-delay: 0.64s;
+}
+.terminal-reveal.visible .project-card:nth-child(9) {
+  transition-delay: 0.72s;
+}
+.terminal-reveal.visible .project-card:nth-child(10) {
+  transition-delay: 0.8s;
+}
+.terminal-reveal.visible .project-card:nth-child(11) {
+  transition-delay: 0.88s;
+}
+.terminal-reveal.visible .project-card:nth-child(12) {
+  transition-delay: 0.96s;
+}
+
+.text-reveal {
+  opacity: 0;
+}
+.text-reveal.visible {
+  animation: textReveal 0.5s ease forwards;
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .social-linkedin:hover {
   color: #0e76a8 !important;
 }
@@ -612,11 +674,11 @@ img {
 }
 
 .section-work {
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 .section-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .section-header .section-command {
   color: #808080;
@@ -751,11 +813,11 @@ img {
 }
 
 .section-xp {
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 .skills-section {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .skills-section .skills-header {
   color: #808080;
@@ -903,7 +965,7 @@ img {
   }
 }
 .section-bio {
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 .bio-content {
@@ -911,7 +973,7 @@ img {
   background: #252526;
   border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .bio-content .bio-header {
   background: #2d2d30;
@@ -1012,7 +1074,7 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 }
 .stats-section .stat-item {
   padding: 1rem;
@@ -1032,7 +1094,7 @@ img {
 }
 
 .section-contact {
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 .contact-form {
@@ -1146,9 +1208,9 @@ img {
 }
 
 .terminal-footer {
-  padding: 3rem 0;
+  padding: 2.5rem 0;
   border-top: 1px solid #404040;
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 .terminal-footer .footer-content {
   text-align: center;
@@ -1239,7 +1301,7 @@ img {
   background: #252526;
   border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .project-header .header-bar {
   background: #2d2d30;
@@ -1323,7 +1385,7 @@ img {
 }
 
 .video-section {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .video-section .video-header {
   color: #808080;
@@ -1398,7 +1460,7 @@ img {
   background: #252526;
   border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .campaign-section .campaign-header {
   background: #2d2d30;
@@ -1431,7 +1493,7 @@ img {
 }
 
 .gallery-section {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .gallery-section .gallery-header {
   color: #808080;
@@ -1550,7 +1612,7 @@ img {
   .hero {
     padding-top: 70px;
     min-height: auto;
-    padding-bottom: 3rem;
+    padding-bottom: 2.5rem;
   }
   .ascii-art {
     font-size: clamp(0.25rem, 0.9vw, 0.5rem);

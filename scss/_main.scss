@@ -1,11 +1,12 @@
 // Main Hero Section - Terminal Style
 
 .hero {
-    padding-top: 80px;
-    min-height: 100vh;
+    padding-top: 60px;
+    min-height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-bottom: $spacing-xl;
 
     .welcome-box {
         @include terminal-border;
@@ -161,7 +162,7 @@
 .section-divider {
     border: none;
     border-top: 1px dashed $border-color;
-    margin: $spacing-3xl 0;
+    margin: $spacing-xl 0;
 }
 
 // Typewriter scroll animation
@@ -222,5 +223,43 @@
                 transition-delay: #{$i * 0.03}s;
             }
         }
+    }
+}
+
+// Terminal line-by-line reveal animation for project cards
+.terminal-reveal {
+    .project-card {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    &.visible .project-card {
+        opacity: 1;
+        transform: translateX(0);
+
+        @for $i from 1 through 12 {
+            &:nth-child(#{$i}) {
+                transition-delay: #{$i * 0.08}s;
+            }
+        }
+    }
+}
+
+// Text reveal animation - typewriter style for all text
+.text-reveal {
+    opacity: 0;
+
+    &.visible {
+        animation: textReveal 0.5s ease forwards;
+    }
+}
+
+@keyframes textReveal {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
