@@ -47,6 +47,12 @@
         <div class="boot-line highlight" id="boot-17">> Initializing terminal... <span class="boot-progress">█████████████████████</span></div>
     </div>
 
+    <!-- Fake visitor indicator -->
+    <div class="visitor-indicator" id="visitorIndicator">
+        <span class="visitor-dot"></span>
+        <span class="visitor-text" id="visitorText"></span>
+    </div>
+
     <!-- ACCESS GRANTED overlay (Konami Code) -->
     <div class="access-granted-overlay" id="accessOverlay">
         <span class="access-text">ACCESS GRANTED</span>
@@ -850,58 +856,127 @@
             el.style.transform = 'translateX(-8px)';
         });
 
-        // ── Konami Code Hacker Mode ──
+        // ── Parallax ASCII Art Depth ──
+        document.addEventListener('mousemove', (e) => {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const offsetX = ((e.clientX - centerX) / centerX) * -5;
+            const offsetY = ((e.clientY - centerY) / centerY) * -3;
+
+            document.querySelectorAll('.ascii-art').forEach(art => {
+                art.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            });
+        });
+
+        // ── Fake Visitor Presence Indicator ──
+        const visitorIndicator = document.getElementById('visitorIndicator');
+        const visitorTextEl = document.getElementById('visitorText');
+        let visitorTimeout = null;
+
+        const visitorPaths = [
+            '~/', '~/work/', '~/xp/', '~/bio/', '~/contact/',
+            '~/work/philco_tenes-un-aire.exe',
+            '~/work/patagonia_incendios.exe',
+            '~/work/gatorade_cool-seats.exe',
+            '~/work/movistar_dar-es-dar.exe',
+            '~/work/movistar_tv.exe',
+            '~/work/unicenter_navidad.exe',
+            '~/work/nutshot_campaign.exe',
+            '~/work/isenbeck_campaign.exe',
+            '~/work/paquetizate_campaign.exe',
+            '~/work/notco_giuseppe.exe'
+        ];
+
+        const visitorActions = ['is viewing', 'is reading', 'is browsing', 'connected to'];
+
+        function showFakeVisitor() {
+            const id = Math.floor(Math.random() * 900) + 100;
+            const path = visitorPaths[Math.floor(Math.random() * visitorPaths.length)];
+            const action = visitorActions[Math.floor(Math.random() * visitorActions.length)];
+            visitorTextEl.textContent = `visitor_${id} ${action} ${path}`;
+            visitorIndicator.classList.add('visible');
+
+            if (visitorTimeout) clearTimeout(visitorTimeout);
+            visitorTimeout = setTimeout(() => {
+                visitorIndicator.classList.remove('visible');
+            }, 4000);
+        }
+
+        // Show first visitor after 15-25s, then every 30-70s
+        setTimeout(() => {
+            showFakeVisitor();
+            setInterval(() => {
+                showFakeVisitor();
+            }, 30000 + Math.random() * 40000);
+        }, 15000 + Math.random() * 10000);
+
+        // ── Konami Code Theme Rotation ──
         const konamiSequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
         let konamiIndex = 0;
-        let hackerModeActive = false;
+
+        // Theme rotation: OG (no class) → Matrix → Amber → BlueScreen → Paper → back to OG
+        const themes = [null, 'hacker-mode', 'theme-amber', 'theme-bluescreen', 'theme-paper'];
+        const themeNames = ['DEFAULT', 'ACCESS GRANTED', 'AMBER CRT', 'BLUE SCREEN', 'PAPER MODE'];
+        let currentThemeIndex = 0;
 
         document.addEventListener('keydown', (e) => {
             if (e.key === konamiSequence[konamiIndex]) {
                 konamiIndex++;
                 if (konamiIndex === konamiSequence.length) {
                     konamiIndex = 0;
-                    toggleHackerMode();
+                    cycleTheme();
                 }
             } else {
                 konamiIndex = 0;
             }
 
-            // ESC exits hacker mode
-            if (e.key === 'Escape' && hackerModeActive) {
-                toggleHackerMode();
+            // ESC resets to OG theme
+            if (e.key === 'Escape' && currentThemeIndex !== 0) {
+                resetToOG();
             }
         });
 
-        function toggleHackerMode() {
+        function cycleTheme() {
             const overlay = document.getElementById('accessOverlay');
+            const accessText = overlay.querySelector('.access-text');
             const wrapper = document.querySelector('.wrapper');
 
-            if (!hackerModeActive) {
-                // Activate: flash ACCESS GRANTED → glitch → green mode
-                overlay.classList.add('flash');
+            // Move to next theme
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
 
-                setTimeout(() => {
-                    overlay.classList.remove('flash');
-                    wrapper.classList.add('glitch-active');
-                    document.body.classList.add('hacker-mode');
+            // Update overlay text
+            accessText.textContent = themeNames[currentThemeIndex];
 
-                    setTimeout(() => {
-                        wrapper.classList.remove('glitch-active');
-                    }, 400);
-                }, 800);
+            // Flash overlay
+            overlay.classList.add('flash');
 
-                hackerModeActive = true;
-            } else {
-                // Deactivate: glitch → revert
+            setTimeout(() => {
+                overlay.classList.remove('flash');
                 wrapper.classList.add('glitch-active');
 
+                // Remove all theme classes
+                themes.forEach(t => { if (t) document.body.classList.remove(t); });
+
+                // Apply new theme (null = OG, no class needed)
+                if (themes[currentThemeIndex]) {
+                    document.body.classList.add(themes[currentThemeIndex]);
+                }
+
                 setTimeout(() => {
-                    document.body.classList.remove('hacker-mode');
                     wrapper.classList.remove('glitch-active');
                 }, 400);
+            }, 800);
+        }
 
-                hackerModeActive = false;
-            }
+        function resetToOG() {
+            const wrapper = document.querySelector('.wrapper');
+            wrapper.classList.add('glitch-active');
+
+            setTimeout(() => {
+                themes.forEach(t => { if (t) document.body.classList.remove(t); });
+                currentThemeIndex = 0;
+                wrapper.classList.remove('glitch-active');
+            }, 400);
         }
 
         // ── Section cd Indicator ──

@@ -2104,4 +2104,375 @@ body.hacker-mode .form-label::before {
   color: #ebcb8b;
 }
 
+/* ── Parallax ASCII Art ── */
+.ascii-art {
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+/* ── Fake Visitor Indicator ── */
+.visitor-indicator {
+  position: fixed;
+  top: 3.5rem;
+  right: 1.5rem;
+  background: rgba(13, 13, 13, 0.9);
+  border: 1px solid #404040;
+  border-radius: 2px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  z-index: 8000;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.visitor-indicator.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.visitor-indicator .visitor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a3be8c;
+  animation: visitor-pulse 1.5s ease infinite;
+}
+.visitor-indicator .visitor-text {
+  color: #5a5a5a;
+}
+@keyframes visitor-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ── Theme: Amber CRT (IBM 3278) ── */
+body.theme-amber {
+  background-color: #0a0600 !important;
+}
+body.theme-amber::before {
+  background: repeating-linear-gradient(0deg, rgba(255, 176, 0, 0.04) 0px, rgba(255, 176, 0, 0.04) 1px, transparent 1px, transparent 3px) !important;
+}
+body.theme-amber::after {
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(10, 6, 0, 0.5) 100%) !important;
+}
+body.theme-amber .wrapper,
+body.theme-amber .terminal-content,
+body.theme-amber .bio-body,
+body.theme-amber .form-body {
+  background-color: #0a0600 !important;
+}
+body.theme-amber,
+body.theme-amber p,
+body.theme-amber span,
+body.theme-amber div,
+body.theme-amber h1,
+body.theme-amber h2,
+body.theme-amber h3,
+body.theme-amber li,
+body.theme-amber label {
+  color: #ffb000 !important;
+}
+body.theme-amber .text-secondary,
+body.theme-amber .section-command,
+body.theme-amber .footer-copyright,
+body.theme-amber .project-client,
+body.theme-amber .project-title,
+body.theme-amber .form-title,
+body.theme-amber .bio-header .file-name,
+body.theme-amber .nav-path,
+body.theme-amber .clients-header,
+body.theme-amber .awards-header {
+  color: #b07800 !important;
+}
+body.theme-amber .ascii-art,
+body.theme-amber .prompt-symbol,
+body.theme-amber .skill-item::before,
+body.theme-amber .typing-cursor,
+body.theme-amber .cursor {
+  color: #ffb000 !important;
+}
+body.theme-amber a { color: #ffc340 !important; }
+body.theme-amber .terminal-nav,
+body.theme-amber .project-card,
+body.theme-amber .bio-content,
+body.theme-amber .contact-form,
+body.theme-amber .terminal-footer,
+body.theme-amber .section-divider,
+body.theme-amber .skills-header,
+body.theme-amber .clients-grid,
+body.theme-amber .award-item,
+body.theme-amber hr {
+  border-color: #3d2800 !important;
+}
+body.theme-amber .terminal-nav,
+body.theme-amber .project-card,
+body.theme-amber .project-header,
+body.theme-amber .bio-content,
+body.theme-amber .bio-header,
+body.theme-amber .contact-form,
+body.theme-amber .form-header,
+body.theme-amber .clients-grid,
+body.theme-amber .award-item {
+  background-color: #1a0e00 !important;
+}
+body.theme-amber .project-card:hover { border-color: #ffb000 !important; }
+body.theme-amber .nav-links a { color: #b07800 !important; }
+body.theme-amber .nav-links a::before,
+body.theme-amber .nav-links a::after { color: #3d2800 !important; }
+body.theme-amber .nav-links a:hover,
+body.theme-amber .nav-links a.active { color: #ffb000 !important; }
+body.theme-amber ::selection { background: rgba(255, 176, 0, 0.3) !important; color: #ffb000 !important; }
+body.theme-amber ::-webkit-scrollbar-track { background: #1a0e00 !important; }
+body.theme-amber ::-webkit-scrollbar-thumb { background: #3d2800 !important; }
+body.theme-amber .skill-icon img,
+body.theme-amber .client-logo img,
+body.theme-amber .award-icon img {
+  filter: grayscale(100%) brightness(0.8) sepia(100%) saturate(500%) hue-rotate(-10deg) !important;
+}
+body.theme-amber .project-thumb img {
+  filter: grayscale(100%) brightness(0.5) sepia(100%) saturate(300%) hue-rotate(-10deg) !important;
+}
+body.theme-amber .form-input,
+body.theme-amber .form-textarea {
+  background-color: #1a0e00 !important; border-color: #3d2800 !important; color: #ffb000 !important;
+}
+body.theme-amber .form-input::placeholder,
+body.theme-amber .form-textarea::placeholder { color: #5a3d00 !important; }
+body.theme-amber .form-input:focus,
+body.theme-amber .form-textarea:focus { border-color: #ffb000 !important; }
+body.theme-amber .form-submit {
+  background-color: #1a0e00 !important; border-color: #ffb000 !important; color: #ffb000 !important;
+}
+body.theme-amber .form-submit:hover { background-color: #ffb000 !important; color: #0a0600 !important; }
+body.theme-amber .form-submit::before { color: #ffb000 !important; }
+body.theme-amber .form-label::before { color: #ffb000 !important; }
+body.theme-amber .resume-link { border-color: #3d2800 !important; color: #b07800 !important; }
+body.theme-amber .resume-link::before { color: #ffb000 !important; }
+body.theme-amber .resume-link:hover { border-color: #ffb000 !important; color: #ffb000 !important; }
+body.theme-amber .footer-link,
+body.theme-amber .footer-link i { color: #b07800 !important; }
+body.theme-amber .footer-link:hover,
+body.theme-amber .footer-link:hover i { color: #ffb000 !important; }
+
+/* ── Theme: Blue Screen (DOS/BIOS) ── */
+body.theme-bluescreen {
+  background-color: #0000aa !important;
+}
+body.theme-bluescreen::before {
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 3px) !important;
+}
+body.theme-bluescreen::after {
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 100, 0.4) 100%) !important;
+}
+body.theme-bluescreen .wrapper,
+body.theme-bluescreen .terminal-content,
+body.theme-bluescreen .bio-body,
+body.theme-bluescreen .form-body {
+  background-color: #0000aa !important;
+}
+body.theme-bluescreen,
+body.theme-bluescreen p,
+body.theme-bluescreen span,
+body.theme-bluescreen div,
+body.theme-bluescreen h1,
+body.theme-bluescreen h2,
+body.theme-bluescreen h3,
+body.theme-bluescreen li,
+body.theme-bluescreen label {
+  color: #ffffff !important;
+}
+body.theme-bluescreen .text-secondary,
+body.theme-bluescreen .section-command,
+body.theme-bluescreen .footer-copyright,
+body.theme-bluescreen .project-client,
+body.theme-bluescreen .project-title,
+body.theme-bluescreen .form-title,
+body.theme-bluescreen .bio-header .file-name,
+body.theme-bluescreen .nav-path,
+body.theme-bluescreen .clients-header,
+body.theme-bluescreen .awards-header {
+  color: #aaaaff !important;
+}
+body.theme-bluescreen .ascii-art,
+body.theme-bluescreen .prompt-symbol,
+body.theme-bluescreen .skill-item::before,
+body.theme-bluescreen .typing-cursor,
+body.theme-bluescreen .cursor {
+  color: #ffff54 !important;
+}
+body.theme-bluescreen a { color: #55ffff !important; }
+body.theme-bluescreen .terminal-nav,
+body.theme-bluescreen .project-card,
+body.theme-bluescreen .bio-content,
+body.theme-bluescreen .contact-form,
+body.theme-bluescreen .terminal-footer,
+body.theme-bluescreen .section-divider,
+body.theme-bluescreen .skills-header,
+body.theme-bluescreen .clients-grid,
+body.theme-bluescreen .award-item,
+body.theme-bluescreen hr {
+  border-color: #5555ff !important;
+}
+body.theme-bluescreen .terminal-nav,
+body.theme-bluescreen .project-card,
+body.theme-bluescreen .project-header,
+body.theme-bluescreen .bio-content,
+body.theme-bluescreen .bio-header,
+body.theme-bluescreen .contact-form,
+body.theme-bluescreen .form-header,
+body.theme-bluescreen .clients-grid,
+body.theme-bluescreen .award-item {
+  background-color: #000080 !important;
+}
+body.theme-bluescreen .project-card:hover { border-color: #ffffff !important; }
+body.theme-bluescreen .nav-links a { color: #aaaaff !important; }
+body.theme-bluescreen .nav-links a::before,
+body.theme-bluescreen .nav-links a::after { color: #5555ff !important; }
+body.theme-bluescreen .nav-links a:hover,
+body.theme-bluescreen .nav-links a.active { color: #ffff54 !important; }
+body.theme-bluescreen ::selection { background: rgba(255, 255, 84, 0.4) !important; color: #0000aa !important; }
+body.theme-bluescreen ::-webkit-scrollbar-track { background: #000080 !important; }
+body.theme-bluescreen ::-webkit-scrollbar-thumb { background: #5555ff !important; }
+body.theme-bluescreen .skill-icon img,
+body.theme-bluescreen .client-logo img,
+body.theme-bluescreen .award-icon img {
+  filter: grayscale(100%) brightness(1.2) !important;
+}
+body.theme-bluescreen .project-thumb img {
+  filter: grayscale(100%) brightness(0.7) contrast(1.2) !important;
+}
+body.theme-bluescreen .form-input,
+body.theme-bluescreen .form-textarea {
+  background-color: #000080 !important; border-color: #5555ff !important; color: #ffffff !important;
+}
+body.theme-bluescreen .form-input::placeholder,
+body.theme-bluescreen .form-textarea::placeholder { color: #7777cc !important; }
+body.theme-bluescreen .form-input:focus,
+body.theme-bluescreen .form-textarea:focus { border-color: #ffffff !important; }
+body.theme-bluescreen .form-submit {
+  background-color: #000080 !important; border-color: #ffffff !important; color: #ffffff !important;
+}
+body.theme-bluescreen .form-submit:hover { background-color: #ffffff !important; color: #0000aa !important; }
+body.theme-bluescreen .form-submit::before { color: #ffff54 !important; }
+body.theme-bluescreen .form-label::before { color: #ffff54 !important; }
+body.theme-bluescreen .resume-link { border-color: #5555ff !important; color: #aaaaff !important; }
+body.theme-bluescreen .resume-link::before { color: #ffff54 !important; }
+body.theme-bluescreen .resume-link:hover { border-color: #ffffff !important; color: #ffffff !important; }
+body.theme-bluescreen .footer-link,
+body.theme-bluescreen .footer-link i { color: #aaaaff !important; }
+body.theme-bluescreen .footer-link:hover,
+body.theme-bluescreen .footer-link:hover i { color: #ffffff !important; }
+
+/* ── Theme: Paper (Teletype Printout) ── */
+body.theme-paper {
+  background-color: #f4f1e8 !important;
+}
+body.theme-paper::before {
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 1px, transparent 1px, transparent 3px) !important;
+}
+body.theme-paper::after {
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(200, 190, 170, 0.3) 100%) !important;
+}
+body.theme-paper .wrapper,
+body.theme-paper .terminal-content,
+body.theme-paper .bio-body,
+body.theme-paper .form-body {
+  background-color: #f4f1e8 !important;
+}
+body.theme-paper,
+body.theme-paper p,
+body.theme-paper span,
+body.theme-paper div,
+body.theme-paper h1,
+body.theme-paper h2,
+body.theme-paper h3,
+body.theme-paper li,
+body.theme-paper label {
+  color: #2c2c2c !important;
+}
+body.theme-paper .text-secondary,
+body.theme-paper .section-command,
+body.theme-paper .footer-copyright,
+body.theme-paper .project-client,
+body.theme-paper .project-title,
+body.theme-paper .form-title,
+body.theme-paper .bio-header .file-name,
+body.theme-paper .nav-path,
+body.theme-paper .clients-header,
+body.theme-paper .awards-header {
+  color: #666666 !important;
+}
+body.theme-paper .ascii-art,
+body.theme-paper .prompt-symbol,
+body.theme-paper .skill-item::before,
+body.theme-paper .typing-cursor,
+body.theme-paper .cursor {
+  color: #1a1a1a !important;
+}
+body.theme-paper a { color: #8b4513 !important; }
+body.theme-paper .terminal-nav,
+body.theme-paper .project-card,
+body.theme-paper .bio-content,
+body.theme-paper .contact-form,
+body.theme-paper .terminal-footer,
+body.theme-paper .section-divider,
+body.theme-paper .skills-header,
+body.theme-paper .clients-grid,
+body.theme-paper .award-item,
+body.theme-paper hr {
+  border-color: #c8c0b0 !important;
+}
+body.theme-paper .terminal-nav,
+body.theme-paper .project-card,
+body.theme-paper .project-header,
+body.theme-paper .bio-content,
+body.theme-paper .bio-header,
+body.theme-paper .contact-form,
+body.theme-paper .form-header,
+body.theme-paper .clients-grid,
+body.theme-paper .award-item {
+  background-color: #ebe8df !important;
+}
+body.theme-paper .project-card:hover { border-color: #2c2c2c !important; }
+body.theme-paper .nav-links a { color: #666666 !important; }
+body.theme-paper .nav-links a::before,
+body.theme-paper .nav-links a::after { color: #c8c0b0 !important; }
+body.theme-paper .nav-links a:hover,
+body.theme-paper .nav-links a.active { color: #2c2c2c !important; }
+body.theme-paper ::selection { background: rgba(44, 44, 44, 0.2) !important; color: #2c2c2c !important; }
+body.theme-paper ::-webkit-scrollbar-track { background: #ebe8df !important; }
+body.theme-paper ::-webkit-scrollbar-thumb { background: #c8c0b0 !important; }
+body.theme-paper .skill-icon img,
+body.theme-paper .client-logo img,
+body.theme-paper .award-icon img {
+  filter: grayscale(100%) contrast(1.1) !important;
+}
+body.theme-paper .project-thumb img {
+  filter: grayscale(100%) contrast(0.9) brightness(1.1) !important;
+}
+body.theme-paper .form-input,
+body.theme-paper .form-textarea {
+  background-color: #ffffff !important; border-color: #c8c0b0 !important; color: #2c2c2c !important;
+}
+body.theme-paper .form-input::placeholder,
+body.theme-paper .form-textarea::placeholder { color: #aaa !important; }
+body.theme-paper .form-input:focus,
+body.theme-paper .form-textarea:focus { border-color: #2c2c2c !important; }
+body.theme-paper .form-submit {
+  background-color: #ebe8df !important; border-color: #2c2c2c !important; color: #2c2c2c !important;
+}
+body.theme-paper .form-submit:hover { background-color: #2c2c2c !important; color: #f4f1e8 !important; }
+body.theme-paper .form-submit::before { color: #8b4513 !important; }
+body.theme-paper .form-label::before { color: #8b4513 !important; }
+body.theme-paper .resume-link { border-color: #c8c0b0 !important; color: #666666 !important; }
+body.theme-paper .resume-link::before { color: #8b4513 !important; }
+body.theme-paper .resume-link:hover { border-color: #2c2c2c !important; color: #2c2c2c !important; }
+body.theme-paper .footer-link,
+body.theme-paper .footer-link i { color: #666666 !important; }
+body.theme-paper .footer-link:hover,
+body.theme-paper .footer-link:hover i { color: #2c2c2c !important; }
+
 /*# sourceMappingURL=stylecss.css.map */
