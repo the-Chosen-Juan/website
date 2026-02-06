@@ -21,7 +21,7 @@
 
     .skills-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
         gap: $spacing-sm;
     }
 
@@ -38,8 +38,9 @@
         }
 
         .skill-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
             opacity: 0.8;
 
             img {
@@ -52,6 +53,7 @@
 
         .skill-name {
             font-size: 0.85rem;
+            white-space: nowrap;
         }
 
         &::before {

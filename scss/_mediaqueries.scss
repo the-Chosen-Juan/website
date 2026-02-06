@@ -58,7 +58,7 @@
 
     .ascii-art {
         font-size: clamp(0.25rem, 0.9vw, 0.5rem);
-        overflow-x: auto;
+        overflow: hidden;
     }
 
     .intro-section .output-block {
@@ -198,9 +198,9 @@
         padding: $spacing-lg 0;
 
         .footer-links {
-            flex-direction: column;
-            align-items: center;
-            gap: $spacing-sm;
+            flex-direction: row;
+            justify-content: center;
+            gap: $spacing-md;
         }
 
         .footer-ascii {

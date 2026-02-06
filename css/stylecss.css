@@ -351,7 +351,7 @@ img {
   line-height: 1.1;
   white-space: pre;
   margin-bottom: 2rem;
-  overflow-x: auto;
+  overflow: hidden;
   background: transparent;
   border: none;
   padding: 0;
@@ -830,7 +830,7 @@ img {
 }
 .skills-section .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 0.5rem;
 }
 .skills-section .skill-item {
@@ -845,8 +845,9 @@ img {
   color: #d08770;
 }
 .skills-section .skill-item .skill-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
   opacity: 0.8;
 }
 .skills-section .skill-item .skill-icon img {
@@ -857,6 +858,7 @@ img {
 }
 .skills-section .skill-item .skill-name {
   font-size: 0.85rem;
+  white-space: nowrap;
 }
 .skills-section .skill-item::before {
   content: "-";
@@ -1351,7 +1353,7 @@ img {
   line-height: 1.1;
   white-space: pre;
   margin-bottom: 1.5rem;
-  overflow-x: auto;
+  overflow: hidden;
 }
 .project-header .project-meta {
   display: flex;
@@ -1622,7 +1624,7 @@ img {
   }
   .ascii-art {
     font-size: clamp(0.25rem, 0.9vw, 0.5rem);
-    overflow-x: auto;
+    overflow: hidden;
   }
   .intro-section .output-block {
     margin-left: 0;
@@ -1715,9 +1717,9 @@ img {
     padding: 1.5rem 0;
   }
   .terminal-footer .footer-links {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
   }
   .terminal-footer .footer-ascii {
     display: none;

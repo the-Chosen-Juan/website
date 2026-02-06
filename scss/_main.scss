@@ -34,7 +34,7 @@
     line-height: 1.1;
     white-space: pre;
     margin-bottom: $spacing-xl;
-    overflow-x: auto;
+    overflow: hidden;
     // Remove terminal window styling from ASCII art
     background: transparent;
     border: none;
