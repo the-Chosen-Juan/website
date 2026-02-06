@@ -829,8 +829,12 @@ body.theme-paper {
     }
 
     .terminal-nav, .project-card, .project-header, .bio-content, .bio-header,
-    .contact-form, .form-header, .clients-grid, .award-item {
+    .contact-form, .form-header, .award-item {
         background-color: #ebe8df !important;
+    }
+
+    .clients-grid {
+        background-color: #ddd8cb !important;
     }
 
     .project-card:hover { border-color: #2c2c2c !important; }
@@ -843,8 +847,11 @@ body.theme-paper {
     ::-webkit-scrollbar-track { background: #ebe8df !important; }
     ::-webkit-scrollbar-thumb { background: #c8c0b0 !important; }
 
-    .skill-icon img, .client-logo img, .award-icon img {
+    .skill-icon img, .award-icon img {
         filter: grayscale(100%) contrast(1.1) !important;
+    }
+    .client-logo img {
+        filter: grayscale(100%) contrast(1.6) brightness(0.4) !important;
     }
     .project-thumb img {
         filter: grayscale(100%) contrast(0.9) brightness(1.1) !important;

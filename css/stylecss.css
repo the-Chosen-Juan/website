@@ -2398,9 +2398,11 @@ body.theme-paper .bio-content,
 body.theme-paper .bio-header,
 body.theme-paper .contact-form,
 body.theme-paper .form-header,
-body.theme-paper .clients-grid,
 body.theme-paper .award-item {
   background-color: #ebe8df !important;
+}
+body.theme-paper .clients-grid {
+  background-color: #ddd8cb !important;
 }
 body.theme-paper .project-card:hover { border-color: #2c2c2c !important; }
 body.theme-paper .nav-links a { color: #666666 !important; }
@@ -2412,9 +2414,11 @@ body.theme-paper ::selection { background: rgba(44, 44, 44, 0.2) !important; col
 body.theme-paper ::-webkit-scrollbar-track { background: #ebe8df !important; }
 body.theme-paper ::-webkit-scrollbar-thumb { background: #c8c0b0 !important; }
 body.theme-paper .skill-icon img,
-body.theme-paper .client-logo img,
 body.theme-paper .award-icon img {
   filter: grayscale(100%) contrast(1.1) !important;
+}
+body.theme-paper .client-logo img {
+  filter: grayscale(100%) contrast(1.6) brightness(0.4) !important;
 }
 body.theme-paper .project-thumb img {
   filter: grayscale(100%) contrast(0.9) brightness(1.1) !important;
