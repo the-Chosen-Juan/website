@@ -25,6 +25,28 @@
 </head>
 
 <body>
+    <!-- Boot Screen -->
+    <div class="boot-screen" id="bootScreen">
+        <div class="boot-line" id="boot-0">BIOS v2.4.1 — Nacho Grosman Systems</div>
+        <div class="boot-line" id="boot-1">Memory test... <span class="ok-tag">1024MB OK</span></div>
+        <div class="boot-line" id="boot-2">Detecting hardware... <span class="ok-tag">OK</span></div>
+        <div class="boot-line" id="boot-3">&nbsp;</div>
+        <div class="boot-line" id="boot-4">Loading kernel modules...</div>
+        <div class="boot-line" id="boot-5">&nbsp;&nbsp;[<span class="ok-tag">OK</span>] <span class="module-name">display-driver</span></div>
+        <div class="boot-line" id="boot-6">&nbsp;&nbsp;[<span class="ok-tag">OK</span>] <span class="module-name">font-renderer</span> (JetBrains Mono)</div>
+        <div class="boot-line" id="boot-7">&nbsp;&nbsp;[<span class="ok-tag">OK</span>] <span class="module-name">network-stack</span></div>
+        <div class="boot-line" id="boot-8">&nbsp;&nbsp;[<span class="ok-tag">OK</span>] <span class="module-name">creative-engine</span> v12.0</div>
+        <div class="boot-line" id="boot-9">&nbsp;&nbsp;[<span class="ok-tag">OK</span>] <span class="module-name">portfolio-framework</span></div>
+        <div class="boot-line" id="boot-10">&nbsp;</div>
+        <div class="boot-line" id="boot-11">Mounting filesystem...</div>
+        <div class="boot-line" id="boot-12">&nbsp;&nbsp;/home/nacho/portfolio... <span class="ok-tag">OK</span></div>
+        <div class="boot-line" id="boot-13">&nbsp;&nbsp;/home/nacho/projects... <span class="ok-tag">OK</span></div>
+        <div class="boot-line" id="boot-14">&nbsp;</div>
+        <div class="boot-line accent" id="boot-15">Starting nacho-grosman-portfolio.service...</div>
+        <div class="boot-line highlight" id="boot-16">> Welcome to NachoOS v2.0</div>
+        <div class="boot-line highlight" id="boot-17">> Initializing terminal... <span class="boot-progress">█████████████████████</span></div>
+    </div>
+
     <!-- Terminal Navigation -->
     <nav class="terminal-nav" id="nav">
         <div class="nav-container">
@@ -546,7 +568,6 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
-                    // Close mobile nav
                     document.getElementById('nav').classList.remove('nav-open');
                 }
             });
@@ -573,11 +594,60 @@
             });
         });
 
-        // Sequential reveal system - EVERYTHING appears like terminal output
+        // ── Boot Sequence ──
+        function runBootSequence(onComplete) {
+            const totalLines = 18;
+            const delays = [
+                200,  // BIOS header
+                400,  // Memory test
+                300,  // Detecting hardware
+                100,  // blank
+                350,  // Loading kernel modules...
+                150,  // display-driver
+                150,  // font-renderer
+                150,  // network-stack
+                150,  // creative-engine
+                150,  // portfolio-framework
+                100,  // blank
+                350,  // Mounting filesystem...
+                200,  // /portfolio
+                200,  // /projects
+                100,  // blank
+                400,  // Starting service
+                300,  // Welcome
+                500   // Initializing + progress bar
+            ];
+
+            let currentLine = 0;
+            function showNextLine() {
+                if (currentLine >= totalLines) {
+                    // Boot done — fade out
+                    setTimeout(() => {
+                        const bootScreen = document.getElementById('bootScreen');
+                        bootScreen.classList.add('fade-out');
+                        setTimeout(() => {
+                            bootScreen.style.display = 'none';
+                            if (onComplete) onComplete();
+                        }, 600);
+                    }, 400);
+                    return;
+                }
+
+                const line = document.getElementById('boot-' + currentLine);
+                if (line) {
+                    line.classList.add('visible');
+                }
+                currentLine++;
+                setTimeout(showNextLine, delays[currentLine - 1] || 150);
+            }
+
+            showNextLine();
+        }
+
+        // ── Sequential Reveal System ──
         let revealQueue = [];
         let isRevealing = false;
 
-        // Process queue - reveal one element at a time
         function processRevealQueue() {
             if (isRevealing || revealQueue.length === 0) return;
 
@@ -590,7 +660,6 @@
                     processRevealQueue();
                 });
             } else {
-                // Quick slide-in reveal
                 item.element.style.transition = 'opacity 0.1s ease, transform 0.1s ease';
                 item.element.style.opacity = '1';
                 item.element.style.transform = 'translateX(0)';
@@ -601,7 +670,6 @@
             }
         }
 
-        // Add element to queue
         function queueReveal(element, type = 'fade') {
             if (!element.dataset.queued) {
                 element.dataset.queued = 'true';
@@ -610,7 +678,6 @@
             }
         }
 
-        // Typewriter effect function
         function typewriterEffect(element, onComplete) {
             const originalHTML = element.innerHTML;
             const text = element.textContent;
@@ -639,11 +706,8 @@
             }, speed);
         }
 
-        // Get all direct children that should be revealed
         function getRevealableChildren(container) {
             const items = [];
-
-            // Get all meaningful elements in order
             const selectors = [
                 '.ascii-art',
                 '.section-command',
@@ -681,10 +745,8 @@
                 'hr'
             ];
 
-            // Collect elements in DOM order
             const allElements = container.querySelectorAll(selectors.join(', '));
             allElements.forEach(el => {
-                // Don't add if parent is already in list (avoid duplicates)
                 if (!el.dataset.queued && !items.includes(el)) {
                     items.push(el);
                 }
@@ -693,27 +755,26 @@
             return items;
         }
 
-        // Section observer
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.triggered) {
-                    entry.target.dataset.triggered = 'true';
-                    const elements = getRevealableChildren(entry.target);
-                    elements.forEach(el => {
-                        // Text elements get typewriter, others get fade
-                        const isText = el.matches('p, .section-command, .login-message, .skills-header, .clients-header, .awards-header, .form-intro, .footer-copyright, .bio-header, .form-header');
-                        queueReveal(el, isText ? 'typewriter' : 'fade');
-                    });
-                }
+        function initRevealSystem() {
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.dataset.triggered) {
+                        entry.target.dataset.triggered = 'true';
+                        const elements = getRevealableChildren(entry.target);
+                        elements.forEach(el => {
+                            const isText = el.matches('p, .section-command, .login-message, .skills-header, .clients-header, .awards-header, .form-intro, .footer-copyright, .bio-header, .form-header');
+                            queueReveal(el, isText ? 'typewriter' : 'fade');
+                        });
+                    }
+                });
+            }, { threshold: 0.02 });
+
+            document.querySelectorAll('section, .hero, footer').forEach(section => {
+                sectionObserver.observe(section);
             });
-        }, { threshold: 0.02 });
+        }
 
-        // Observe all sections including nav and footer
-        document.querySelectorAll('section, .hero, footer').forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // Hide EVERYTHING initially
+        // ── Hide all content initially ──
         const hideSelectors = [
             '.ascii-art',
             '.section-command',
@@ -753,6 +814,22 @@
             el.style.opacity = '0';
             el.style.transform = 'translateX(-8px)';
         });
+
+        // ── Startup: boot sequence or skip ──
+        const hasBooted = sessionStorage.getItem('nachoos-booted');
+        const bootScreen = document.getElementById('bootScreen');
+
+        if (hasBooted) {
+            // Skip boot — remove screen immediately
+            bootScreen.style.display = 'none';
+            initRevealSystem();
+        } else {
+            // Run boot sequence, then start reveals
+            runBootSequence(() => {
+                sessionStorage.setItem('nachoos-booted', 'true');
+                initRevealSystem();
+            });
+        }
     </script>
 </body>
 
