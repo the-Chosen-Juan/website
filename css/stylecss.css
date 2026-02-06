@@ -2063,9 +2063,18 @@ body.hacker-mode .footer-link:hover i {
 body.hacker-mode .form-label::before {
   color: #00ff41 !important;
 }
+body.hacker-mode .window-buttons span {
+  background: #00ff41 !important;
+}
 
-/* ── Section cd Indicator ── */
-.cd-indicator {
+/* ── Parallax ASCII Art ── */
+.ascii-art {
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+/* ── Fake Visitor Indicator ── */
+.visitor-indicator {
   position: fixed;
   bottom: 2rem;
   left: 2rem;
@@ -2080,58 +2089,13 @@ body.hacker-mode .form-label::before {
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
   backdrop-filter: blur(4px);
-}
-.cd-indicator.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.cd-indicator .cd-user {
-  color: #a3be8c;
-}
-.cd-indicator .cd-at {
-  color: #808080;
-}
-.cd-indicator .cd-host {
-  color: #81a1c1;
-}
-.cd-indicator .cd-symbol {
-  color: #d08770;
-}
-.cd-indicator .cd-command {
-  color: #d4d4d4;
-}
-.cd-indicator .cd-path {
-  color: #ebcb8b;
-}
-
-/* ── Parallax ASCII Art ── */
-.ascii-art {
-  transition: transform 0.15s ease-out;
-  will-change: transform;
-}
-
-/* ── Fake Visitor Indicator ── */
-.visitor-indicator {
-  position: fixed;
-  top: 3.5rem;
-  right: 1.5rem;
-  background: rgba(13, 13, 13, 0.9);
-  border: 1px solid #404040;
-  border-radius: 2px;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.7rem;
-  z-index: 8000;
-  opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  pointer-events: none;
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
 .visitor-indicator.visible {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 .visitor-indicator .visitor-dot {
   width: 6px;
@@ -2256,6 +2220,7 @@ body.theme-amber .footer-link,
 body.theme-amber .footer-link i { color: #b07800 !important; }
 body.theme-amber .footer-link:hover,
 body.theme-amber .footer-link:hover i { color: #ffb000 !important; }
+body.theme-amber .window-buttons span { background: #ffb000 !important; }
 
 /* ── Theme: Blue Screen (DOS/BIOS) ── */
 body.theme-bluescreen {
@@ -2365,6 +2330,7 @@ body.theme-bluescreen .footer-link,
 body.theme-bluescreen .footer-link i { color: #aaaaff !important; }
 body.theme-bluescreen .footer-link:hover,
 body.theme-bluescreen .footer-link:hover i { color: #ffffff !important; }
+body.theme-bluescreen .window-buttons span { background: #ffffff !important; }
 
 /* ── Theme: Paper (Teletype Printout) ── */
 body.theme-paper {
@@ -2474,5 +2440,6 @@ body.theme-paper .footer-link,
 body.theme-paper .footer-link i { color: #666666 !important; }
 body.theme-paper .footer-link:hover,
 body.theme-paper .footer-link:hover i { color: #2c2c2c !important; }
+body.theme-paper .window-buttons span { background: #8b4513 !important; }
 
 /*# sourceMappingURL=stylecss.css.map */

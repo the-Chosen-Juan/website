@@ -58,10 +58,6 @@
         <span class="access-text">ACCESS GRANTED</span>
     </div>
 
-    <!-- Section cd indicator -->
-    <div class="cd-indicator" id="cdIndicator">
-        <span class="cd-user">nacho</span><span class="cd-at">@</span><span class="cd-host">portfolio</span><span class="cd-symbol">:~ $ </span><span class="cd-command">cd </span><span class="cd-path" id="cdPath">~/</span>
-    </div>
 
     <!-- Terminal Navigation -->
     <nav class="terminal-nav" id="nav">
@@ -872,6 +868,7 @@
         const visitorIndicator = document.getElementById('visitorIndicator');
         const visitorTextEl = document.getElementById('visitorText');
         let visitorTimeout = null;
+        let visitorCooldown = false;
 
         const visitorPaths = [
             '~/', '~/work/', '~/xp/', '~/bio/', '~/contact/',
@@ -890,6 +887,9 @@
         const visitorActions = ['is viewing', 'is reading', 'is browsing', 'connected to'];
 
         function showFakeVisitor() {
+            if (visitorCooldown) return;
+            visitorCooldown = true;
+
             const id = Math.floor(Math.random() * 900) + 100;
             const path = visitorPaths[Math.floor(Math.random() * visitorPaths.length)];
             const action = visitorActions[Math.floor(Math.random() * visitorActions.length)];
@@ -899,16 +899,23 @@
             if (visitorTimeout) clearTimeout(visitorTimeout);
             visitorTimeout = setTimeout(() => {
                 visitorIndicator.classList.remove('visible');
+                // Cooldown: don't show another for at least 12s
+                setTimeout(() => { visitorCooldown = false; }, 12000);
             }, 4000);
         }
 
-        // Show first visitor after 15-25s, then every 30-70s
+        // Random background timer: first after 18-30s, then every 35-80s
+        function scheduleNextVisitor() {
+            const delay = 35000 + Math.random() * 45000;
+            setTimeout(() => {
+                showFakeVisitor();
+                scheduleNextVisitor();
+            }, delay);
+        }
         setTimeout(() => {
             showFakeVisitor();
-            setInterval(() => {
-                showFakeVisitor();
-            }, 30000 + Math.random() * 40000);
-        }, 15000 + Math.random() * 10000);
+            scheduleNextVisitor();
+        }, 18000 + Math.random() * 12000);
 
         // ── Konami Code Theme Rotation ──
         const konamiSequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
@@ -944,20 +951,27 @@
             // Move to next theme
             currentThemeIndex = (currentThemeIndex + 1) % themes.length;
 
-            // Update overlay text
-            accessText.textContent = themeNames[currentThemeIndex];
+            // Only show overlay text for ACCESS GRANTED (hacker-mode, index 1)
+            if (currentThemeIndex === 1) {
+                accessText.textContent = 'ACCESS GRANTED';
+                overlay.classList.add('flash');
 
-            // Flash overlay
-            overlay.classList.add('flash');
+                setTimeout(() => {
+                    overlay.classList.remove('flash');
+                    wrapper.classList.add('glitch-active');
 
-            setTimeout(() => {
-                overlay.classList.remove('flash');
+                    themes.forEach(t => { if (t) document.body.classList.remove(t); });
+                    document.body.classList.add(themes[currentThemeIndex]);
+
+                    setTimeout(() => {
+                        wrapper.classList.remove('glitch-active');
+                    }, 400);
+                }, 800);
+            } else {
+                // For all other themes: just glitch, no overlay
                 wrapper.classList.add('glitch-active');
 
-                // Remove all theme classes
                 themes.forEach(t => { if (t) document.body.classList.remove(t); });
-
-                // Apply new theme (null = OG, no class needed)
                 if (themes[currentThemeIndex]) {
                     document.body.classList.add(themes[currentThemeIndex]);
                 }
@@ -965,7 +979,7 @@
                 setTimeout(() => {
                     wrapper.classList.remove('glitch-active');
                 }, 400);
-            }, 800);
+            }
         }
 
         function resetToOG() {
@@ -979,53 +993,25 @@
             }, 400);
         }
 
-        // ── Section cd Indicator ──
-        const cdIndicator = document.getElementById('cdIndicator');
-        const cdPath = document.getElementById('cdPath');
-        let currentSection = '';
-        let cdTimeout = null;
-
-        const sectionPaths = {
-            'home': '~/',
-            'work': '~/work/',
-            'xp': '~/xp/',
-            'bio': '~/bio/',
-            'contact': '~/contact/'
-        };
-
-        function showCdIndicator(sectionId) {
-            if (currentSection === sectionId) return;
-            currentSection = sectionId;
-
-            const path = sectionPaths[sectionId] || '~/';
-            cdPath.textContent = path;
-
-            // Show indicator
-            cdIndicator.classList.add('visible');
-
-            // Clear previous timeout
-            if (cdTimeout) clearTimeout(cdTimeout);
-
-            // Hide after 2.5s
-            cdTimeout = setTimeout(() => {
-                cdIndicator.classList.remove('visible');
-            }, 2500);
-        }
-
-        // Create cd section observer (separate from the reveal observer)
-        const cdObserver = new IntersectionObserver((entries) => {
+        // ── Section Change → Sometimes trigger fake visitor ──
+        let currentSectionVisitor = '';
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id') || entry.target.closest('section')?.getAttribute('id');
-                    if (id && sectionPaths[id]) {
-                        showCdIndicator(id);
+                    if (id && id !== currentSectionVisitor) {
+                        currentSectionVisitor = id;
+                        // ~40% chance a visitor appears on section change
+                        if (Math.random() < 0.4) {
+                            setTimeout(() => showFakeVisitor(), 800 + Math.random() * 1500);
+                        }
                     }
                 }
             });
         }, { threshold: 0.3 });
 
         document.querySelectorAll('section[id], .hero[id]').forEach(section => {
-            cdObserver.observe(section);
+            sectionObserver.observe(section);
         });
 
         // ── Decrypt Effect for Project Titles ──

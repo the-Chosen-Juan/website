@@ -555,10 +555,21 @@ body.hacker-mode {
     .form-submit::before {
         color: #00ff41 !important;
     }
+
+    // Window buttons monochrome green
+    .window-buttons span {
+        background: #00ff41 !important;
+    }
 }
 
-// ── Section cd Indicator ──
-.cd-indicator {
+// ── Parallax ASCII Art ──
+.ascii-art {
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+}
+
+// ── Fake Visitor Indicator ──
+.visitor-indicator {
     position: fixed;
     bottom: 2rem;
     left: 2rem;
@@ -573,65 +584,13 @@ body.hacker-mode {
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
     backdrop-filter: blur(4px);
-
-    &.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .cd-user {
-        color: $accent-success;
-    }
-
-    .cd-at {
-        color: $text-secondary;
-    }
-
-    .cd-host {
-        color: $accent-secondary;
-    }
-
-    .cd-symbol {
-        color: $accent-primary;
-    }
-
-    .cd-command {
-        color: $text-primary;
-    }
-
-    .cd-path {
-        color: $accent-warning;
-    }
-}
-
-// ── Parallax ASCII Art ──
-.ascii-art {
-    transition: transform 0.15s ease-out;
-    will-change: transform;
-}
-
-// ── Fake Visitor Indicator ──
-.visitor-indicator {
-    position: fixed;
-    top: 3.5rem;
-    right: 1.5rem;
-    background: rgba(13, 13, 13, 0.9);
-    border: 1px solid $border-color;
-    border-radius: $radius-sm;
-    padding: $spacing-xs $spacing-sm;
-    font-size: 0.7rem;
-    z-index: 8000;
-    opacity: 0;
-    transform: translateX(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    pointer-events: none;
     display: flex;
     align-items: center;
     gap: $spacing-xs;
 
     &.visible {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
 
     .visitor-dot {
@@ -735,6 +694,8 @@ body.theme-amber {
     }
     .footer-link, .footer-link i { color: #b07800 !important; }
     .footer-link:hover, .footer-link:hover i { color: #ffb000 !important; }
+
+    .window-buttons span { background: #ffb000 !important; }
 }
 
 // ── Theme: Blue Screen (DOS/BIOS) ──
@@ -820,6 +781,8 @@ body.theme-bluescreen {
     }
     .footer-link, .footer-link i { color: #aaaaff !important; }
     .footer-link:hover, .footer-link:hover i { color: #ffffff !important; }
+
+    .window-buttons span { background: #ffffff !important; }
 }
 
 // ── Theme: Paper (Teletype Printout) ──
@@ -905,4 +868,6 @@ body.theme-paper {
     }
     .footer-link, .footer-link i { color: #666666 !important; }
     .footer-link:hover, .footer-link:hover i { color: #2c2c2c !important; }
+
+    .window-buttons span { background: #8b4513 !important; }
 }
