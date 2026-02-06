@@ -47,8 +47,8 @@ body::before {
   z-index: 10000;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.03) 0px,
-    rgba(0, 0, 0, 0.03) 1px,
+    rgba(0, 0, 0, 0.06) 0px,
+    rgba(0, 0, 0, 0.06) 1px,
     transparent 1px,
     transparent 3px
   );
@@ -2012,6 +2012,56 @@ body.hacker-mode .award-icon img {
 }
 body.hacker-mode .project-thumb img {
   filter: grayscale(100%) brightness(0.6) sepia(100%) hue-rotate(70deg) saturate(300%) !important;
+}
+body.hacker-mode .form-input,
+body.hacker-mode .form-textarea {
+  background-color: #001a00 !important;
+  border-color: #004d00 !important;
+  color: #00ff41 !important;
+}
+body.hacker-mode .form-input::placeholder,
+body.hacker-mode .form-textarea::placeholder {
+  color: #005500 !important;
+}
+body.hacker-mode .form-input:focus,
+body.hacker-mode .form-textarea:focus {
+  border-color: #00ff41 !important;
+}
+body.hacker-mode .form-submit {
+  background-color: #001a00 !important;
+  border-color: #00ff41 !important;
+  color: #00ff41 !important;
+}
+body.hacker-mode .form-submit:hover {
+  background-color: #00ff41 !important;
+  color: #000 !important;
+}
+body.hacker-mode .form-submit::before {
+  color: #00ff41 !important;
+}
+body.hacker-mode .resume-link {
+  border-color: #004d00 !important;
+  color: #00aa28 !important;
+}
+body.hacker-mode .resume-link::before {
+  color: #00ff41 !important;
+}
+body.hacker-mode .resume-link:hover {
+  border-color: #00ff41 !important;
+  color: #00ff41 !important;
+}
+body.hacker-mode .footer-link {
+  color: #00aa28 !important;
+}
+body.hacker-mode .footer-link i {
+  color: #00aa28 !important;
+}
+body.hacker-mode .footer-link:hover,
+body.hacker-mode .footer-link:hover i {
+  color: #00ff41 !important;
+}
+body.hacker-mode .form-label::before {
+  color: #00ff41 !important;
 }
 
 /* ── Section cd Indicator ── */

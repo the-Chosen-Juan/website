@@ -22,7 +22,7 @@ body {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cline x1='8' y1='0' x2='8' y2='16' stroke='%23d08770' stroke-width='1'/%3E%3Cline x1='0' y1='8' x2='16' y2='8' stroke='%23d08770' stroke-width='1'/%3E%3C/svg%3E") 8 8, crosshair;
 }
 
-// CRT Scanline overlay
+// CRT Scanline overlay — always visible
 body::before {
     content: '';
     position: fixed;
@@ -34,8 +34,8 @@ body::before {
     z-index: 10000;
     background: repeating-linear-gradient(
         0deg,
-        rgba(0, 0, 0, 0.03) 0px,
-        rgba(0, 0, 0, 0.03) 1px,
+        rgba(0, 0, 0, 0.06) 0px,
+        rgba(0, 0, 0, 0.06) 1px,
         transparent 1px,
         transparent 3px
     );
@@ -488,6 +488,72 @@ body.hacker-mode {
 
     .project-thumb img {
         filter: grayscale(100%) brightness(0.6) sepia(100%) hue-rotate(70deg) saturate(300%) !important;
+    }
+
+    // Form inputs & textarea
+    .form-input,
+    .form-textarea {
+        background-color: #001a00 !important;
+        border-color: #004d00 !important;
+        color: #00ff41 !important;
+
+        &::placeholder {
+            color: #005500 !important;
+        }
+
+        &:focus {
+            border-color: #00ff41 !important;
+        }
+    }
+
+    // Submit button
+    .form-submit {
+        background-color: #001a00 !important;
+        border-color: #00ff41 !important;
+        color: #00ff41 !important;
+
+        &:hover {
+            background-color: #00ff41 !important;
+            color: #000 !important;
+        }
+    }
+
+    // Resume link
+    .resume-link {
+        border-color: #004d00 !important;
+        color: #00aa28 !important;
+
+        &::before {
+            color: #00ff41 !important;
+        }
+
+        &:hover {
+            border-color: #00ff41 !important;
+            color: #00ff41 !important;
+        }
+    }
+
+    // Footer link icons
+    .footer-link {
+        color: #00aa28 !important;
+
+        i {
+            color: #00aa28 !important;
+        }
+
+        &:hover, &:hover i {
+            color: #00ff41 !important;
+        }
+    }
+
+    // Form label prefix
+    .form-label::before {
+        color: #00ff41 !important;
+    }
+
+    // Form submit prefix
+    .form-submit::before {
+        color: #00ff41 !important;
     }
 }
 

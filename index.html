@@ -588,6 +588,9 @@
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.nav-links a');
 
+            // If at bottom of page, highlight contact
+            const atBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 80);
+
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop - 100;
@@ -595,6 +598,8 @@
                     current = section.getAttribute('id');
                 }
             });
+
+            if (atBottom) current = 'contact';
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -688,6 +693,16 @@
             }
         }
 
+        // Instantly show an element (no animation, no queue)
+        function instantReveal(element) {
+            if (!element.dataset.queued) {
+                element.dataset.queued = 'true';
+            }
+            element.style.transition = 'none';
+            element.style.opacity = '1';
+            element.style.transform = 'translateX(0)';
+        }
+
         function typewriterEffect(element, onComplete) {
             const originalHTML = element.innerHTML;
             const text = element.textContent;
@@ -771,10 +786,20 @@
                     if (entry.isIntersecting && !entry.target.dataset.triggered) {
                         entry.target.dataset.triggered = 'true';
                         const elements = getRevealableChildren(entry.target);
-                        elements.forEach(el => {
-                            const isText = el.matches('p, .section-command, .login-message, .skills-header, .clients-header, .awards-header, .form-intro, .footer-copyright, .bio-header, .form-header');
-                            queueReveal(el, isText ? 'typewriter' : 'fade');
-                        });
+
+                        // If the section's top is above the viewport center, user scrolled UP to it
+                        // → reveal instantly instead of queuing animations
+                        const rect = entry.target.getBoundingClientRect();
+                        const isAbove = rect.top < 0;
+
+                        if (isAbove) {
+                            elements.forEach(el => instantReveal(el));
+                        } else {
+                            elements.forEach(el => {
+                                const isText = el.matches('p, .section-command, .login-message, .skills-header, .clients-header, .awards-header, .form-intro, .footer-copyright, .bio-header, .form-header');
+                                queueReveal(el, isText ? 'typewriter' : 'fade');
+                            });
+                        }
                     }
                 });
             }, { threshold: 0.02 });
