@@ -1862,4 +1862,196 @@ img {
   }
 }
 
+/* ── Hacker Mode (Konami Code) ── */
+.access-granted-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 200000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.access-granted-overlay.flash {
+  opacity: 1;
+}
+.access-granted-overlay .access-text {
+  color: #00ff41;
+  font-size: clamp(1.5rem, 5vw, 4rem);
+  font-weight: bold;
+  text-shadow: 0 0 20px rgba(0, 255, 65, 0.8), 0 0 60px rgba(0, 255, 65, 0.4);
+  letter-spacing: 0.3em;
+  animation: access-pulse 0.3s ease infinite alternate;
+}
+@keyframes access-pulse {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+.glitch-active {
+  animation: glitch-skew 0.4s linear;
+}
+@keyframes glitch-skew {
+  0%   { transform: skewX(0deg); filter: hue-rotate(0deg); }
+  10%  { transform: skewX(-2deg); filter: hue-rotate(90deg); }
+  20%  { transform: skewX(3deg) skewY(1deg); filter: hue-rotate(180deg); }
+  30%  { transform: skewX(-1deg); filter: hue-rotate(270deg); }
+  40%  { transform: skewX(2deg) skewY(-1deg); filter: hue-rotate(120deg); }
+  50%  { transform: skewX(0deg); filter: hue-rotate(0deg); }
+  60%  { transform: skewX(-3deg); filter: hue-rotate(200deg); }
+  70%  { transform: skewX(1deg) skewY(1deg); filter: hue-rotate(60deg); }
+  80%  { transform: skewX(-1deg); filter: hue-rotate(300deg); }
+  90%  { transform: skewX(2deg); filter: hue-rotate(150deg); }
+  100% { transform: skewX(0deg); filter: hue-rotate(0deg); }
+}
+body.hacker-mode {
+  background-color: #000 !important;
+}
+body.hacker-mode::after {
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 20, 0, 0.5) 100%) !important;
+}
+body.hacker-mode::before {
+  background: repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.03) 0px, rgba(0, 255, 65, 0.03) 1px, transparent 1px, transparent 3px) !important;
+}
+body.hacker-mode .wrapper,
+body.hacker-mode .terminal-content,
+body.hacker-mode .bio-body,
+body.hacker-mode .form-body {
+  background-color: #000 !important;
+}
+body.hacker-mode,
+body.hacker-mode p,
+body.hacker-mode span,
+body.hacker-mode div,
+body.hacker-mode h1,
+body.hacker-mode h2,
+body.hacker-mode h3,
+body.hacker-mode li,
+body.hacker-mode label {
+  color: #00ff41 !important;
+}
+body.hacker-mode .text-secondary,
+body.hacker-mode .section-command,
+body.hacker-mode .footer-copyright,
+body.hacker-mode .project-client,
+body.hacker-mode .project-title,
+body.hacker-mode .form-title,
+body.hacker-mode .bio-header .file-name,
+body.hacker-mode .nav-path,
+body.hacker-mode .clients-header,
+body.hacker-mode .awards-header {
+  color: #00aa28 !important;
+}
+body.hacker-mode .ascii-art,
+body.hacker-mode .accent-primary,
+body.hacker-mode .prompt-symbol,
+body.hacker-mode .skill-item::before,
+body.hacker-mode .typing-cursor,
+body.hacker-mode .cursor {
+  color: #00ff41 !important;
+}
+body.hacker-mode a {
+  color: #39ff14 !important;
+}
+body.hacker-mode .terminal-nav,
+body.hacker-mode .project-card,
+body.hacker-mode .bio-content,
+body.hacker-mode .contact-form,
+body.hacker-mode .terminal-footer,
+body.hacker-mode .section-divider,
+body.hacker-mode .skills-header,
+body.hacker-mode .clients-grid,
+body.hacker-mode .award-item,
+body.hacker-mode hr {
+  border-color: #004d00 !important;
+}
+body.hacker-mode .terminal-nav,
+body.hacker-mode .project-card,
+body.hacker-mode .project-header,
+body.hacker-mode .bio-content,
+body.hacker-mode .bio-header,
+body.hacker-mode .contact-form,
+body.hacker-mode .form-header,
+body.hacker-mode .clients-grid,
+body.hacker-mode .award-item {
+  background-color: #001a00 !important;
+}
+body.hacker-mode .project-card:hover {
+  border-color: #00ff41 !important;
+}
+body.hacker-mode .nav-links a {
+  color: #00aa28 !important;
+}
+body.hacker-mode .nav-links a::before,
+body.hacker-mode .nav-links a::after {
+  color: #004d00 !important;
+}
+body.hacker-mode .nav-links a:hover,
+body.hacker-mode .nav-links a.active {
+  color: #00ff41 !important;
+}
+body.hacker-mode ::selection {
+  background: rgba(0, 255, 65, 0.3) !important;
+  color: #00ff41 !important;
+}
+body.hacker-mode ::-webkit-scrollbar-track {
+  background: #001a00 !important;
+}
+body.hacker-mode ::-webkit-scrollbar-thumb {
+  background: #004d00 !important;
+}
+body.hacker-mode .skill-icon img,
+body.hacker-mode .client-logo img,
+body.hacker-mode .award-icon img {
+  filter: grayscale(100%) brightness(0.8) sepia(100%) hue-rotate(70deg) saturate(500%) !important;
+}
+body.hacker-mode .project-thumb img {
+  filter: grayscale(100%) brightness(0.6) sepia(100%) hue-rotate(70deg) saturate(300%) !important;
+}
+
+/* ── Section cd Indicator ── */
+.cd-indicator {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  background: rgba(13, 13, 13, 0.92);
+  border: 1px solid #404040;
+  border-radius: 2px;
+  padding: 0.25rem 1rem;
+  font-size: 0.8rem;
+  z-index: 8000;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+}
+.cd-indicator.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cd-indicator .cd-user {
+  color: #a3be8c;
+}
+.cd-indicator .cd-at {
+  color: #808080;
+}
+.cd-indicator .cd-host {
+  color: #81a1c1;
+}
+.cd-indicator .cd-symbol {
+  color: #d08770;
+}
+.cd-indicator .cd-command {
+  color: #d4d4d4;
+}
+.cd-indicator .cd-path {
+  color: #ebcb8b;
+}
+
 /*# sourceMappingURL=stylecss.css.map */

@@ -305,3 +305,235 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+// ── Hacker Mode (Konami Code Easter Egg) ──
+
+// ACCESS GRANTED flash overlay
+.access-granted-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 200000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+
+    &.flash {
+        opacity: 1;
+    }
+
+    .access-text {
+        color: #00ff41;
+        font-size: clamp(1.5rem, 5vw, 4rem);
+        font-weight: bold;
+        text-shadow: 0 0 20px rgba(0, 255, 65, 0.8), 0 0 60px rgba(0, 255, 65, 0.4);
+        letter-spacing: 0.3em;
+        animation: access-pulse 0.3s ease infinite alternate;
+    }
+}
+
+@keyframes access-pulse {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+}
+
+// Glitch effect applied during transition
+.glitch-active {
+    animation: glitch-skew 0.4s linear;
+}
+
+@keyframes glitch-skew {
+    0%   { transform: skewX(0deg); filter: hue-rotate(0deg); }
+    10%  { transform: skewX(-2deg); filter: hue-rotate(90deg); }
+    20%  { transform: skewX(3deg) skewY(1deg); filter: hue-rotate(180deg); }
+    30%  { transform: skewX(-1deg); filter: hue-rotate(270deg); }
+    40%  { transform: skewX(2deg) skewY(-1deg); filter: hue-rotate(120deg); }
+    50%  { transform: skewX(0deg); filter: hue-rotate(0deg); }
+    60%  { transform: skewX(-3deg); filter: hue-rotate(200deg); }
+    70%  { transform: skewX(1deg) skewY(1deg); filter: hue-rotate(60deg); }
+    80%  { transform: skewX(-1deg); filter: hue-rotate(300deg); }
+    90%  { transform: skewX(2deg); filter: hue-rotate(150deg); }
+    100% { transform: skewX(0deg); filter: hue-rotate(0deg); }
+}
+
+// Hacker mode color overrides — green-on-black Matrix palette
+body.hacker-mode {
+    background-color: #000 !important;
+
+    &::after {
+        background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 20, 0, 0.5) 100%) !important;
+    }
+
+    &::before {
+        background: repeating-linear-gradient(
+            0deg,
+            rgba(0, 255, 65, 0.03) 0px,
+            rgba(0, 255, 65, 0.03) 1px,
+            transparent 1px,
+            transparent 3px
+        ) !important;
+    }
+
+    .wrapper,
+    .terminal-content,
+    .bio-body,
+    .form-body {
+        background-color: #000 !important;
+    }
+
+    // All text goes green
+    &, p, span, div, h1, h2, h3, li, label {
+        color: #00ff41 !important;
+    }
+
+    // Muted text
+    .text-secondary,
+    .section-command,
+    .footer-copyright,
+    .project-client,
+    .project-title,
+    .form-title,
+    .bio-header .file-name,
+    .nav-path,
+    .clients-header,
+    .awards-header {
+        color: #00aa28 !important;
+    }
+
+    // Accent elements
+    .ascii-art,
+    .accent-primary,
+    .prompt-symbol,
+    .skill-item::before,
+    .typing-cursor,
+    .cursor {
+        color: #00ff41 !important;
+    }
+
+    a {
+        color: #39ff14 !important;
+    }
+
+    // Borders
+    .terminal-nav,
+    .project-card,
+    .bio-content,
+    .contact-form,
+    .terminal-footer,
+    .section-divider,
+    .skills-header,
+    .clients-grid,
+    .award-item,
+    hr {
+        border-color: #004d00 !important;
+    }
+
+    // Backgrounds
+    .terminal-nav,
+    .project-card,
+    .project-header,
+    .bio-content,
+    .bio-header,
+    .contact-form,
+    .form-header,
+    .clients-grid,
+    .award-item,
+    .bg-secondary {
+        background-color: #001a00 !important;
+    }
+
+    .project-card:hover {
+        border-color: #00ff41 !important;
+    }
+
+    // Nav
+    .nav-links a {
+        color: #00aa28 !important;
+
+        &::before, &::after {
+            color: #004d00 !important;
+        }
+
+        &:hover, &.active {
+            color: #00ff41 !important;
+        }
+    }
+
+    // Selection
+    ::selection {
+        background: rgba(0, 255, 65, 0.3) !important;
+        color: #00ff41 !important;
+    }
+
+    // Scrollbar
+    ::-webkit-scrollbar-track {
+        background: #001a00 !important;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #004d00 !important;
+    }
+
+    // Images get green tint
+    .skill-icon img,
+    .client-logo img,
+    .award-icon img {
+        filter: grayscale(100%) brightness(0.8) sepia(100%) hue-rotate(70deg) saturate(500%) !important;
+    }
+
+    .project-thumb img {
+        filter: grayscale(100%) brightness(0.6) sepia(100%) hue-rotate(70deg) saturate(300%) !important;
+    }
+}
+
+// ── Section cd Indicator ──
+.cd-indicator {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: rgba(13, 13, 13, 0.92);
+    border: 1px solid $border-color;
+    border-radius: $radius-sm;
+    padding: $spacing-xs $spacing-md;
+    font-size: 0.8rem;
+    z-index: 8000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .cd-user {
+        color: $accent-success;
+    }
+
+    .cd-at {
+        color: $text-secondary;
+    }
+
+    .cd-host {
+        color: $accent-secondary;
+    }
+
+    .cd-symbol {
+        color: $accent-primary;
+    }
+
+    .cd-command {
+        color: $text-primary;
+    }
+
+    .cd-path {
+        color: $accent-warning;
+    }
+}
