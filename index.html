@@ -148,7 +148,9 @@
                 <p class="section-command">./work/</p>
             </div>
 
-            <div class="projects-grid ">
+            <h2 class="glass-section-title">Work</h2>
+
+            <div class="projects-grid">
                 <!-- Philco -->
                 <a href="Philco.html" class="project-card">
                     <div class="project-header">
@@ -327,6 +329,8 @@
                 <p class="section-command">./xp/</p>
             </div>
 
+            <h2 class="glass-section-title">Skills</h2>
+
             <!-- Skills Section -->
             <div class="skills-section">
                 <div class="skills-header">
@@ -384,6 +388,8 @@
                 </div>
             </div>
 
+            <h2 class="glass-section-title">Clients</h2>
+
             <!-- Clients Section -->
             <div class="clients-section">
                 <div class="clients-header">
@@ -434,6 +440,8 @@
                 <p class="section-command">./bio/</p>
             </div>
 
+            <h2 class="glass-section-title">Bio</h2>
+
             <div class="bio-content">
                 <div class="bio-header">
                     <span class="file-icon">*</span>
@@ -453,6 +461,8 @@
                     </div>
                 </div>
             </div>
+
+            <h2 class="glass-section-title">Achievements</h2>
 
             <!-- Awards Section -->
             <div class="awards-section">
@@ -503,6 +513,8 @@
 </pre>
                 <p class="section-command">./contact/</p>
             </div>
+
+            <h2 class="glass-section-title">Contact</h2>
 
             <form action="https://formspree.io/f/xwkygavo" method="POST" class="contact-form">
                 <div class="form-header">
@@ -1070,20 +1082,20 @@
             decryptObserver.observe(card);
         });
 
-        // ── Liquid Glass: Mouse Parallax & Reactivity ──
+        // ── Liquid Glass: Full-Page Mouse Parallax & Reactivity ──
         let glassParallaxActive = false;
         let glassMouseX = 0.5;
         let glassMouseY = 0.5;
-        let glassAnimFrame = null;
+        let glassSmoothX = 0.5;
+        let glassSmoothY = 0.5;
 
         function initGlassEffects() {
             if (glassParallaxActive) return;
             glassParallaxActive = true;
 
-            // Track mouse position
             document.addEventListener('mousemove', onGlassMouseMove);
 
-            // Apply floating animation to bubbles with staggered delays
+            // Floating animation on bubbles
             const bubbles = document.querySelectorAll('.skill-item, .client-logo, .award-item, .footer-link, .social-link');
             bubbles.forEach((bubble, i) => {
                 const duration = 3 + Math.random() * 2;
@@ -1091,7 +1103,6 @@
                 bubble.style.animation = `glassBubbleFloat ${duration}s ${delay}s ease-in-out infinite`;
             });
 
-            // Start parallax render loop
             requestAnimationFrame(glassRenderLoop);
         }
 
@@ -1106,50 +1117,88 @@
                 return;
             }
 
-            const mx = (glassMouseX - 0.5) * 2; // -1 to 1
-            const my = (glassMouseY - 0.5) * 2;
+            // Smooth lerp for fluid feel
+            glassSmoothX += (glassMouseX - glassSmoothX) * 0.08;
+            glassSmoothY += (glassMouseY - glassSmoothY) * 0.08;
 
-            // Parallax on glass panels - move subtly opposite to cursor
-            const cards = document.querySelectorAll('.project-card');
-            cards.forEach((card, i) => {
-                const depth = 0.5 + (i % 3) * 0.3;
-                const rect = card.getBoundingClientRect();
-                const inView = rect.top < window.innerHeight && rect.bottom > 0;
-                if (inView) {
-                    const tx = mx * -4 * depth;
-                    const ty = my * -3 * depth;
-                    card.style.transform = `translate(${tx}px, ${ty}px)`;
-                }
-            });
+            const mx = (glassSmoothX - 0.5) * 2; // -1 to 1
+            const my = (glassSmoothY - 0.5) * 2;
 
-            // Parallax on bubbles
-            const allBubbles = document.querySelectorAll('.skill-item, .client-logo, .award-item');
-            allBubbles.forEach((b, i) => {
-                const depth = 0.3 + (i % 5) * 0.2;
-                const rect = b.getBoundingClientRect();
-                const inView = rect.top < window.innerHeight && rect.bottom > 0;
-                if (inView) {
-                    const baseTransform = b.style.animation ? '' : '';
-                    const tx = mx * -6 * depth;
-                    const ty = my * -4 * depth;
-                    b.style.setProperty('--glass-tx', tx + 'px');
-                    b.style.setProperty('--glass-ty', ty + 'px');
-                }
-            });
+            // ── Background blobs follow mouse ──
+            const bx = 50 + mx * 12;
+            const by = 50 + my * 12;
+            document.body.style.setProperty('--blob-x', bx + '%');
+            document.body.style.setProperty('--blob-y', by + '%');
 
-            // Move background blobs with mouse for "liquid" feel
-            const bodyAfter = document.body;
-            const bx = 50 + mx * 8;
-            const by = 50 + my * 8;
-            bodyAfter.style.setProperty('--blob-x', bx + '%');
-            bodyAfter.style.setProperty('--blob-y', by + '%');
-
-            // Nav tilt effect
+            // ── Nav tilt ──
             const nav = document.querySelector('.terminal-nav');
             if (nav) {
-                const rotY = mx * 2;
-                const rotX = my * -1;
-                nav.style.transform = `translateX(-50%) perspective(600px) rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+                nav.style.transform = `translateX(-50%) perspective(600px) rotateY(${mx * 2}deg) rotateX(${my * -1}deg)`;
+            }
+
+            // ── Project cards parallax ──
+            document.querySelectorAll('.project-card').forEach((card, i) => {
+                const depth = 0.5 + (i % 3) * 0.25;
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.style.transform = `translate(${mx * -5 * depth}px, ${my * -3 * depth}px)`;
+                }
+            });
+
+            // ── Bubbles parallax (direct transform, works with float animation) ──
+            document.querySelectorAll('.skill-item, .client-logo, .award-item').forEach((b, i) => {
+                const depth = 0.4 + (i % 5) * 0.2;
+                const rect = b.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    b.style.transform = `translate(${mx * -8 * depth}px, ${my * -5 * depth}px)`;
+                }
+            });
+
+            // ── Hero content sway ──
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translate(${mx * -3}px, ${my * -2}px)`;
+            }
+
+            // ── Bio panel subtle shift ──
+            const bio = document.querySelector('.bio-content');
+            if (bio) {
+                const rect = bio.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    bio.style.transform = `translate(${mx * -3}px, ${my * -2}px)`;
+                }
+            }
+
+            // ── Contact form subtle shift ──
+            const contact = document.querySelector('.contact-form');
+            if (contact) {
+                const rect = contact.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    contact.style.transform = `translate(${mx * -3}px, ${my * -2}px)`;
+                }
+            }
+
+            // ── Glass section titles gentle float ──
+            document.querySelectorAll('.glass-section-title').forEach((t) => {
+                const rect = t.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    t.style.transform = `translate(${mx * -4}px, ${my * -2.5}px)`;
+                }
+            });
+
+            // ── Footer links parallax ──
+            document.querySelectorAll('.footer-link, .social-link').forEach((el, i) => {
+                const depth = 0.3 + (i % 4) * 0.15;
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.transform = `translate(${mx * -6 * depth}px, ${my * -4 * depth}px)`;
+                }
+            });
+
+            // ── Resume link shift ──
+            const resume = document.querySelector('.resume-link');
+            if (resume) {
+                resume.style.transform = `translate(${mx * -2}px, ${my * -1.5}px)`;
             }
 
             requestAnimationFrame(glassRenderLoop);
@@ -1159,16 +1208,23 @@
             glassParallaxActive = false;
             document.removeEventListener('mousemove', onGlassMouseMove);
 
-            // Reset all transforms
-            document.querySelectorAll('.project-card, .skill-item, .client-logo, .award-item').forEach(el => {
+            // Reset ALL transforms
+            const allEls = document.querySelectorAll(
+                '.project-card, .skill-item, .client-logo, .award-item, ' +
+                '.footer-link, .social-link, .glass-section-title, ' +
+                '.bio-content, .contact-form, .hero, .resume-link'
+            );
+            allEls.forEach(el => {
                 el.style.transform = '';
                 el.style.animation = '';
             });
             const nav = document.querySelector('.terminal-nav');
             if (nav) nav.style.transform = '';
+            document.body.style.removeProperty('--blob-x');
+            document.body.style.removeProperty('--blob-y');
         }
 
-        // Watch for theme changes and toggle glass effects
+        // Watch for theme changes
         const glassObserver = new MutationObserver(() => {
             if (document.body.classList.contains('theme-glass')) {
                 initGlassEffects();
