@@ -323,6 +323,9 @@ img {
   margin: 0;
   padding: 0;
 }
+.terminal-nav .nav-links .nav-icon {
+  display: none;
+}
 .terminal-nav .nav-links a {
   color: #808080;
   padding: 0.25rem 0.5rem;
@@ -2335,15 +2338,15 @@ body.theme-bluescreen .window-buttons span { background: #ffffff !important; }
 
 /* ── Theme: Liquid Glass ── */
 body.theme-glass {
-  background: linear-gradient(135deg, #0a0a1a 0%, #1a1035 30%, #0d1b2a 60%, #0a0a1a 100%) !important;
+  background: #d8dce4 !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
   cursor: default !important;
 }
 body.theme-glass::before {
-  background: linear-gradient(135deg, rgba(120, 120, 255, 0.03) 0%, transparent 40%, rgba(200, 120, 255, 0.02) 60%, transparent 100%) !important;
+  background: none !important;
 }
 body.theme-glass::after {
-  background: radial-gradient(ellipse at 30% 20%, rgba(100, 80, 255, 0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(200, 100, 255, 0.06) 0%, transparent 50%) !important;
+  background: radial-gradient(circle at 85% 8%, rgba(200, 180, 255, 0.25) 0%, transparent 35%), radial-gradient(circle at 10% 92%, rgba(180, 220, 255, 0.15) 0%, transparent 30%) !important;
 }
 body.theme-glass .wrapper,
 body.theme-glass .terminal-content,
@@ -2360,195 +2363,293 @@ body.theme-glass h2,
 body.theme-glass h3,
 body.theme-glass li,
 body.theme-glass label {
-  color: rgba(230, 230, 250, 0.92) !important;
+  color: #2c3040 !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 body.theme-glass pre,
-body.theme-glass code,
-body.theme-glass .ascii-art {
+body.theme-glass code {
   font-family: 'JetBrains Mono', monospace !important;
 }
 body.theme-glass .text-secondary,
 body.theme-glass .section-command,
 body.theme-glass .footer-copyright,
 body.theme-glass .project-client,
-body.theme-glass .project-title,
 body.theme-glass .form-title,
 body.theme-glass .bio-header .file-name,
-body.theme-glass .nav-path,
 body.theme-glass .clients-header,
 body.theme-glass .awards-header {
-  color: rgba(180, 180, 220, 0.7) !important;
+  color: #7a8294 !important;
+}
+body.theme-glass .project-title,
+body.theme-glass .nav-path {
+  color: #5a6270 !important;
 }
 body.theme-glass .ascii-art {
-  color: rgba(160, 140, 255, 0.5) !important;
+  display: none !important;
+}
+body.theme-glass .mobile-title {
+  display: block !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.03em !important;
+  color: #2c3040 !important;
+  margin-bottom: 1.5rem !important;
+  line-height: 1.1 !important;
+}
+body.theme-glass .login-message {
+  color: #7a8294 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 300 !important;
+}
+body.theme-glass .login-message .success-icon {
+  color: #6aaa7a !important;
 }
 body.theme-glass .prompt-symbol,
 body.theme-glass .skill-item::before,
 body.theme-glass .typing-cursor,
 body.theme-glass .cursor {
-  color: rgba(180, 160, 255, 0.85) !important;
+  color: #9aa0ae !important;
 }
-body.theme-glass a { color: rgba(160, 180, 255, 0.9) !important; }
-body.theme-glass a:hover { color: rgba(200, 200, 255, 1) !important; }
-body.theme-glass .terminal-nav,
+body.theme-glass a {
+  color: #5570a0 !important;
+}
+body.theme-glass a:hover {
+  color: #2c3040 !important;
+}
+body.theme-glass .terminal-nav {
+  top: 1rem !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  width: auto !important;
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(24px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 50px !important;
+  padding: 0.3rem 0.4rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+}
+body.theme-glass .nav-container {
+  justify-content: center !important;
+}
+body.theme-glass .nav-prompt {
+  display: none !important;
+}
+body.theme-glass .nav-toggle {
+  display: none !important;
+}
+body.theme-glass .nav-links {
+  gap: 0.1rem !important;
+}
+body.theme-glass .nav-links a {
+  color: #8890a0 !important;
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 50px !important;
+  font-size: 0.9rem !important;
+  transition: all 0.25s ease !important;
+  text-shadow: none !important;
+}
+body.theme-glass .nav-links a::before,
+body.theme-glass .nav-links a::after {
+  content: none !important;
+}
+body.theme-glass .nav-links a .nav-icon {
+  display: inline-block !important;
+}
+body.theme-glass .nav-links a .nav-label {
+  display: none !important;
+}
+body.theme-glass .nav-links a:hover {
+  color: #4a5060 !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  text-shadow: none !important;
+}
+body.theme-glass .nav-links a.active {
+  color: #2c3040 !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  text-shadow: none !important;
+}
 body.theme-glass .project-card,
 body.theme-glass .bio-content,
 body.theme-glass .contact-form,
-body.theme-glass .terminal-footer,
+body.theme-glass .clients-grid,
 body.theme-glass .section-divider,
 body.theme-glass .skills-header,
-body.theme-glass .clients-grid,
 body.theme-glass .award-item,
 body.theme-glass hr {
-  border-color: rgba(255, 255, 255, 0.1) !important;
-}
-body.theme-glass .terminal-nav {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(24px) saturate(1.4) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
 }
 body.theme-glass .project-card {
-  background: rgba(255, 255, 255, 0.04) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(20px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.65) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  transition: box-shadow 0.3s ease, transform 0.3s ease !important;
 }
 body.theme-glass .project-card:hover {
-  border-color: rgba(160, 140, 255, 0.3) !important;
-  box-shadow: 0 8px 40px rgba(100, 80, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 48px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  transform: translateY(-2px) !important;
 }
 body.theme-glass .project-header {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border-radius: 16px 16px 0 0 !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 20px 20px 0 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
 }
 body.theme-glass .bio-content,
 body.theme-glass .bio-header {
-  background: rgba(255, 255, 255, 0.04) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(20px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.65) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
 }
 body.theme-glass .bio-header {
-  border-radius: 16px 16px 0 0 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 20px 20px 0 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 body.theme-glass .contact-form {
-  background: rgba(255, 255, 255, 0.04) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(20px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.65) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
 }
 body.theme-glass .form-header {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border-radius: 16px 16px 0 0 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 20px 20px 0 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
 }
 body.theme-glass .clients-grid {
-  background: rgba(255, 255, 255, 0.04) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(16px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
 }
 body.theme-glass .award-item {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
 }
-body.theme-glass .nav-links a {
-  color: rgba(180, 180, 220, 0.6) !important;
-  transition: color 0.3s ease !important;
+body.theme-glass ::selection {
+  background: rgba(100, 140, 200, 0.25) !important;
+  color: #2c3040 !important;
 }
-body.theme-glass .nav-links a::before,
-body.theme-glass .nav-links a::after { color: rgba(255, 255, 255, 0.15) !important; }
-body.theme-glass .nav-links a:hover,
-body.theme-glass .nav-links a.active {
-  color: rgba(200, 200, 255, 1) !important;
-  text-shadow: 0 0 20px rgba(160, 140, 255, 0.4) !important;
+body.theme-glass ::-webkit-scrollbar-track {
+  background: #cdd1d9 !important;
 }
-body.theme-glass ::selection { background: rgba(140, 120, 255, 0.3) !important; color: #fff !important; }
-body.theme-glass ::-webkit-scrollbar-track { background: rgba(10, 10, 26, 0.8) !important; }
 body.theme-glass ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(0, 0, 0, 0.12) !important;
   border-radius: 10px !important;
 }
-body.theme-glass ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2) !important; }
+body.theme-glass ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
 body.theme-glass .skill-icon img,
 body.theme-glass .award-icon img {
-  filter: brightness(0.9) saturate(0.7) !important;
+  filter: none !important;
 }
 body.theme-glass .client-logo img {
-  filter: brightness(1.6) contrast(1.0) invert(1) !important;
+  filter: grayscale(30%) brightness(0.5) contrast(1.2) !important;
 }
 body.theme-glass .project-thumb img {
-  filter: brightness(0.8) saturate(0.8) !important;
-  border-radius: 0 0 16px 16px !important;
+  filter: brightness(0.95) saturate(0.95) !important;
+  border-radius: 0 0 20px 20px !important;
 }
 body.theme-glass .form-input,
 body.theme-glass .form-textarea {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: rgba(230, 230, 250, 0.92) !important;
-  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+  color: #2c3040 !important;
+  border-radius: 12px !important;
   font-family: 'Inter', sans-serif !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
 }
 body.theme-glass .form-input::placeholder,
-body.theme-glass .form-textarea::placeholder { color: rgba(180, 180, 220, 0.35) !important; }
+body.theme-glass .form-textarea::placeholder {
+  color: #9aa0ae !important;
+}
 body.theme-glass .form-input:focus,
 body.theme-glass .form-textarea:focus {
-  border-color: rgba(160, 140, 255, 0.4) !important;
-  box-shadow: 0 0 20px rgba(140, 120, 255, 0.1) !important;
+  border-color: rgba(100, 140, 200, 0.4) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03), 0 0 0 3px rgba(100, 140, 200, 0.1) !important;
 }
 body.theme-glass .form-submit {
-  background: rgba(140, 120, 255, 0.15) !important;
-  border: 1px solid rgba(160, 140, 255, 0.3) !important;
-  color: rgba(220, 210, 255, 0.95) !important;
-  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+  color: #2c3040 !important;
+  border-radius: 50px !important;
   font-family: 'Inter', sans-serif !important;
-  transition: all 0.3s ease !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
 }
 body.theme-glass .form-submit:hover {
-  background: rgba(140, 120, 255, 0.3) !important;
-  border-color: rgba(160, 140, 255, 0.5) !important;
-  box-shadow: 0 4px 24px rgba(140, 120, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.65) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
 }
-body.theme-glass .form-submit::before { color: rgba(180, 160, 255, 0.8) !important; }
-body.theme-glass .form-label::before { color: rgba(160, 140, 255, 0.6) !important; }
+body.theme-glass .form-submit::before {
+  color: #7a8294 !important;
+}
+body.theme-glass .form-label::before {
+  color: #7a8294 !important;
+}
 body.theme-glass .resume-link {
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: rgba(180, 180, 220, 0.7) !important;
-  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+  color: #5a6270 !important;
+  border-radius: 50px !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
 }
-body.theme-glass .resume-link::before { color: rgba(160, 140, 255, 0.6) !important; }
+body.theme-glass .resume-link::before {
+  color: #7a8294 !important;
+}
 body.theme-glass .resume-link:hover {
-  border-color: rgba(160, 140, 255, 0.3) !important;
-  color: rgba(220, 210, 255, 0.95) !important;
+  color: #2c3040 !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
 }
 body.theme-glass .footer-link,
-body.theme-glass .footer-link i { color: rgba(180, 180, 220, 0.5) !important; }
+body.theme-glass .footer-link i {
+  color: #8890a0 !important;
+}
 body.theme-glass .footer-link:hover,
 body.theme-glass .footer-link:hover i {
-  color: rgba(200, 200, 255, 1) !important;
-  text-shadow: 0 0 12px rgba(160, 140, 255, 0.3) !important;
+  color: #2c3040 !important;
 }
 body.theme-glass .window-buttons span {
-  background: rgba(255, 255, 255, 0.2) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.04) !important;
 }
 body.theme-glass .section-divider,
 body.theme-glass hr {
-  border-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
 }
 body.theme-glass .terminal-footer {
-  background: rgba(255, 255, 255, 0.02) !important;
-  border-color: rgba(255, 255, 255, 0.06) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+body.theme-glass .social-link {
+  border-radius: 50px !important;
 }
 body.theme-glass a,
 body.theme-glass button,

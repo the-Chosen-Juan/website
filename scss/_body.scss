@@ -790,27 +790,21 @@ body.theme-bluescreen {
 
 // ── Theme: Liquid Glass ──
 body.theme-glass {
-    background: linear-gradient(135deg, #0a0a1a 0%, #1a1035 30%, #0d1b2a 60%, #0a0a1a 100%) !important;
+    background: #d8dce4 !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 
-    // Disable CRT scanlines — replaced with glass shimmer
+    // No scanlines — clean surface
     &::before {
-        background: linear-gradient(
-            135deg,
-            rgba(120, 120, 255, 0.03) 0%,
-            transparent 40%,
-            rgba(200, 120, 255, 0.02) 60%,
-            transparent 100%
-        ) !important;
+        background: none !important;
     }
 
-    // Soft ambient glow instead of vignette
+    // Subtle prismatic light in corners
     &::after {
         background: radial-gradient(
-            ellipse at 30% 20%, rgba(100, 80, 255, 0.08) 0%, transparent 50%
+            circle at 85% 8%, rgba(200, 180, 255, 0.25) 0%, transparent 35%
         ),
         radial-gradient(
-            ellipse at 70% 80%, rgba(200, 100, 255, 0.06) 0%, transparent 50%
+            circle at 10% 92%, rgba(180, 220, 255, 0.15) 0%, transparent 30%
         ) !important;
     }
 
@@ -818,210 +812,307 @@ body.theme-glass {
         background: transparent !important;
     }
 
-    // Typography
+    // ── Typography — dark on light ──
     &, p, span, div, h1, h2, h3, li, label {
-        color: rgba(230, 230, 250, 0.92) !important;
+        color: #2c3040 !important;
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
-    pre, code, .ascii-art {
+    pre, code {
         font-family: 'JetBrains Mono', monospace !important;
     }
 
     .text-secondary, .section-command, .footer-copyright, .project-client,
-    .project-title, .form-title, .bio-header .file-name, .nav-path,
+    .form-title, .bio-header .file-name,
     .clients-header, .awards-header {
-        color: rgba(180, 180, 220, 0.7) !important;
+        color: #7a8294 !important;
     }
 
+    .project-title, .nav-path {
+        color: #5a6270 !important;
+    }
+
+    // ── ASCII art → hidden, clean title ──
     .ascii-art {
-        color: rgba(160, 140, 255, 0.5) !important;
+        display: none !important;
+    }
+
+    .mobile-title {
+        display: block !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+        font-weight: 300 !important;
+        letter-spacing: -0.03em !important;
+        color: #2c3040 !important;
+        margin-bottom: 1.5rem !important;
+        line-height: 1.1 !important;
+    }
+
+    .login-message {
+        color: #7a8294 !important;
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 300 !important;
+        .success-icon { color: #6aaa7a !important; }
     }
 
     .prompt-symbol, .skill-item::before, .typing-cursor, .cursor {
-        color: rgba(180, 160, 255, 0.85) !important;
+        color: #9aa0ae !important;
     }
 
-    a { color: rgba(160, 180, 255, 0.9) !important; }
-    a:hover { color: rgba(200, 200, 255, 1) !important; }
+    a { color: #5570a0 !important; }
+    a:hover { color: #2c3040 !important; }
 
-    // Glass panels
-    .terminal-nav, .project-card, .bio-content, .contact-form, .terminal-footer,
-    .section-divider, .skills-header, .clients-grid, .award-item, hr {
-        border-color: rgba(255, 255, 255, 0.1) !important;
-    }
-
+    // ── Navigation: Glass pill bar with icons ──
     .terminal-nav {
-        background: rgba(255, 255, 255, 0.05) !important;
-        backdrop-filter: blur(24px) saturate(1.4) !important;
-        -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        top: 1rem !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: auto !important;
+        background: rgba(255, 255, 255, 0.45) !important;
+        backdrop-filter: blur(24px) saturate(1.2) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(1.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.7) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+        border-radius: 50px !important;
+        padding: 0.3rem 0.4rem !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
+                    0 8px 32px rgba(0, 0, 0, 0.06),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                    inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+    }
+
+    .nav-container {
+        justify-content: center !important;
+    }
+
+    .nav-prompt { display: none !important; }
+    .nav-toggle { display: none !important; }
+
+    .nav-links { gap: 0.1rem !important; }
+
+    .nav-links a {
+        color: #8890a0 !important;
+        padding: 0.5rem 0.85rem !important;
+        border-radius: 50px !important;
+        font-size: 0.9rem !important;
+        transition: all 0.25s ease !important;
+        text-shadow: none !important;
+
+        &::before, &::after { content: none !important; }
+        .nav-icon { display: inline-block !important; }
+        .nav-label { display: none !important; }
+    }
+
+    .nav-links a:hover {
+        color: #4a5060 !important;
+        background: rgba(255, 255, 255, 0.3) !important;
+        text-shadow: none !important;
+    }
+
+    .nav-links a.active {
+        color: #2c3040 !important;
+        background: rgba(255, 255, 255, 0.55) !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06),
+                    0 4px 12px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+        text-shadow: none !important;
+    }
+
+    // ── Glass panels — raised with specular highlights ──
+    .project-card, .bio-content, .contact-form, .clients-grid,
+    .section-divider, .skills-header, .award-item, hr {
+        border-color: rgba(255, 255, 255, 0.5) !important;
     }
 
     .project-card {
-        background: rgba(255, 255, 255, 0.04) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 16px !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(20px) saturate(1.2) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.65) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
+                    0 8px 32px rgba(0, 0, 0, 0.06),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                    inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+        transition: box-shadow 0.3s ease, transform 0.3s ease !important;
     }
     .project-card:hover {
-        border-color: rgba(160, 140, 255, 0.3) !important;
-        box-shadow: 0 8px 40px rgba(100, 80, 255, 0.15),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06),
+                    0 12px 48px rgba(0, 0, 0, 0.08),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                    inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+        transform: translateY(-2px) !important;
     }
 
     .project-header {
-        background: rgba(255, 255, 255, 0.03) !important;
-        border-radius: 16px 16px 0 0 !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-radius: 20px 20px 0 0 !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
     }
 
     .bio-content, .bio-header {
-        background: rgba(255, 255, 255, 0.04) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 16px !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(20px) saturate(1.2) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.65) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
+                    0 8px 32px rgba(0, 0, 0, 0.06),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
     }
 
     .bio-header {
-        border-radius: 16px 16px 0 0 !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+        border-radius: 20px 20px 0 0 !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+        background: rgba(255, 255, 255, 0.2) !important;
     }
 
     .contact-form {
-        background: rgba(255, 255, 255, 0.04) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 16px !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(20px) saturate(1.2) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.65) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
+                    0 8px 32px rgba(0, 0, 0, 0.06),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
     }
 
     .form-header {
-        background: rgba(255, 255, 255, 0.03) !important;
-        border-radius: 16px 16px 0 0 !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-radius: 20px 20px 0 0 !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
     }
 
     .clients-grid {
-        background: rgba(255, 255, 255, 0.04) !important;
-        backdrop-filter: blur(16px) !important;
-        -webkit-backdrop-filter: blur(16px) !important;
-        border-radius: 12px !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        backdrop-filter: blur(16px) saturate(1.2) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
     }
 
     .award-item {
-        background: rgba(255, 255, 255, 0.03) !important;
-        border-radius: 12px !important;
+        background: rgba(255, 255, 255, 0.25) !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
     }
 
-    // Nav links
-    .nav-links a {
-        color: rgba(180, 180, 220, 0.6) !important;
-        transition: color 0.3s ease !important;
-    }
-    .nav-links a::before, .nav-links a::after { color: rgba(255, 255, 255, 0.15) !important; }
-    .nav-links a:hover, .nav-links a.active {
-        color: rgba(200, 200, 255, 1) !important;
-        text-shadow: 0 0 20px rgba(160, 140, 255, 0.4) !important;
-    }
+    // ── Selection ──
+    ::selection { background: rgba(100, 140, 200, 0.25) !important; color: #2c3040 !important; }
 
-    // Selection
-    ::selection { background: rgba(140, 120, 255, 0.3) !important; color: #fff !important; }
-
-    // Scrollbar
-    ::-webkit-scrollbar-track { background: rgba(10, 10, 26, 0.8) !important; }
+    // ── Scrollbar ──
+    ::-webkit-scrollbar-track { background: #cdd1d9 !important; }
     ::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.12) !important;
+        background: rgba(0, 0, 0, 0.12) !important;
         border-radius: 10px !important;
     }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2) !important; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.2) !important; }
 
-    // Images — soft desaturated look
+    // ── Images — natural look ──
     .skill-icon img, .award-icon img {
-        filter: brightness(0.9) saturate(0.7) !important;
+        filter: none !important;
     }
     .client-logo img {
-        filter: brightness(1.6) contrast(1.0) invert(1) !important;
+        filter: grayscale(30%) brightness(0.5) contrast(1.2) !important;
     }
     .project-thumb img {
-        filter: brightness(0.8) saturate(0.8) !important;
-        border-radius: 0 0 16px 16px !important;
+        filter: brightness(0.95) saturate(0.95) !important;
+        border-radius: 0 0 20px 20px !important;
     }
 
-    // Form inputs — glass fields
+    // ── Form inputs — inset glass fields ──
     .form-input, .form-textarea {
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        color: rgba(230, 230, 250, 0.92) !important;
-        border-radius: 10px !important;
+        background: rgba(255, 255, 255, 0.5) !important;
+        border: 1px solid rgba(255, 255, 255, 0.7) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+        color: #2c3040 !important;
+        border-radius: 12px !important;
         font-family: 'Inter', sans-serif !important;
-        &::placeholder { color: rgba(180, 180, 220, 0.35) !important; }
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+        &::placeholder { color: #9aa0ae !important; }
         &:focus {
-            border-color: rgba(160, 140, 255, 0.4) !important;
-            box-shadow: 0 0 20px rgba(140, 120, 255, 0.1) !important;
+            border-color: rgba(100, 140, 200, 0.4) !important;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03),
+                        0 0 0 3px rgba(100, 140, 200, 0.1) !important;
         }
     }
 
     .form-submit {
-        background: rgba(140, 120, 255, 0.15) !important;
-        border: 1px solid rgba(160, 140, 255, 0.3) !important;
-        color: rgba(220, 210, 255, 0.95) !important;
-        border-radius: 10px !important;
+        background: rgba(255, 255, 255, 0.5) !important;
+        border: 1px solid rgba(255, 255, 255, 0.7) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
+        color: #2c3040 !important;
+        border-radius: 50px !important;
         font-family: 'Inter', sans-serif !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.25s ease !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
         &:hover {
-            background: rgba(140, 120, 255, 0.3) !important;
-            border-color: rgba(160, 140, 255, 0.5) !important;
-            box-shadow: 0 4px 24px rgba(140, 120, 255, 0.2) !important;
+            background: rgba(255, 255, 255, 0.65) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
         }
-        &::before { color: rgba(180, 160, 255, 0.8) !important; }
+        &::before { color: #7a8294 !important; }
     }
 
-    .form-label::before { color: rgba(160, 140, 255, 0.6) !important; }
+    .form-label::before { color: #7a8294 !important; }
 
     .resume-link {
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        color: rgba(180, 180, 220, 0.7) !important;
-        border-radius: 10px !important;
-        &::before { color: rgba(160, 140, 255, 0.6) !important; }
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+        color: #5a6270 !important;
+        border-radius: 50px !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
+        &::before { color: #7a8294 !important; }
         &:hover {
-            border-color: rgba(160, 140, 255, 0.3) !important;
-            color: rgba(220, 210, 255, 0.95) !important;
+            color: #2c3040 !important;
+            background: rgba(255, 255, 255, 0.5) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
         }
     }
 
-    .footer-link, .footer-link i { color: rgba(180, 180, 220, 0.5) !important; }
-    .footer-link:hover, .footer-link:hover i {
-        color: rgba(200, 200, 255, 1) !important;
-        text-shadow: 0 0 12px rgba(160, 140, 255, 0.3) !important;
-    }
+    .footer-link, .footer-link i { color: #8890a0 !important; }
+    .footer-link:hover, .footer-link:hover i { color: #2c3040 !important; }
 
-    // Window buttons — soft glass dots
+    // Window buttons — frosted glass dots
     .window-buttons span {
-        background: rgba(255, 255, 255, 0.2) !important;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+        background: rgba(0, 0, 0, 0.08) !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                    0 1px 2px rgba(0, 0, 0, 0.04) !important;
     }
 
     // Section dividers
     .section-divider, hr {
-        border-color: rgba(255, 255, 255, 0.06) !important;
+        border-color: rgba(0, 0, 0, 0.06) !important;
     }
 
     // Terminal footer
     .terminal-footer {
-        background: rgba(255, 255, 255, 0.02) !important;
-        border-color: rgba(255, 255, 255, 0.06) !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
     }
 
-    // Custom cursor override
+    // Social links
+    .social-link {
+        border-radius: 50px !important;
+    }
+
+    // Cursor override
     cursor: default !important;
     a, button, .project-card, .nav-toggle, .form-submit, .client-logo {
         cursor: pointer !important;
