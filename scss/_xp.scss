@@ -1,61 +1,39 @@
-/* -------------------------------------------- XP ------------------------------------------------- */
-.xp-title{
-    margin: 5em 0 3em 0;
-}
+/* -------------------------------------------- CLIENTS ------------------------------------------------- */
 
-.slider {
-	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
-	height: 100px;
-	margin: auto;
-	overflow: hidden;
-	position: relative;
-	width: 80vw;
-	
-	&::before,
-	&::after {
-		@include black-gradient;
-		content: "";
-		height: 100px;
-		position: absolute;
-		width: 200px;
-		z-index: 2;
-	}
-	
-	&::after {
-		right: 0;
-		top: 0;
-		transform: rotateZ(180deg);
-	}
+.clients-section {
+    padding: 8rem 5rem;
+    background: $white;
 
-	&::before {
-		left: 0;
-		top: 0;
-	}
-	
-	.slide-track {
-		animation: scroll $animationSpeed linear infinite;
-		display: flex;
-		width: calc(250px * 14);
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 7))}
-        }
-	}
-	
-	.slide {
-		height: 100px;
-		width: 250px;
-	}
-}
-
-.logos {
-    margin: 5em 0 10em 0;
-    pointer-events: none;
-
-    .ClientLogo {
-        @include image(100px, 100px, 30%)
+    h2 {
+        font-family: $font-heading;
+        font-size: 3rem;
+        font-weight: 700;
+        color: $text-dark;
+        margin-bottom: 4rem;
+        text-align: center;
     }
 }
 
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
 
+    img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        opacity: 0.35;
+        filter: grayscale(100%);
+        @include smooth-transition(0.4s);
+
+        &:hover {
+            opacity: 0.8;
+            filter: grayscale(0%);
+        }
+    }
+}

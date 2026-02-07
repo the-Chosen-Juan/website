@@ -4,55 +4,25 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: $color-1;
+    background-color: $bg-color;
+    font-family: $font-body;
+    color: $text-dark;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
-/* -------------------------------------------- GRID ------------------------------------------------- */
-
-.wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto auto auto;
-    gap: 0px 0px;
-    grid-template-areas:
-        "header"
-        "main"
-        "work"
-        "xp"
-        "bio"
-        "form"
-        "footer";
-}
-
-header {
-    grid-area: header;
-}
-
-main {
-    grid-area: main;
-}
-
-#WORK {
-    grid-area: work;
-}
-
-#XP {
-    grid-area: xp;
-}
-
-#BIO {
-    grid-area: bio;
-}
-
-.form {
-    grid-area: form;
-}
-
-footer {
-    grid-area: footer;
+::selection {
+    background: $accent-blue;
+    color: $white;
 }

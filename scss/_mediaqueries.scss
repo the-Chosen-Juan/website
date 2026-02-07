@@ -1,74 +1,137 @@
 /* -------------------------------------------- MEDIA QUERIES ------------------------------------------------- */
 
-@media screen and (max-width: 864px) {
+@media screen and (max-width: 1024px) {
+    .floating-card .floating-card__inner {
+        width: 260px;
+        height: 195px;
+    }
 
-    /* INDEX */
+    .floating-card--lg .floating-card__inner {
+        width: 320px;
+        height: 240px;
+    }
 
-    .home {
-        .photoAndName {
+    .floating-card--sm .floating-card__inner {
+        width: 200px;
+        height: 150px;
+    }
 
-            margin-top: -2em;
+    .about-section {
+        padding: 6rem 3rem;
+    }
 
-            .ProfilePic {
-                img {
-                    width: 500px;
-                    height: 335px;
-                }
+    .clients-section {
+        padding: 6rem 3rem;
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .floating-nav {
+        padding: 1.2rem 1.5rem;
+
+        .nav-links {
+            gap: 1.5rem;
+
+            a {
+                font-size: 0.8rem;
             }
-
-            .Headline {
-                margin-top: -19.5em;
-                margin-bottom: 10em;
-                padding: 1em 7em 0em 0em;
-
-                h1 {
-                    font-size: 2em;
-                }
-            }
-        }
-
-        .copy{
-            padding-top: 4em;
-            p{
-                font-size: 0.8em;
-            }
-        }
-
-        .TopSocials {
-            margin-bottom: 8em;
-            padding: 0em 1em 0em 0;
-            font-size: 0.8em;
         }
     }
 
-    .work-h2 {
-        width: 100vw;
+    .side-label {
+        display: none;
     }
 
-    .projects {
-        .Thumbnail {
-            margin: 0em 0 0.3em 0;
+    .floating-world {
+        height: 220vh;
+    }
+
+    .floating-card {
+        .floating-card__inner {
+            width: 200px;
+            height: 150px;
+        }
+
+        &--lg .floating-card__inner {
+            width: 240px;
+            height: 180px;
+        }
+
+        &--sm .floating-card__inner {
+            width: 160px;
+            height: 120px;
         }
     }
 
-    .BioPic {
-        margin-top: 0px;
-        padding: 6em;
+    .floating-world__bg-text span {
+        font-size: 20vw;
+    }
 
-        p {
-            font-size: 0.8em;
+    .bottom-bar {
+        bottom: 1.2rem;
+
+        &__btn {
+            font-size: 0.8rem;
+            padding: 0.55rem 1.3rem;
         }
     }
 
-    .awards{
-        .award-thumb {
-            width: 80px; 
-            height: 80px;
+    .about-section {
+        padding: 5rem 2rem;
+
+        &__headline h2 {
+            font-size: 2.5rem;
+        }
+
+        &__text p {
+            font-size: 0.95rem;
         }
     }
 
-    /* PROJECTS */
+    .about-section__socials a {
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
 
+    .awards-row {
+        &__grid img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    .clients-section {
+        padding: 5rem 2rem;
+
+        h2 {
+            font-size: 2.5rem;
+        }
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+
+        img {
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    .contact-section {
+        padding: 5rem 2rem;
+
+        h2 {
+            font-size: 2.5rem;
+        }
+    }
+
+    /* PROJECTS pages */
     .cover {
         h1 {
             font-size: 1.5em;
@@ -91,173 +154,132 @@
     }
 
     .campaign-description {
-        font-size: 0.8em;
+        font-size: 0.85em;
     }
 
-    .case-study{
-        margin: -1.5em 5em 0 5em;
-    }
-}
-
-
-@media screen and (max-width: 650px) {
-
-    /* INDEX */
-
-    .home {
-        padding: 2em 0em 2em 0em;
-
-        .photoAndName {
-            margin-top: -5em;
-        }
-
-        .TopSocials {
-            margin-bottom: 2em;
-            font-size: 0.7em;
-        }
-    }
-
-    .bio-h2 {
-        width: 100vw;
-        height: auto;
-    }
-
-    .projects {
-        .Thumbnail {
-            opacity: 100%;
-        }
-    }
-
-    .logos {
-        margin: 2em 0 5em 0;
-
-        .ClientLogo {
-            height: 70px;
-            width: 70px;
-        }
-    }
-
-    .BioPic {
-
-        padding: 4em;
-
-        p {
-            font-size: 0.7em;
-        }
-    }
-
-    /* PROJECTS */
-
-    .cover {
-        h1 {
-            font-size: 1em;
-        }
-
-        .behance-button {
-            font-size: 0.45em;
-            padding: 0.5em;
-            width: 100px;
-            height: 20px;
-        }
-
-        .lineas {
-            width: 101px;
-            height: 23px;
-            top: 70%;
-            left: 50.3%;
-        }
-    }
-
-    .carousel {
-        margin-top: -2em;
+    .case-study {
+        margin: -1.5em 3em 0 3em;
     }
 }
-
 
 @media screen and (max-width: 500px) {
+    .floating-nav {
+        padding: 1rem;
 
-    /* INDEX */
-
-    .home {
-
-        padding: 1em 0em 2em 0em;
-
-        .photoAndName {
-            margin-top: 0em;
-
-            .ProfilePic {
-                padding-top: 5em;
-
-                img {
-                    width: 300px;
-                    height: 200px;
-                }
-            }
-
-            .Headline {
-                margin-top: -11.5em;
-                margin-bottom: 5em;
-                padding: 0.2em 4.2em 0em 0em;
-
-                h1 {
-                    font-size: 1.3em;
-                }
-            }
+        .nav-brand {
+            font-size: 0.9rem;
         }
 
-        .copy{
-            padding-top: 4em;
-            p{
-                font-size: 0.55em;
-            }
-        }
+        .nav-links {
+            gap: 1rem;
 
-        .TopSocials {
-            padding-top: 0em;
-            margin-bottom: 0em;
-
-            li {
-                font-size: 0.8em;
+            a {
+                font-size: 0.75rem;
             }
         }
     }
 
-    .work-h2 {
-        margin: 3em 0em 2em 0em;
+    .floating-world {
+        height: 250vh;
     }
 
+    .floating-card {
+        .floating-card__inner {
+            width: 150px;
+            height: 115px;
+        }
 
-    .projects {
-        .Thumbnail {
-            margin: 0em 0 0.2em 0;
+        &--lg .floating-card__inner {
+            width: 180px;
+            height: 135px;
+        }
+
+        &--sm .floating-card__inner {
+            width: 130px;
+            height: 100px;
         }
     }
 
-    .BioPic {
-        padding: 2em;
+    .floating-world__bg-text span {
+        font-size: 25vw;
+    }
 
-        p {
-            font-size: 0.6em;
+    .about-section {
+        padding: 4rem 1.5rem;
+
+        &__headline h2 {
+            font-size: 2rem;
+        }
+
+        &__text p {
+            font-size: 0.85rem;
         }
     }
 
-    .awards {
-        .award-thumb {
-            width: 70px;
-            height: 70px;
+    .about-section__socials {
+        gap: 1rem;
+
+        a {
+            width: 36px;
+            height: 36px;
+            font-size: 0.85rem;
         }
     }
 
-    footer{
-        div{
-            div{
-                a{font-size: 0.8em;}
+    .awards-row {
+        h3 {
+            font-size: 1.2rem;
+        }
+
+        &__grid {
+            gap: 1rem;
+
+            img {
+                width: 50px;
+                height: 50px;
             }
         }
     }
 
-    /* PROJECTS */
+    .clients-section {
+        padding: 4rem 1.5rem;
 
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .contact-section {
+        padding: 4rem 1.5rem;
+
+        h2 {
+            font-size: 2rem;
+        }
+    }
+
+    .contact-form__group {
+        input, textarea {
+            padding: 0.85rem 1rem;
+            font-size: 0.9rem;
+        }
+    }
+
+    .site-footer {
+        padding: 3rem 1.5rem 1.5rem;
+    }
+
+    /* PROJECTS pages */
     .cover h1 {
         font-size: 0.8em;
     }
@@ -275,7 +297,7 @@
         font-size: 0.6em;
     }
 
-    .case-study{
+    .case-study {
         margin: -0.5em 2em 0 2em;
     }
 }

@@ -1,39 +1,46 @@
 /* -------------------------------------------- NAV ------------------------------------------------- */
 
-.navbar {
-    background: rgba(0,0,0,0.8);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-    transition-duration: 0.3s;
+.floating-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: transparent;
+    @include smooth-transition;
 
-    &:hover {
-        background: rgb(0, 0, 0);
-        opacity: 100%;
-        transition-duration: 0.3s;
+    &.scrolled {
+        background: rgba(237, 237, 236, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
 
-    a {
-        color: darkgrey;
-        font-family: $copy-font;
-        font-size: 0.8em;
-        font-weight: bold;
-        padding: 0.3em 1.5em 0.3em 1.5em;
-        transition-duration: 0.3s;
+    .nav-brand {
+        font-family: $font-body;
+        font-weight: 600;
+        font-size: 1rem;
+        color: $accent-blue;
+        letter-spacing: -0.02em;
+    }
 
-        &:hover {
-            color: $color-2;
-            transition-duration: 0.3s;
+    .nav-links {
+        display: flex;
+        gap: 2.5rem;
+
+        a {
+            font-family: $font-body;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: $text-light;
+            @include smooth-transition(0.3s);
+
+            &:hover {
+                color: $text-dark;
+            }
         }
     }
-}
-
-.navbar-toggler {
-    border: 0;
-    font-size: 0.8em;
-
-    &:focus, &:active, .navbar-toggler-icon:focus {
-        outline: none;
-        box-shadow: none;
-        border: 0;    
-    } 
 }

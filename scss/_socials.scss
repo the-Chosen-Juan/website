@@ -1,40 +1,26 @@
 /* -------------------------------------------- SOCIALS ------------------------------------------------- */
 
+.about-section__socials {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
 
-.TopSocials {
-    text-align: center;
-    padding: 1em 1em 0em 0;
-    margin-bottom: 10em;
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: $text-dark;
+        font-size: 1rem;
+        @include smooth-transition(0.3s);
 
-    li {
-        display: inline-block;
-        margin: 0em 1em 0em 1em;
-        padding-right: 1em;
-    }
-}
-
-.social-icon {
-    color: $color-2;
-    transition-duration: 0.3s; 
-}
-
-$socials: (
-    Linkedin: #0e76a8,
-    Behance: #053eff,
-    Spotify: #1DB954,
-    Whatsapp: #25d366,
-    Github: midnightblue,
-    Mail: #DB4437,
-);
-
-@each $network, $color in $socials {
-    
-    .#{$network} {
-        @extend .social-icon;
-        
         &:hover {
-            color: $color;
-            transition-duration: 0.3s;  
+            background: $text-dark;
+            color: $white;
+            border-color: $text-dark;
         }
-    }    
+    }
 }

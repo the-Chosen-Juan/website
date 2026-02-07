@@ -1,23 +1,16 @@
-// Variables
+// Variables - Floating World Theme
 
-$color-1: #000000;
-$color-2: #fff;
+$bg-color: #EDEDEC;
+$text-dark: #1a1a1a;
+$text-light: #888;
+$accent-blue: #3B5BF5;
+$white: #ffffff;
+$card-radius: 14px;
 
-$handwritten-font: 'Gloria Hallelujah';
-$cover-font: 'Merriweather', serif;
-$copy-font: 'Open Sans', sans-serif;
-
-$animationSpeed: 40s;
+$font-heading: 'Playfair Display', serif;
+$font-body: 'Inter', sans-serif;
 
 // Mixins
-
-@mixin image ($height, $width, $opacity) {
-    height: $height;
-    width: $width;
-    opacity: $opacity;
+@mixin smooth-transition($duration: 0.4s) {
+    transition: all $duration cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-
-@mixin black-gradient {
-	background: linear-gradient(to right,  rgb(0, 0, 0) 0%,rgba(255,255,255,0) 100%);
-}
-

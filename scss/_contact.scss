@@ -1,56 +1,87 @@
 /* -------------------------------------------- CONTACT ------------------------------------------------- */
 
-.container-h2 {
-    margin-top: 4em;
-    width: 60vw;
-    height: auto;
+.contact-section {
+    padding: 8rem 5rem;
+    background: $bg-color;
 
-    img {
-        position: relative;
-        z-index: -1;
-        opacity: 90%;
+    &__inner {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    h2 {
+        font-family: $font-heading;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: $text-dark;
+        margin-bottom: 0.5rem;
+    }
+
+    &__subtitle {
+        font-size: 1rem;
+        color: $text-light;
+        margin-bottom: 3rem;
     }
 }
 
-.Form {
-    text-align: center;
-    margin-top: -14%;
-    padding: 3em;
+.contact-form {
+    text-align: left;
 
-    .mb-3 {
-        justify-content: center;
-        display: flex;
+    &__group {
+        margin-bottom: 1.5rem;
 
-        input {
-            width: 60vw;
+        input,
+        textarea {
+            width: 100%;
+            font-family: $font-body;
+            font-size: 0.95rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background: $white;
+            color: $text-dark;
+            outline: none;
+            @include smooth-transition(0.3s);
+
+            &::placeholder {
+                color: $text-light;
+            }
+
+            &:focus {
+                border-color: $accent-blue;
+                box-shadow: 0 0 0 3px rgba($accent-blue, 0.1);
+            }
         }
 
         textarea {
             resize: none;
-            width: 60vw;
-            height: 30vh;
+            min-height: 140px;
         }
     }
 
-    .send {
-        margin: 1em;
-        transition-duration: 0.003s;
-        box-shadow: 0 5px 0 rgb(129, 129, 129);
-        
-        &:hover {
-            color: white;
-            background-color: black;
-        }
+    &__submit {
+        display: inline-block;
+        width: 100%;
+        font-family: $font-body;
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 1rem 2rem;
+        background: $accent-blue;
+        color: $white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        @include smooth-transition(0.3s);
 
-        &:focus {
-            color: white;
-            background-color: black;
+        &:hover {
+            background: darken($accent-blue, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba($accent-blue, 0.3);
         }
 
         &:active {
-            transition-duration: 0.003s;
-            box-shadow: none;
-            transform: translateY(5px);
+            transform: translateY(0);
         }
     }
 }
