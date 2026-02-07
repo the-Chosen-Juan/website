@@ -17,7 +17,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/stylecss.css">
 
@@ -148,7 +148,6 @@
                 <p class="section-command">./work/</p>
             </div>
 
-            <h2 class="glass-section-title">Work</h2>
 
             <div class="projects-grid">
                 <!-- Philco -->
@@ -329,7 +328,6 @@
                 <p class="section-command">./xp/</p>
             </div>
 
-            <h2 class="glass-section-title">Skills</h2>
 
             <!-- Skills Section -->
             <div class="skills-section">
@@ -388,7 +386,6 @@
                 </div>
             </div>
 
-            <h2 class="glass-section-title">Clients</h2>
 
             <!-- Clients Section -->
             <div class="clients-section">
@@ -440,7 +437,6 @@
                 <p class="section-command">./bio/</p>
             </div>
 
-            <h2 class="glass-section-title">Bio</h2>
 
             <div class="bio-content">
                 <div class="bio-header">
@@ -462,7 +458,6 @@
                 </div>
             </div>
 
-            <h2 class="glass-section-title">Achievements</h2>
 
             <!-- Awards Section -->
             <div class="awards-section">
@@ -514,7 +509,6 @@
                 <p class="section-command">./contact/</p>
             </div>
 
-            <h2 class="glass-section-title">Contact</h2>
 
             <form action="https://formspree.io/f/xwkygavo" method="POST" class="contact-form">
                 <div class="form-header">
@@ -933,9 +927,9 @@
         const konamiSequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
         let konamiIndex = 0;
 
-        // Theme rotation: OG (no class) → Matrix → Amber → BlueScreen → Paper → back to OG
-        const themes = [null, 'hacker-mode', 'theme-amber', 'theme-bluescreen', 'theme-glass'];
-        const themeNames = ['DEFAULT', 'ACCESS GRANTED', 'AMBER CRT', 'BLUE SCREEN', 'LIQUID GLASS'];
+        // Theme rotation: OG (no class) → Matrix → Amber → BlueScreen → back to OG
+        const themes = [null, 'hacker-mode', 'theme-amber', 'theme-bluescreen'];
+        const themeNames = ['DEFAULT', 'ACCESS GRANTED', 'AMBER CRT', 'BLUE SCREEN'];
         let currentThemeIndex = 0;
 
         document.addEventListener('keydown', (e) => {
@@ -1081,158 +1075,6 @@
         document.querySelectorAll('.project-card').forEach(card => {
             decryptObserver.observe(card);
         });
-
-        // ── Liquid Glass: Full-Page Mouse Parallax & Reactivity ──
-        let glassParallaxActive = false;
-        let glassMouseX = 0.5;
-        let glassMouseY = 0.5;
-        let glassSmoothX = 0.5;
-        let glassSmoothY = 0.5;
-
-        function initGlassEffects() {
-            if (glassParallaxActive) return;
-            glassParallaxActive = true;
-
-            document.addEventListener('mousemove', onGlassMouseMove);
-
-            // Floating animation on bubbles
-            const bubbles = document.querySelectorAll('.skill-item, .client-logo, .award-item, .footer-link, .social-link');
-            bubbles.forEach((bubble, i) => {
-                const duration = 3 + Math.random() * 2;
-                const delay = Math.random() * -5;
-                bubble.style.animation = `glassBubbleFloat ${duration}s ${delay}s ease-in-out infinite`;
-            });
-
-            requestAnimationFrame(glassRenderLoop);
-        }
-
-        function onGlassMouseMove(e) {
-            glassMouseX = e.clientX / window.innerWidth;
-            glassMouseY = e.clientY / window.innerHeight;
-        }
-
-        function glassRenderLoop() {
-            if (!document.body.classList.contains('theme-glass')) {
-                glassParallaxActive = false;
-                return;
-            }
-
-            // Smooth lerp for fluid feel
-            glassSmoothX += (glassMouseX - glassSmoothX) * 0.08;
-            glassSmoothY += (glassMouseY - glassSmoothY) * 0.08;
-
-            const mx = (glassSmoothX - 0.5) * 2; // -1 to 1
-            const my = (glassSmoothY - 0.5) * 2;
-
-            // ── Background blobs follow mouse ──
-            const bx = 50 + mx * 12;
-            const by = 50 + my * 12;
-            document.body.style.setProperty('--blob-x', bx + '%');
-            document.body.style.setProperty('--blob-y', by + '%');
-
-            // ── Nav tilt ──
-            const nav = document.querySelector('.terminal-nav');
-            if (nav) {
-                nav.style.transform = `translateX(-50%) perspective(600px) rotateY(${mx * 2}deg) rotateX(${my * -1}deg)`;
-            }
-
-            // ── Project cards parallax ──
-            document.querySelectorAll('.project-card').forEach((card, i) => {
-                const depth = 0.5 + (i % 3) * 0.25;
-                const rect = card.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    card.style.transform = `translate(${mx * -5 * depth}px, ${my * -3 * depth}px)`;
-                }
-            });
-
-            // ── Bubbles parallax (direct transform, works with float animation) ──
-            document.querySelectorAll('.skill-item, .client-logo, .award-item').forEach((b, i) => {
-                const depth = 0.4 + (i % 5) * 0.2;
-                const rect = b.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    b.style.transform = `translate(${mx * -8 * depth}px, ${my * -5 * depth}px)`;
-                }
-            });
-
-            // ── Hero content sway ──
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translate(${mx * -3}px, ${my * -2}px)`;
-            }
-
-            // ── Bio panel subtle shift ──
-            const bio = document.querySelector('.bio-content');
-            if (bio) {
-                const rect = bio.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    bio.style.transform = `translate(${mx * -3}px, ${my * -2}px)`;
-                }
-            }
-
-            // ── Contact form subtle shift ──
-            const contact = document.querySelector('.contact-form');
-            if (contact) {
-                const rect = contact.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    contact.style.transform = `translate(${mx * -3}px, ${my * -2}px)`;
-                }
-            }
-
-            // ── Glass section titles gentle float ──
-            document.querySelectorAll('.glass-section-title').forEach((t) => {
-                const rect = t.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    t.style.transform = `translate(${mx * -4}px, ${my * -2.5}px)`;
-                }
-            });
-
-            // ── Footer links parallax ──
-            document.querySelectorAll('.footer-link, .social-link').forEach((el, i) => {
-                const depth = 0.3 + (i % 4) * 0.15;
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    el.style.transform = `translate(${mx * -6 * depth}px, ${my * -4 * depth}px)`;
-                }
-            });
-
-            // ── Resume link shift ──
-            const resume = document.querySelector('.resume-link');
-            if (resume) {
-                resume.style.transform = `translate(${mx * -2}px, ${my * -1.5}px)`;
-            }
-
-            requestAnimationFrame(glassRenderLoop);
-        }
-
-        function teardownGlassEffects() {
-            glassParallaxActive = false;
-            document.removeEventListener('mousemove', onGlassMouseMove);
-
-            // Reset ALL transforms
-            const allEls = document.querySelectorAll(
-                '.project-card, .skill-item, .client-logo, .award-item, ' +
-                '.footer-link, .social-link, .glass-section-title, ' +
-                '.bio-content, .contact-form, .hero, .resume-link'
-            );
-            allEls.forEach(el => {
-                el.style.transform = '';
-                el.style.animation = '';
-            });
-            const nav = document.querySelector('.terminal-nav');
-            if (nav) nav.style.transform = '';
-            document.body.style.removeProperty('--blob-x');
-            document.body.style.removeProperty('--blob-y');
-        }
-
-        // Watch for theme changes
-        const glassObserver = new MutationObserver(() => {
-            if (document.body.classList.contains('theme-glass')) {
-                initGlassEffects();
-            } else if (glassParallaxActive) {
-                teardownGlassEffects();
-            }
-        });
-        glassObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
         // ── Startup: boot sequence or skip ──
         const hasBooted = sessionStorage.getItem('nachoos-booted');
