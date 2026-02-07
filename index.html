@@ -1076,6 +1076,201 @@
             decryptObserver.observe(card);
         });
 
+        // ── Animated ASCII Art: Phosphor Decay + Signal Glitch ──
+        (function initAsciiAnimation() {
+            const asciiEl = document.querySelector('.hero .ascii-art');
+            if (!asciiEl) return;
+
+            const originalText = asciiEl.textContent;
+            const chars = originalText.split('');
+
+            // Block characters for phosphor decay cycling
+            const phosphorCycle = ['█', '▓', '▒', '░', '▒', '▓'];
+            // Glitch replacement characters
+            const glitchChars = ['░', '▒', '·', '¤', '×', ':', '%', '~'];
+            // Characters we animate (only solid blocks and border pieces)
+            const animatable = new Set(['█', '▓', '▒', '░', '╗', '╔', '╚', '╝', '║', '═', '╠', '╣', '╬']);
+
+            // Build index of animatable positions
+            const blockPositions = [];
+            const borderPositions = [];
+            chars.forEach((c, i) => {
+                if ('█▓▒░'.includes(c)) blockPositions.push(i);
+                else if ('╗╔╚╝║═╠╣╬'.includes(c)) borderPositions.push(i);
+            });
+
+            // Phosphor wave state
+            let waveOffset = 0;
+            const waveSpeed = 0.015;
+            const waveLength = 40;
+
+            // Glitch state
+            let glitchActive = false;
+            let glitchPositions = [];
+            let glitchTimer = 0;
+
+            function scheduleNextGlitch() {
+                const delay = 3000 + Math.random() * 6000;
+                setTimeout(() => {
+                    if (document.hidden) { scheduleNextGlitch(); return; }
+                    // Pick 2-5 random positions to glitch
+                    const count = 2 + Math.floor(Math.random() * 4);
+                    const allPos = [...blockPositions, ...borderPositions];
+                    glitchPositions = [];
+                    for (let i = 0; i < count && allPos.length > 0; i++) {
+                        const idx = Math.floor(Math.random() * allPos.length);
+                        glitchPositions.push({ pos: allPos[idx], original: chars[allPos[idx]] });
+                    }
+                    glitchActive = true;
+                    glitchTimer = 0;
+                    // Glitch lasts 150-300ms then snaps back
+                    setTimeout(() => {
+                        glitchActive = false;
+                        glitchPositions = [];
+                    }, 150 + Math.random() * 150);
+                    scheduleNextGlitch();
+                }, delay);
+            }
+
+            function renderFrame() {
+                const output = chars.slice();
+
+                // Phosphor decay wave — subtle brightness cycling on block chars
+                waveOffset += waveSpeed;
+                blockPositions.forEach((pos) => {
+                    const wave = Math.sin(waveOffset + pos / waveLength);
+                    // Only swap occasionally when wave peaks
+                    if (wave > 0.7) {
+                        const cycleIdx = Math.floor((wave - 0.7) / 0.1) % phosphorCycle.length;
+                        output[pos] = phosphorCycle[cycleIdx];
+                    }
+                });
+
+                // Signal glitch — replace chars with noise
+                if (glitchActive) {
+                    glitchPositions.forEach(({ pos }) => {
+                        output[pos] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                    });
+                }
+
+                asciiEl.textContent = output.join('');
+                requestAnimationFrame(renderFrame);
+            }
+
+            // Don't start until boot is done
+            const startWhenReady = () => {
+                if (document.querySelector('.boot-screen')?.style.display === 'none' ||
+                    sessionStorage.getItem('nachoos-booted')) {
+                    requestAnimationFrame(renderFrame);
+                    scheduleNextGlitch();
+                } else {
+                    setTimeout(startWhenReady, 500);
+                }
+            };
+            startWhenReady();
+        })();
+
+        // ── CRT Glass Parallax — whole page reacts to mouse ──
+        (function initCRTParallax() {
+            let mouseX = 0.5, mouseY = 0.5;
+            let smoothX = 0.5, smoothY = 0.5;
+            let active = false;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX / window.innerWidth;
+                mouseY = e.clientY / window.innerHeight;
+                if (!active) { active = true; requestAnimationFrame(parallaxLoop); }
+            });
+
+            function parallaxLoop() {
+                // Smooth interpolation for fluid feel
+                smoothX += (mouseX - smoothX) * 0.06;
+                smoothY += (mouseY - smoothY) * 0.06;
+
+                const mx = (smoothX - 0.5) * 2; // -1 to 1
+                const my = (smoothY - 0.5) * 2;
+
+                // Layer 3 (front): ASCII art, nav — 5-6px
+                const heroArt = document.querySelector('.hero .ascii-art');
+                if (heroArt) {
+                    heroArt.style.transform = `translate(${mx * -5}px, ${my * -3}px)`;
+                }
+                const nav = document.querySelector('.terminal-nav');
+                if (nav) {
+                    nav.style.transform += ''; // preserve existing
+                    nav.style.transform = `perspective(800px) rotateY(${mx * 1.5}deg) rotateX(${my * -0.8}deg)`;
+                }
+
+                // Layer 2 (mid): Content sections, cards — 3-4px
+                document.querySelectorAll('.project-card').forEach((card, i) => {
+                    const rect = card.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const depth = 0.6 + (i % 3) * 0.2;
+                        card.style.transform = `translate(${mx * -3 * depth}px, ${my * -2 * depth}px)`;
+                    }
+                });
+
+                const bio = document.querySelector('.bio-content');
+                if (bio) {
+                    const rect = bio.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        bio.style.transform = `translate(${mx * -2.5}px, ${my * -1.5}px)`;
+                    }
+                }
+
+                const contact = document.querySelector('.contact-form');
+                if (contact) {
+                    const rect = contact.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        contact.style.transform = `translate(${mx * -2.5}px, ${my * -1.5}px)`;
+                    }
+                }
+
+                // Bubbles/items — subtle sway
+                document.querySelectorAll('.skill-item, .client-logo, .award-item').forEach((el, i) => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const depth = 0.4 + (i % 5) * 0.15;
+                        el.style.transform = `translate(${mx * -4 * depth}px, ${my * -2.5 * depth}px)`;
+                    }
+                });
+
+                // Section headers
+                document.querySelectorAll('.ascii-art.small').forEach((art) => {
+                    const rect = art.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        art.style.transform = `translate(${mx * -3}px, ${my * -2}px)`;
+                    }
+                });
+
+                // Layer 1 (deep): Vignette follows mouse subtly
+                document.body.style.setProperty('--vignette-x', (50 + mx * 5) + '%');
+                document.body.style.setProperty('--vignette-y', (50 + my * 5) + '%');
+
+                // Social links
+                document.querySelectorAll('.social-link').forEach((el, i) => {
+                    const depth = 0.3 + (i % 4) * 0.1;
+                    el.style.transform = `translate(${mx * -3 * depth}px, ${my * -2 * depth}px)`;
+                });
+
+                // Footer links
+                document.querySelectorAll('.footer-link').forEach((el, i) => {
+                    const depth = 0.3 + (i % 4) * 0.1;
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        el.style.transform = `translate(${mx * -3 * depth}px, ${my * -2 * depth}px)`;
+                    }
+                });
+
+                // Keep looping while mouse has recently moved
+                if (Math.abs(mouseX - smoothX) > 0.001 || Math.abs(mouseY - smoothY) > 0.001) {
+                    requestAnimationFrame(parallaxLoop);
+                } else {
+                    active = false;
+                }
+            }
+        })();
+
         // ── Startup: boot sequence or skip ──
         const hasBooted = sessionStorage.getItem('nachoos-booted');
         const bootScreen = document.getElementById('bootScreen');
