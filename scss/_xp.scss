@@ -1,38 +1,23 @@
-/* -------------------------------------------- CLIENTS ------------------------------------------------- */
-
-.clients-section {
-    padding: 8rem 5rem;
-    background: $white;
-
-    h2 {
-        font-family: $font-heading;
-        font-size: 3rem;
-        font-weight: 700;
-        color: $text-dark;
-        margin-bottom: 4rem;
-        text-align: center;
-    }
-}
+/* ============= CLIENTS ============= */
 
 .clients-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 2rem;
-    align-items: center;
-    justify-items: center;
-    max-width: 1000px;
+    gap: 1.8rem;
+    max-width: 900px;
     margin: 0 auto;
 
     img {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
         object-fit: contain;
-        opacity: 0.35;
+        opacity: 0.3;
         filter: grayscale(100%);
-        @include smooth-transition(0.4s);
+        transition: all 0.4s ease;
+        justify-self: center;
 
         &:hover {
-            opacity: 0.8;
+            opacity: 0.75;
             filter: grayscale(0%);
         }
     }

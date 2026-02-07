@@ -1,46 +1,20 @@
-/* -------------------------------------------- NAV ------------------------------------------------- */
-
-.floating-nav {
+.nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 200;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 3rem;
-    background: transparent;
-    @include smooth-transition;
+    justify-content: center;
+    padding: 1.2rem 2rem;
+    pointer-events: none;
 
-    &.scrolled {
-        background: rgba(237, 237, 236, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-    }
-
-    .nav-brand {
-        font-family: $font-body;
-        font-weight: 600;
-        font-size: 1rem;
-        color: $accent-blue;
-        letter-spacing: -0.02em;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 2.5rem;
-
-        a {
-            font-family: $font-body;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: $text-light;
-            @include smooth-transition(0.3s);
-
-            &:hover {
-                color: $text-dark;
-            }
-        }
+    &__brand {
+        font-family: $font-h;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: $blue;
+        pointer-events: all;
+        letter-spacing: -0.01em;
     }
 }

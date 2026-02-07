@@ -1,87 +1,47 @@
-/* -------------------------------------------- CONTACT ------------------------------------------------- */
-
-.contact-section {
-    padding: 8rem 5rem;
-    background: $bg-color;
-
-    &__inner {
-        max-width: 600px;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    h2 {
-        font-family: $font-heading;
-        font-size: 3.5rem;
-        font-weight: 700;
-        color: $text-dark;
-        margin-bottom: 0.5rem;
-    }
-
-    &__subtitle {
-        font-size: 1rem;
-        color: $text-light;
-        margin-bottom: 3rem;
-    }
-}
+/* ============= CONTACT FORM ============= */
 
 .contact-form {
-    text-align: left;
+    max-width: 500px;
 
-    &__group {
-        margin-bottom: 1.5rem;
+    input, textarea {
+        width: 100%;
+        font-family: $font-b;
+        font-size: 0.95rem;
+        padding: 1rem 1.2rem;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 10px;
+        background: $bg;
+        color: $dark;
+        outline: none;
+        margin-bottom: 1.2rem;
+        transition: all 0.3s ease;
 
-        input,
-        textarea {
-            width: 100%;
-            font-family: $font-body;
-            font-size: 0.95rem;
-            padding: 1rem 1.2rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            background: $white;
-            color: $text-dark;
-            outline: none;
-            @include smooth-transition(0.3s);
+        &::placeholder { color: #bbb; }
 
-            &::placeholder {
-                color: $text-light;
-            }
-
-            &:focus {
-                border-color: $accent-blue;
-                box-shadow: 0 0 0 3px rgba($accent-blue, 0.1);
-            }
-        }
-
-        textarea {
-            resize: none;
-            min-height: 140px;
+        &:focus {
+            border-color: $blue;
+            box-shadow: 0 0 0 3px rgba($blue, 0.08);
         }
     }
 
-    &__submit {
-        display: inline-block;
-        width: 100%;
-        font-family: $font-body;
-        font-size: 0.95rem;
+    textarea { resize: none; min-height: 130px; }
+
+    button {
+        font-family: $font-b;
+        font-size: 0.9rem;
         font-weight: 600;
-        padding: 1rem 2rem;
-        background: $accent-blue;
+        padding: 0.9rem 2.2rem;
+        background: $blue;
         color: $white;
         border: none;
         border-radius: 10px;
         cursor: pointer;
-        @include smooth-transition(0.3s);
+        transition: all 0.3s ease;
 
         &:hover {
-            background: darken($accent-blue, 10%);
+            filter: brightness(0.9);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba($accent-blue, 0.3);
-        }
-
-        &:active {
-            transform: translateY(0);
+            box-shadow: 0 6px 20px rgba($blue, 0.3);
         }
     }
 }

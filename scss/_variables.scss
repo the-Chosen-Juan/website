@@ -1,16 +1,8 @@
-// Variables - Floating World Theme
-
-$bg-color: #EDEDEC;
-$text-dark: #1a1a1a;
-$text-light: #888;
-$accent-blue: #3B5BF5;
-$white: #ffffff;
-$card-radius: 14px;
-
-$font-heading: 'Playfair Display', serif;
-$font-body: 'Inter', sans-serif;
-
-// Mixins
-@mixin smooth-transition($duration: 0.4s) {
-    transition: all $duration cubic-bezier(0.25, 0.1, 0.25, 1);
-}
+$bg: #EDEDEC;
+$dark: #1a1a1a;
+$muted: #999;
+$blue: #3B5BF5;
+$white: #fff;
+$radius: 16px;
+$font-h: 'Syne', sans-serif;
+$font-b: 'DM Sans', sans-serif;

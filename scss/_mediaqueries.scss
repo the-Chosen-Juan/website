@@ -1,303 +1,62 @@
-/* -------------------------------------------- MEDIA QUERIES ------------------------------------------------- */
+@media (max-width: 768px) {
+    .side-label { display: none; }
 
-@media screen and (max-width: 1024px) {
-    .floating-card .floating-card__inner {
-        width: 260px;
-        height: 195px;
-    }
+    .world-bg-text { font-size: 22vw; }
 
-    .floating-card--lg .floating-card__inner {
-        width: 320px;
-        height: 240px;
-    }
-
-    .floating-card--sm .floating-card__inner {
+    .card {
         width: 200px;
         height: 150px;
-    }
 
-    .about-section {
-        padding: 6rem 3rem;
-    }
-
-    .clients-section {
-        padding: 6rem 3rem;
-    }
-
-    .clients-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .floating-nav {
-        padding: 1.2rem 1.5rem;
-
-        .nav-links {
-            gap: 1.5rem;
-
-            a {
-                font-size: 0.8rem;
-            }
-        }
-    }
-
-    .side-label {
-        display: none;
-    }
-
-    .floating-world {
-        height: 220vh;
-    }
-
-    .floating-card {
-        .floating-card__inner {
-            width: 200px;
-            height: 150px;
-        }
-
-        &--lg .floating-card__inner {
-            width: 240px;
-            height: 180px;
-        }
-
-        &--sm .floating-card__inner {
-            width: 160px;
-            height: 120px;
-        }
-    }
-
-    .floating-world__bg-text span {
-        font-size: 20vw;
+        &--lg { width: 260px; height: 195px; }
+        &--sm { width: 160px; height: 120px; }
     }
 
     .bottom-bar {
-        bottom: 1.2rem;
-
-        &__btn {
-            font-size: 0.8rem;
-            padding: 0.55rem 1.3rem;
-        }
+        bottom: 1rem;
+        &__btn { font-size: 0.75rem; padding: 0.5rem 1.2rem; }
     }
 
-    .about-section {
-        padding: 5rem 2rem;
-
-        &__headline h2 {
-            font-size: 2.5rem;
-        }
-
-        &__text p {
-            font-size: 0.95rem;
-        }
-    }
-
-    .about-section__socials a {
-        width: 38px;
-        height: 38px;
-        font-size: 0.9rem;
-    }
-
-    .awards-row {
-        &__grid img {
-            width: 60px;
-            height: 60px;
-        }
-    }
-
-    .clients-section {
-        padding: 5rem 2rem;
-
-        h2 {
-            font-size: 2.5rem;
-        }
+    .section {
+        padding: 5rem 1.5rem;
+        &__title { font-size: 2.2rem; }
     }
 
     .clients-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem;
-
-        img {
-            width: 60px;
-            height: 60px;
-        }
+        gap: 1.2rem;
+        img { width: 55px; height: 55px; }
     }
 
-    .contact-section {
-        padding: 5rem 2rem;
-
-        h2 {
-            font-size: 2.5rem;
-        }
-    }
-
-    /* PROJECTS pages */
-    .cover {
-        h1 {
-            font-size: 1.5em;
-        }
-
-        .behance-button {
-            font-size: 0.6em;
-            padding: 0.8em;
-            width: 150px;
-            height: 30px;
-        }
-
-        .lineas {
-            width: 151px;
-            height: 33px;
-            top: 72%;
-            left: 50.3%;
-            transform: translate(-50%, -50%);
-        }
-    }
-
-    .campaign-description {
-        font-size: 0.85em;
-    }
-
-    .case-study {
-        margin: -1.5em 3em 0 3em;
-    }
+    .project-hero__title { margin-top: 1rem; }
+    .project-nav { padding: 1rem 1.2rem; }
 }
 
-@media screen and (max-width: 500px) {
-    .floating-nav {
-        padding: 1rem;
+@media (max-width: 480px) {
+    .nav__brand { font-size: 0.85rem; }
 
-        .nav-brand {
-            font-size: 0.9rem;
-        }
+    .card {
+        width: 160px;
+        height: 120px;
 
-        .nav-links {
-            gap: 1rem;
-
-            a {
-                font-size: 0.75rem;
-            }
-        }
+        &--lg { width: 200px; height: 150px; }
+        &--sm { width: 130px; height: 100px; }
     }
 
-    .floating-world {
-        height: 250vh;
-    }
+    .world-bg-text { font-size: 28vw; }
 
-    .floating-card {
-        .floating-card__inner {
-            width: 150px;
-            height: 115px;
-        }
-
-        &--lg .floating-card__inner {
-            width: 180px;
-            height: 135px;
-        }
-
-        &--sm .floating-card__inner {
-            width: 130px;
-            height: 100px;
-        }
-    }
-
-    .floating-world__bg-text span {
-        font-size: 25vw;
-    }
-
-    .about-section {
-        padding: 4rem 1.5rem;
-
-        &__headline h2 {
-            font-size: 2rem;
-        }
-
-        &__text p {
-            font-size: 0.85rem;
-        }
-    }
-
-    .about-section__socials {
-        gap: 1rem;
-
-        a {
-            width: 36px;
-            height: 36px;
-            font-size: 0.85rem;
-        }
-    }
-
-    .awards-row {
-        h3 {
-            font-size: 1.2rem;
-        }
-
-        &__grid {
-            gap: 1rem;
-
-            img {
-                width: 50px;
-                height: 50px;
-            }
-        }
-    }
-
-    .clients-section {
-        padding: 4rem 1.5rem;
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-        }
+    .section {
+        padding: 4rem 1.2rem;
+        &__title { font-size: 1.8rem; }
+        p { font-size: 0.9rem; }
     }
 
     .clients-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.2rem;
-
-        img {
-            width: 50px;
-            height: 50px;
-        }
+        img { width: 45px; height: 45px; }
     }
 
-    .contact-section {
-        padding: 4rem 1.5rem;
+    .awards-strip img { width: 50px; height: 50px; }
 
-        h2 {
-            font-size: 2rem;
-        }
-    }
-
-    .contact-form__group {
-        input, textarea {
-            padding: 0.85rem 1rem;
-            font-size: 0.9rem;
-        }
-    }
-
-    .site-footer {
-        padding: 3rem 1.5rem 1.5rem;
-    }
-
-    /* PROJECTS pages */
-    .cover h1 {
-        font-size: 0.8em;
-    }
-
-    .h2-campaign {
-        width: 50vw;
-        height: auto;
-    }
-
-    .carousel {
-        margin-top: -1em;
-    }
-
-    .campaign-description {
-        font-size: 0.6em;
-    }
-
-    .case-study {
-        margin: -0.5em 2em 0 2em;
-    }
+    .project-nav__behance { font-size: 0.75rem; padding: 0.4rem 1rem; }
+    .project-hero__title { font-size: 2rem; }
 }

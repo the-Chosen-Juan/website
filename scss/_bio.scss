@@ -1,74 +1,58 @@
-/* -------------------------------------------- ABOUT ------------------------------------------------- */
+/* ============= SECTIONS ============= */
 
-.about-section {
-    padding: 8rem 5rem;
-    background: $white;
+.section {
+    padding: 7rem 2rem;
 
     &__inner {
-        max-width: 900px;
+        max-width: 750px;
         margin: 0 auto;
     }
 
-    &__headline {
-        margin-bottom: 3rem;
-
-        h2 {
-            font-family: $font-heading;
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: $text-dark;
-            letter-spacing: -0.02em;
-        }
+    &__title {
+        font-family: $font-h;
+        font-weight: 800;
+        font-size: 3rem;
+        letter-spacing: -0.03em;
+        margin-bottom: 2rem;
+        color: $dark;
     }
 
-    &__text {
-        p {
-            font-family: $font-body;
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: $text-light;
-            margin-bottom: 1.5rem;
+    p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: $muted;
+        margin-bottom: 1rem;
+    }
 
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
+    &--about {
+        background: $white;
+    }
+
+    &--clients {
+        background: $bg;
+    }
+
+    &--contact {
+        background: $white;
     }
 }
 
-/* Awards */
-.awards-row {
-    max-width: 900px;
-    margin: 5rem auto 0;
-    padding-top: 4rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+.awards-strip {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
 
-    h3 {
-        font-family: $font-heading;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: $text-dark;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
+    img {
+        width: 65px;
+        height: 65px;
+        object-fit: contain;
+        opacity: 0.6;
+        transition: all 0.3s ease;
 
-    &__grid {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-
-        img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            opacity: 0.7;
-            @include smooth-transition(0.4s);
-
-            &:hover {
-                opacity: 1;
-                transform: scale(1.1);
-            }
+        &:hover {
+            opacity: 1;
+            transform: scale(1.1);
         }
     }
 }

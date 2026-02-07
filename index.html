@@ -13,240 +13,177 @@
 
     <link rel="icon" href="img/Diseño//icons/favicon-16x16.png">
     <script src="https://kit.fontawesome.com/e82d982690.js" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="css/stylecss.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <title>Nacho Grosman</title>
 </head>
 
 <body>
 
-    <!-- MINIMAL NAV -->
-    <nav class="floating-nav">
-        <a href="index.html" class="nav-brand">Nacho Grosman</a>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#clients">Clients</a>
-            <a href="#contact">Contact</a>
-        </div>
+    <!-- NAV -->
+    <nav class="nav">
+        <a href="index.html" class="nav__brand">Nacho Grosman</a>
     </nav>
 
     <!-- SIDE LABELS -->
-    <div class="side-label side-label--left">
-        <span>Creative Director</span>
-    </div>
-    <div class="side-label side-label--right">
-        <span>Buenos Aires, AR</span>
-    </div>
+    <div class="side-label side-label--left"><span>W.</span></div>
+    <div class="side-label side-label--right"><span>Honors</span></div>
 
-    <!-- ==================== FLOATING WORLD SECTION ==================== -->
-    <section class="floating-world" id="work">
+    <!-- 3D FLOATING WORLD -->
+    <div class="world-wrapper">
+        <div class="world-bg-text">my work</div>
 
-        <div class="floating-world__bg-text">
-            <span>my work</span>
+        <div class="scene" id="scene">
+            <div class="scene__inner">
+
+                <a href="Philco.html" class="card" data-z="-1200" data-x="-30" data-y="-18" data-r="-4">
+                    <img src="img/Projects/Philco/thumb-philco.png" alt="Philco">
+                    <span class="card__title">Philco</span>
+                </a>
+
+                <a href="Patagonia.html" class="card card--lg" data-z="-2400" data-x="22" data-y="-25" data-r="3">
+                    <img src="img/Projects/Patagonia incendios/thumb-pata.png" alt="Patagonia">
+                    <span class="card__title">Patagonia</span>
+                </a>
+
+                <a href="CoolSeats.html" class="card card--lg" data-z="-3600" data-x="-8" data-y="8" data-r="-2">
+                    <img src="img/Projects/Gatorade/Thumb CoolSeats.png" alt="Gatorade Cool Seats">
+                    <span class="card__title">Cool Seats</span>
+                </a>
+
+                <a href="DarEsDar.html" class="card" data-z="-4800" data-x="32" data-y="2" data-r="5">
+                    <img src="img/Projects/Dar es dar/thumb-daresdar.png" alt="Dar es Dar">
+                    <span class="card__title">Dar es Dar</span>
+                </a>
+
+                <a href="MovistarTV.html" class="card card--sm" data-z="-6000" data-x="-28" data-y="22" data-r="-6">
+                    <img src="img/Projects/Movistar TV/thumb-movitv.png" alt="Movistar TV">
+                    <span class="card__title">Movistar TV</span>
+                </a>
+
+                <a href="Unicenter.html" class="card card--lg" data-z="-7200" data-x="18" data-y="-12" data-r="2">
+                    <img src="img/Projects/Unicenter/thumb-unicenter.png" alt="Unicenter">
+                    <span class="card__title">Unicenter</span>
+                </a>
+
+                <a href="Nutshot.html" class="card" data-z="-8400" data-x="-18" data-y="28" data-r="-3">
+                    <img src="img/Projects/Nutshot/thumb-nutshot.png" alt="Nutshot">
+                    <span class="card__title">The Nutshot</span>
+                </a>
+
+                <a href="Isenbeck.html" class="card card--sm" data-z="-9600" data-x="35" data-y="18" data-r="4">
+                    <img src="img/Projects/Isenbeck/thumb-isenbeck.png" alt="Isenbeck">
+                    <span class="card__title">Isenbeck</span>
+                </a>
+
+                <a href="Paquetizate.html" class="card" data-z="-10800" data-x="-5" data-y="-8" data-r="-5">
+                    <img src="img/Projects/Paquetizate/thumb-paque.png" alt="Paquetizate">
+                    <span class="card__title">Paquetizate</span>
+                </a>
+
+                <a href="NotTheEnd.html" class="card card--lg" data-z="-12000" data-x="25" data-y="30" data-r="3">
+                    <img src="img/Projects/NotEnd/thumb-NotCo.png" alt="NotCo">
+                    <span class="card__title">Giuseppe</span>
+                </a>
+
+            </div>
         </div>
+    </div>
 
-        <!-- Floating project cards with parallax data -->
-        <a href="Philco.html" class="floating-card" data-speed="0.3" style="top: 8vh; left: 5%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/Philco/thumb-philco.png" alt="Philco">
-                <div class="floating-card__label">Philco</div>
-            </div>
-        </a>
-
-        <a href="Patagonia.html" class="floating-card" data-speed="0.6" style="top: 5vh; left: 55%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/Patagonia incendios/thumb-pata.png" alt="Patagonia - Incendios">
-                <div class="floating-card__label">Patagonia</div>
-            </div>
-        </a>
-
-        <a href="CoolSeats.html" class="floating-card floating-card--lg" data-speed="0.45" style="top: 35vh; left: 30%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/Gatorade/Thumb CoolSeats.png" alt="Gatorade Cool Seats">
-                <div class="floating-card__label">Gatorade Cool Seats</div>
-            </div>
-        </a>
-
-        <a href="DarEsDar.html" class="floating-card" data-speed="0.25" style="top: 50vh; left: 70%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/Dar es dar/thumb-daresdar.png" alt="Movistar - Dar es dar">
-                <div class="floating-card__label">Dar es Dar</div>
-            </div>
-        </a>
-
-        <a href="MovistarTV.html" class="floating-card floating-card--sm" data-speed="0.55" style="top: 60vh; left: 8%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/Movistar TV/thumb-movitv.png" alt="Movistar TV">
-                <div class="floating-card__label">Movistar TV</div>
-            </div>
-        </a>
-
-        <a href="Unicenter.html" class="floating-card floating-card--lg" data-speed="0.35" style="top: 90vh; left: 45%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/Unicenter/thumb-unicenter.png" alt="Unicenter">
-                <div class="floating-card__label">Unicenter</div>
-            </div>
-        </a>
-
-        <a href="Nutshot.html" class="floating-card" data-speed="0.65" style="top: 110vh; left: 15%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/Nutshot/thumb-nutshot.png" alt="Nutshot">
-                <div class="floating-card__label">Nutshot</div>
-            </div>
-        </a>
-
-        <a href="Isenbeck.html" class="floating-card floating-card--sm" data-speed="0.4" style="top: 120vh; left: 65%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/Isenbeck/thumb-isenbeck.png" alt="Isenbeck">
-                <div class="floating-card__label">Isenbeck</div>
-            </div>
-        </a>
-
-        <a href="Paquetizate.html" class="floating-card" data-speed="0.5" style="top: 145vh; left: 35%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/Paquetizate/thumb-paque.png" alt="Paquetizate">
-                <div class="floating-card__label">Paquetizate</div>
-            </div>
-        </a>
-
-        <a href="NotTheEnd.html" class="floating-card floating-card--lg" data-speed="0.3" style="top: 160vh; left: 5%;">
-            <div class="floating-card__inner">
-                <img src="img/Projects/NotEnd/thumb-NotCo.png" alt="NotCo">
-                <div class="floating-card__label">Not The End</div>
-            </div>
-        </a>
-
-    </section>
-
-    <!-- BOTTOM FLOATING BAR -->
+    <!-- BOTTOM BAR -->
     <div class="bottom-bar">
-        <a href="#work" class="bottom-bar__btn bottom-bar__btn--outline">projects</a>
-        <span class="bottom-bar__divider">+</span>
+        <a href="#contact" class="bottom-bar__btn bottom-bar__btn--outline">projects</a>
+        <span class="bottom-bar__plus">+</span>
         <a href="#contact" class="bottom-bar__btn bottom-bar__btn--filled">contact me</a>
     </div>
 
-    <!-- ==================== ABOUT SECTION ==================== -->
-    <section class="about-section" id="about">
-        <div class="about-section__inner">
-            <div class="about-section__headline">
-                <h2>About me</h2>
+    <!-- ABOUT -->
+    <section class="section section--about" id="about">
+        <div class="section__inner">
+            <h2 class="section__title">About</h2>
+            <p>Born in Buenos Aires. Creative Director, Copywriter, UX Writer, Front-end Developer &amp; AI enthusiast.</p>
+            <p>Making ads that slip into people's conversations is my passion. Having said that, I do have adblock installed.</p>
+            <div class="social-row">
+                <a href="https://www.linkedin.com/in/ignacio-grosman-6b61189b/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.behance.net/nachogrosman" target="_blank"><i class="fa-brands fa-behance"></i></a>
+                <a href="https://github.com/the-Chosen-Juan" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://open.spotify.com/user/elbuffaloo?si=2d8787accf5d4c98" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+                <a href="https://wa.me/5491149475884" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
-            <div class="about-section__content">
-                <div class="about-section__text">
-                    <p>
-                        Born in the city of Buenos Aires and raised by a single mother who didn't bother to tell him that writing about himself in the 3rd person isn't cool anymore.
-                    </p>
-                    <p>
-                        I started working in advertising in my early 20's for Boca Juniors (Huge fan), and a few local politicians (Not a fan).
-                        Making ads that slip into people's conversations is my passion. Having said that, I do have adblock installed in my browser.
-                        Ironic, huh?
-                    </p>
-                    <p>
-                        I am a huge fan of football, creativity in all of its forms, VR, Gaming, AI, and a little bit of coding&mdash;which I used to build this very website.
-                        But enough about me. Let me hear about you.
-                    </p>
-                </div>
-                <div class="about-section__socials">
-                    <a href="https://www.linkedin.com/in/ignacio-grosman-6b61189b/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://www.behance.net/nachogrosman" target="_blank"><i class="fa-brands fa-behance"></i></a>
-                    <a href="https://github.com/the-Chosen-Juan" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://open.spotify.com/user/elbuffaloo?si=2d8787accf5d4c98" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-                    <a href="https://wa.me/5491149475884" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- AWARDS -->
-        <div class="awards-row">
-            <h3>Some wins so far.</h3>
-            <div class="awards-row__grid">
+            <div class="awards-strip">
                 <img src="img/Awards/Awards-25.png" alt="Gold Diente">
-                <img src="img/Awards/Awards-26.png" alt="Gold Ojo LATAM">
-                <img src="img/Awards/Awards-27.png" alt="Gold Sol de iberoamerica">
+                <img src="img/Awards/Awards-26.png" alt="Gold Ojo">
+                <img src="img/Awards/Awards-27.png" alt="Gold Sol">
                 <img src="img/Awards/Awards-28.png" alt="Gold Effie">
-                <img src="img/Awards/Clio.png" alt="Gold Clio">
-                <img src="img/Awards/Awards-30.png" alt="Cannes Lions Shortlist">
+                <img src="img/Awards/Clio.png" alt="Clio">
+                <img src="img/Awards/Awards-30.png" alt="Cannes Lions">
             </div>
         </div>
     </section>
 
-    <!-- ==================== CLIENTS SECTION ==================== -->
-    <section class="clients-section" id="clients">
-        <h2>Clients</h2>
-        <div class="clients-grid">
-            <img src="img/Clients/coca.png" alt="Coca-Cola">
-            <img src="img/Clients/danone.png" alt="Danone">
-            <img src="img/Clients/samsung.png" alt="Samsung">
-            <img src="img/Clients/logos-24.png" alt="Gatorade">
-            <img src="img/Clients/philco.png" alt="Philco">
-            <img src="img/Clients/toyota.png" alt="Toyota">
-            <img src="img/Clients/logos-17.png" alt="Corona Extra">
-            <img src="img/Clients/logos-22.png" alt="Fiat">
-            <img src="img/Clients/flow.png" alt="Cablevisión Flow">
-            <img src="img/Clients/isenbeck.png" alt="Isenbeck">
-            <img src="img/Clients/PayPal.png" alt="PayPal">
-            <img src="img/Clients/logos-19.png" alt="Patagonia">
-            <img src="img/Clients/wars.png" alt="Warsteiner">
-            <img src="img/Clients/PrimeVideo.png" alt="Prime Video">
-            <img src="img/Clients/logos-20.png" alt="Michelob Ultra">
-            <img src="img/Clients/Nike.png" alt="Nike">
-            <img src="img/Clients/logos-18.png" alt="Walmart">
-            <img src="img/Clients/movi.png" alt="Movistar">
-            <img src="img/Clients/JW.png" alt="Johnnie Walker">
-            <img src="img/Clients/Ikea.png" alt="Ikea">
-            <img src="img/Clients/NotCo.png" alt="NotCo">
-            <img src="img/Clients/telecom.png" alt="Telecom">
-            <img src="img/Clients/TacoBell.png" alt="Taco Bell">
-            <img src="img/Clients/JPMC.png" alt="JP Morgan Chase">
+    <!-- CLIENTS -->
+    <section class="section section--clients" id="clients">
+        <div class="section__inner">
+            <h2 class="section__title">Clients</h2>
+            <div class="clients-grid">
+                <img src="img/Clients/coca.png" alt="Coca-Cola">
+                <img src="img/Clients/danone.png" alt="Danone">
+                <img src="img/Clients/samsung.png" alt="Samsung">
+                <img src="img/Clients/logos-24.png" alt="Gatorade">
+                <img src="img/Clients/philco.png" alt="Philco">
+                <img src="img/Clients/toyota.png" alt="Toyota">
+                <img src="img/Clients/logos-17.png" alt="Corona Extra">
+                <img src="img/Clients/logos-22.png" alt="Fiat">
+                <img src="img/Clients/flow.png" alt="Flow">
+                <img src="img/Clients/isenbeck.png" alt="Isenbeck">
+                <img src="img/Clients/PayPal.png" alt="PayPal">
+                <img src="img/Clients/logos-19.png" alt="Patagonia">
+                <img src="img/Clients/wars.png" alt="Warsteiner">
+                <img src="img/Clients/PrimeVideo.png" alt="Prime Video">
+                <img src="img/Clients/logos-20.png" alt="Michelob Ultra">
+                <img src="img/Clients/Nike.png" alt="Nike">
+                <img src="img/Clients/logos-18.png" alt="Walmart">
+                <img src="img/Clients/movi.png" alt="Movistar">
+                <img src="img/Clients/JW.png" alt="Johnnie Walker">
+                <img src="img/Clients/Ikea.png" alt="Ikea">
+                <img src="img/Clients/NotCo.png" alt="NotCo">
+                <img src="img/Clients/telecom.png" alt="Telecom">
+                <img src="img/Clients/TacoBell.png" alt="Taco Bell">
+                <img src="img/Clients/JPMC.png" alt="JP Morgan Chase">
+            </div>
         </div>
     </section>
 
-    <!-- ==================== CONTACT SECTION ==================== -->
-    <section class="contact-section" id="contact">
-        <div class="contact-section__inner">
-            <h2>Let's talk</h2>
-            <p class="contact-section__subtitle">Got an idea? Let's make something great together.</p>
-
+    <!-- CONTACT -->
+    <section class="section section--contact" id="contact">
+        <div class="section__inner">
+            <h2 class="section__title">Let's talk</h2>
             <form action="https://formspree.io/f/xwkygavo" method="POST" class="contact-form">
-                <div class="contact-form__group">
-                    <input type="email" name="email" placeholder="Your email" required>
-                </div>
-                <div class="contact-form__group">
-                    <textarea name="message" placeholder="Your message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="contact-form__submit">Send message</button>
+                <input type="email" name="email" placeholder="Your email" required>
+                <textarea name="message" placeholder="Your message" rows="5" required></textarea>
+                <button type="submit">Send message</button>
             </form>
         </div>
     </section>
 
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="site-footer">
-        <div class="site-footer__inner">
-            <div class="site-footer__socials">
-                <a href="https://wa.me/5491149475884" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ignaciohgrosman@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://www.linkedin.com/in/ignacio-grosman-6b61189b/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://github.com/the-Chosen-Juan" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.behance.net/nachogrosman" target="_blank"><i class="fa-brands fa-behance"></i></a>
-                <a href="https://open.spotify.com/user/elbuffaloo?si=2d8787accf5d4c98" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-            </div>
-            <div class="site-footer__resume">
-                Download my <a href="https://drive.google.com/uc?export=download&id=1KiDL5LfgyWtHPuimqZ0pccKqPuZvwpf2">resume</a>
-            </div>
-            <div class="site-footer__copyright">
-                &copy; 2026 Nacho Grosman. All rights reserved.
-            </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__socials">
+            <a href="https://wa.me/5491149475884" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ignaciohgrosman@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/ignacio-grosman-6b61189b/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/the-Chosen-Juan" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.behance.net/nachogrosman" target="_blank"><i class="fa-brands fa-behance"></i></a>
+            <a href="https://open.spotify.com/user/elbuffaloo?si=2d8787accf5d4c98" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         </div>
+        <p>Download my <a href="https://drive.google.com/uc?export=download&id=1KiDL5LfgyWtHPuimqZ0pccKqPuZvwpf2">resume</a></p>
+        <small>&copy; 2026 Nacho Grosman</small>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
     <script src="js/parallax.js"></script>
 </body>
 

@@ -1,26 +1,24 @@
-/* -------------------------------------------- SOCIALS ------------------------------------------------- */
-
-.about-section__socials {
+.social-row {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     margin-top: 2rem;
 
     a {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         border: 1px solid rgba(0, 0, 0, 0.1);
-        color: $text-dark;
-        font-size: 1rem;
-        @include smooth-transition(0.3s);
+        color: $dark;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
 
         &:hover {
-            background: $text-dark;
+            background: $dark;
             color: $white;
-            border-color: $text-dark;
+            border-color: $dark;
         }
     }
 }
