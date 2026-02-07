@@ -17,7 +17,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/stylecss.css">
 
@@ -1069,6 +1069,114 @@
         document.querySelectorAll('.project-card').forEach(card => {
             decryptObserver.observe(card);
         });
+
+        // ── Liquid Glass: Mouse Parallax & Reactivity ──
+        let glassParallaxActive = false;
+        let glassMouseX = 0.5;
+        let glassMouseY = 0.5;
+        let glassAnimFrame = null;
+
+        function initGlassEffects() {
+            if (glassParallaxActive) return;
+            glassParallaxActive = true;
+
+            // Track mouse position
+            document.addEventListener('mousemove', onGlassMouseMove);
+
+            // Apply floating animation to bubbles with staggered delays
+            const bubbles = document.querySelectorAll('.skill-item, .client-logo, .award-item, .footer-link, .social-link');
+            bubbles.forEach((bubble, i) => {
+                const duration = 3 + Math.random() * 2;
+                const delay = Math.random() * -5;
+                bubble.style.animation = `glassBubbleFloat ${duration}s ${delay}s ease-in-out infinite`;
+            });
+
+            // Start parallax render loop
+            requestAnimationFrame(glassRenderLoop);
+        }
+
+        function onGlassMouseMove(e) {
+            glassMouseX = e.clientX / window.innerWidth;
+            glassMouseY = e.clientY / window.innerHeight;
+        }
+
+        function glassRenderLoop() {
+            if (!document.body.classList.contains('theme-glass')) {
+                glassParallaxActive = false;
+                return;
+            }
+
+            const mx = (glassMouseX - 0.5) * 2; // -1 to 1
+            const my = (glassMouseY - 0.5) * 2;
+
+            // Parallax on glass panels - move subtly opposite to cursor
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach((card, i) => {
+                const depth = 0.5 + (i % 3) * 0.3;
+                const rect = card.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+                if (inView) {
+                    const tx = mx * -4 * depth;
+                    const ty = my * -3 * depth;
+                    card.style.transform = `translate(${tx}px, ${ty}px)`;
+                }
+            });
+
+            // Parallax on bubbles
+            const allBubbles = document.querySelectorAll('.skill-item, .client-logo, .award-item');
+            allBubbles.forEach((b, i) => {
+                const depth = 0.3 + (i % 5) * 0.2;
+                const rect = b.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+                if (inView) {
+                    const baseTransform = b.style.animation ? '' : '';
+                    const tx = mx * -6 * depth;
+                    const ty = my * -4 * depth;
+                    b.style.setProperty('--glass-tx', tx + 'px');
+                    b.style.setProperty('--glass-ty', ty + 'px');
+                }
+            });
+
+            // Move background blobs with mouse for "liquid" feel
+            const bodyAfter = document.body;
+            const bx = 50 + mx * 8;
+            const by = 50 + my * 8;
+            bodyAfter.style.setProperty('--blob-x', bx + '%');
+            bodyAfter.style.setProperty('--blob-y', by + '%');
+
+            // Nav tilt effect
+            const nav = document.querySelector('.terminal-nav');
+            if (nav) {
+                const rotY = mx * 2;
+                const rotX = my * -1;
+                nav.style.transform = `translateX(-50%) perspective(600px) rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+            }
+
+            requestAnimationFrame(glassRenderLoop);
+        }
+
+        function teardownGlassEffects() {
+            glassParallaxActive = false;
+            document.removeEventListener('mousemove', onGlassMouseMove);
+
+            // Reset all transforms
+            document.querySelectorAll('.project-card, .skill-item, .client-logo, .award-item').forEach(el => {
+                el.style.transform = '';
+                el.style.animation = '';
+            });
+            const nav = document.querySelector('.terminal-nav');
+            if (nav) nav.style.transform = '';
+        }
+
+        // Watch for theme changes and toggle glass effects
+        const glassObserver = new MutationObserver(() => {
+            if (document.body.classList.contains('theme-glass')) {
+                initGlassEffects();
+            } else if (glassParallaxActive) {
+                teardownGlassEffects();
+            }
+        });
+        glassObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
         // ── Startup: boot sequence or skip ──
         const hasBooted = sessionStorage.getItem('nachoos-booted');

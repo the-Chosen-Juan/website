@@ -2336,19 +2336,39 @@ body.theme-bluescreen .footer-link:hover,
 body.theme-bluescreen .footer-link:hover i { color: #ffffff !important; }
 body.theme-bluescreen .window-buttons span { background: #ffffff !important; }
 
+
 /* ── Theme: Liquid Glass ── */
 body.theme-glass {
-  background: #d8dce4 !important;
+  background: #c8d0de !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  cursor: default !important;
+  overflow-x: hidden !important;
 }
 body.theme-glass::before {
   background: none !important;
+  pointer-events: none !important;
 }
 body.theme-glass::after {
-  background: radial-gradient(circle at 85% 8%, rgba(200, 180, 255, 0.25) 0%, transparent 35%), radial-gradient(circle at 10% 92%, rgba(180, 220, 255, 0.15) 0%, transparent 30%) !important;
+  content: '' !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(ellipse 600px 600px at 15% 20%, rgba(180, 120, 255, 0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 500px at 80% 15%, rgba(100, 180, 255, 0.3) 0%, transparent 70%),
+    radial-gradient(ellipse 550px 550px at 70% 75%, rgba(255, 140, 180, 0.3) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 400px at 25% 80%, rgba(100, 220, 200, 0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 450px 450px at 50% 45%, rgba(255, 200, 150, 0.2) 0%, transparent 70%) !important;
+  animation: glassBlobs 20s ease-in-out infinite alternate !important;
 }
-body.theme-glass .wrapper,
+body.theme-glass .wrapper {
+  position: relative !important;
+  z-index: 1 !important;
+  background: transparent !important;
+}
 body.theme-glass .terminal-content,
 body.theme-glass .bio-body,
 body.theme-glass .form-body {
@@ -2363,59 +2383,90 @@ body.theme-glass h2,
 body.theme-glass h3,
 body.theme-glass li,
 body.theme-glass label {
-  color: #2c3040 !important;
+  color: #1a1e2e !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 body.theme-glass pre,
 body.theme-glass code {
-  font-family: 'JetBrains Mono', monospace !important;
+  font-family: 'Inter', sans-serif !important;
 }
 body.theme-glass .text-secondary,
-body.theme-glass .section-command,
 body.theme-glass .footer-copyright,
 body.theme-glass .project-client,
-body.theme-glass .form-title,
-body.theme-glass .bio-header .file-name,
-body.theme-glass .clients-header,
-body.theme-glass .awards-header {
-  color: #7a8294 !important;
+body.theme-glass .form-title {
+  color: #5a6278 !important;
 }
-body.theme-glass .project-title,
-body.theme-glass .nav-path {
-  color: #5a6270 !important;
-}
-body.theme-glass .ascii-art {
-  display: none !important;
-}
+body.theme-glass .ascii-art { display: none !important; }
+body.theme-glass .section-command { display: none !important; }
+body.theme-glass .section-header { display: none !important; }
+body.theme-glass .command-line { display: none !important; }
+body.theme-glass .login-message { display: none !important; }
+body.theme-glass .prompt-symbol,
+body.theme-glass .prompt-user,
+body.theme-glass .prompt-at,
+body.theme-glass .prompt-host { display: none !important; }
+body.theme-glass .bio-header .file-icon,
+body.theme-glass .bio-header .file-name { display: none !important; }
+body.theme-glass .skills-header { display: none !important; }
+body.theme-glass .clients-header { display: none !important; }
+body.theme-glass .awards-header { display: none !important; }
 body.theme-glass .mobile-title {
   display: block !important;
   font-family: 'Inter', sans-serif !important;
-  font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  font-size: clamp(3rem, 8vw, 6rem) !important;
+  font-weight: 200 !important;
+  letter-spacing: -0.04em !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.05 !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.5) 30%, rgba(200, 220, 255, 0.6) 50%, rgba(255, 255, 255, 0.7) 70%, rgba(255, 255, 255, 0.9) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08)) !important;
+}
+body.theme-glass .hero {
+  text-align: center !important;
+  padding-top: 6rem !important;
+}
+body.theme-glass .output-block {
+  text-align: center !important;
+}
+body.theme-glass .output-block p {
+  color: #3a4058 !important;
   font-weight: 300 !important;
-  letter-spacing: -0.03em !important;
-  color: #2c3040 !important;
-  margin-bottom: 1.5rem !important;
-  line-height: 1.1 !important;
+  font-size: 1.05rem !important;
 }
-body.theme-glass .login-message {
-  color: #7a8294 !important;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 300 !important;
+body.theme-glass .social-links {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+  margin-top: 2rem !important;
 }
-body.theme-glass .login-message .success-icon {
-  color: #6aaa7a !important;
+body.theme-glass .social-link {
+  width: 48px !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(16px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  color: #4a5070 !important;
+  font-size: 0 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
 }
-body.theme-glass .prompt-symbol,
-body.theme-glass .skill-item::before,
-body.theme-glass .typing-cursor,
-body.theme-glass .cursor {
-  color: #9aa0ae !important;
-}
-body.theme-glass a {
-  color: #5570a0 !important;
-}
-body.theme-glass a:hover {
-  color: #2c3040 !important;
+body.theme-glass .social-link i { font-size: 1.1rem !important; }
+body.theme-glass .social-link:hover {
+  transform: translateY(-3px) scale(1.08) !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  color: #1a1e2e !important;
 }
 body.theme-glass .terminal-nav {
   top: 1rem !important;
@@ -2423,241 +2474,404 @@ body.theme-glass .terminal-nav {
   right: auto !important;
   transform: translateX(-50%) !important;
   width: auto !important;
-  background: rgba(255, 255, 255, 0.45) !important;
-  backdrop-filter: blur(24px) saturate(1.2) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(1.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.7) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(24px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
   border-radius: 50px !important;
   padding: 0.3rem 0.4rem !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  z-index: 1000 !important;
 }
-body.theme-glass .nav-container {
-  justify-content: center !important;
-}
-body.theme-glass .nav-prompt {
-  display: none !important;
-}
-body.theme-glass .nav-toggle {
-  display: none !important;
-}
-body.theme-glass .nav-links {
-  gap: 0.1rem !important;
-}
+body.theme-glass .nav-container { justify-content: center !important; }
+body.theme-glass .nav-prompt { display: none !important; }
+body.theme-glass .nav-toggle { display: none !important; }
+body.theme-glass .nav-links { gap: 0.15rem !important; display: flex !important; }
 body.theme-glass .nav-links a {
-  color: #8890a0 !important;
-  padding: 0.5rem 0.85rem !important;
+  color: rgba(60, 70, 100, 0.6) !important;
+  padding: 0.55rem 0.9rem !important;
   border-radius: 50px !important;
-  font-size: 0.9rem !important;
-  transition: all 0.25s ease !important;
+  font-size: 0.95rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   text-shadow: none !important;
+  position: relative !important;
 }
 body.theme-glass .nav-links a::before,
-body.theme-glass .nav-links a::after {
-  content: none !important;
-}
-body.theme-glass .nav-links a .nav-icon {
-  display: inline-block !important;
-}
-body.theme-glass .nav-links a .nav-label {
-  display: none !important;
-}
+body.theme-glass .nav-links a::after { content: none !important; }
+body.theme-glass .nav-links a .nav-icon { display: inline-block !important; }
+body.theme-glass .nav-links a .nav-label { display: none !important; }
 body.theme-glass .nav-links a:hover {
-  color: #4a5060 !important;
-  background: rgba(255, 255, 255, 0.3) !important;
+  color: #2a3050 !important;
+  background: rgba(255, 255, 255, 0.35) !important;
   text-shadow: none !important;
 }
 body.theme-glass .nav-links a.active {
-  color: #2c3040 !important;
+  color: #1a1e2e !important;
   background: rgba(255, 255, 255, 0.55) !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 1px rgba(0, 0, 0, 0.02) !important;
   text-shadow: none !important;
 }
-body.theme-glass .project-card,
-body.theme-glass .bio-content,
-body.theme-glass .contact-form,
-body.theme-glass .clients-grid,
 body.theme-glass .section-divider,
-body.theme-glass .skills-header,
-body.theme-glass .award-item,
 body.theme-glass hr {
-  border-color: rgba(255, 255, 255, 0.5) !important;
+  border: none !important;
+  height: 0 !important;
+  margin: 2rem 0 !important;
 }
 body.theme-glass .project-card {
-  background: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: blur(20px) saturate(1.2) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.65) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-  border-radius: 20px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
-  transition: box-shadow 0.3s ease, transform 0.3s ease !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(20px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+}
+body.theme-glass .project-card::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 50% !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%) !important;
+  border-radius: 24px 24px 0 0 !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
 }
 body.theme-glass .project-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 48px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
-  transform: translateY(-2px) !important;
+  transform: translateY(-4px) scale(1.01) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
 }
 body.theme-glass .project-header {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border-radius: 20px 20px 0 0 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 24px 24px 0 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
-body.theme-glass .bio-content,
-body.theme-glass .bio-header {
-  background: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: blur(20px) saturate(1.2) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.65) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-  border-radius: 20px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
-}
-body.theme-glass .bio-header {
-  border-radius: 20px 20px 0 0 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
-  background: rgba(255, 255, 255, 0.2) !important;
-}
-body.theme-glass .contact-form {
-  background: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: blur(20px) saturate(1.2) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.65) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-  border-radius: 20px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
-}
-body.theme-glass .form-header {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border-radius: 20px 20px 0 0 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
-}
-body.theme-glass .clients-grid {
-  background: rgba(255, 255, 255, 0.35) !important;
-  backdrop-filter: blur(16px) saturate(1.2) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(1.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
-}
-body.theme-glass .award-item {
-  background: rgba(255, 255, 255, 0.25) !important;
-  border-radius: 14px !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
-}
-body.theme-glass ::selection {
-  background: rgba(100, 140, 200, 0.25) !important;
-  color: #2c3040 !important;
-}
-body.theme-glass ::-webkit-scrollbar-track {
-  background: #cdd1d9 !important;
-}
-body.theme-glass ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.12) !important;
-  border-radius: 10px !important;
-}
-body.theme-glass ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.2) !important;
-}
-body.theme-glass .skill-icon img,
-body.theme-glass .award-icon img {
-  filter: none !important;
-}
-body.theme-glass .client-logo img {
-  filter: grayscale(30%) brightness(0.5) contrast(1.2) !important;
+body.theme-glass .project-title {
+  color: #3a4058 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 400 !important;
 }
 body.theme-glass .project-thumb img {
-  filter: brightness(0.95) saturate(0.95) !important;
-  border-radius: 0 0 20px 20px !important;
+  filter: brightness(1) saturate(1) !important;
+  border-radius: 0 0 24px 24px !important;
 }
+body.theme-glass .project-overlay { border-radius: 0 0 24px 24px !important; }
+body.theme-glass .section-xp { padding: 2rem 0 !important; }
+body.theme-glass .skills-section { margin-bottom: 3rem !important; }
+body.theme-glass .skills-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 1.2rem !important;
+  padding: 2rem 0 !important;
+}
+body.theme-glass .skill-item {
+  width: 68px !important;
+  height: 68px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(16px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding: 0 !important;
+  position: relative !important;
+}
+body.theme-glass .skill-item .skill-name { display: none !important; }
+body.theme-glass .skill-item::before { display: none !important; }
+body.theme-glass .skill-item .skill-icon {
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+body.theme-glass .skill-item .skill-icon img {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: contain !important;
+  filter: none !important;
+}
+body.theme-glass .skill-item:hover {
+  transform: translateY(-4px) scale(1.1) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+body.theme-glass .clients-section { margin-bottom: 2rem !important; }
+body.theme-glass .clients-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+  padding: 2rem 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.theme-glass .client-logo {
+  width: 72px !important;
+  height: 72px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(16px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding: 12px !important;
+  overflow: hidden !important;
+}
+body.theme-glass .client-logo img {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: contain !important;
+  filter: grayscale(20%) brightness(0.6) contrast(1.3) !important;
+}
+body.theme-glass .client-logo:hover {
+  transform: translateY(-4px) scale(1.1) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+body.theme-glass .client-logo:hover img { filter: none !important; }
+body.theme-glass .awards-section { margin-top: 2rem !important; }
+body.theme-glass .awards-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 1.2rem !important;
+  padding: 2rem 0 !important;
+}
+body.theme-glass .award-item {
+  width: 80px !important;
+  height: 80px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(16px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding: 0 !important;
+}
+body.theme-glass .award-item .award-name { display: none !important; }
+body.theme-glass .award-item .award-icon {
+  width: 48px !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+body.theme-glass .award-item .award-icon img {
+  width: 44px !important;
+  height: 44px !important;
+  object-fit: contain !important;
+  filter: none !important;
+}
+body.theme-glass .award-item:hover {
+  transform: translateY(-4px) scale(1.1) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+body.theme-glass .bio-content {
+  background: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(20px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  overflow: hidden !important;
+}
+body.theme-glass .bio-header { display: none !important; }
+body.theme-glass .bio-body { padding: 2rem !important; }
+body.theme-glass .bio-text .highlight,
+body.theme-glass .bio-text .comment {
+  color: #6a7290 !important;
+  font-style: italic !important;
+}
+body.theme-glass .contact-form {
+  background: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(20px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+body.theme-glass .form-header {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 24px 24px 0 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+body.theme-glass .form-title { font-family: 'Inter', sans-serif !important; }
+body.theme-glass .form-intro .cmd { display: none !important; }
 body.theme-glass .form-input,
 body.theme-glass .form-textarea {
-  background: rgba(255, 255, 255, 0.5) !important;
-  border: 1px solid rgba(255, 255, 255, 0.7) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-  color: #2c3040 !important;
-  border-radius: 12px !important;
-  font-family: 'Inter', sans-serif !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
-}
-body.theme-glass .form-input::placeholder,
-body.theme-glass .form-textarea::placeholder {
-  color: #9aa0ae !important;
-}
-body.theme-glass .form-input:focus,
-body.theme-glass .form-textarea:focus {
-  border-color: rgba(100, 140, 200, 0.4) !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03), 0 0 0 3px rgba(100, 140, 200, 0.1) !important;
-}
-body.theme-glass .form-submit {
-  background: rgba(255, 255, 255, 0.5) !important;
-  border: 1px solid rgba(255, 255, 255, 0.7) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-  color: #2c3040 !important;
-  border-radius: 50px !important;
-  font-family: 'Inter', sans-serif !important;
-  transition: all 0.25s ease !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
-}
-body.theme-glass .form-submit:hover {
-  background: rgba(255, 255, 255, 0.65) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-}
-body.theme-glass .form-submit::before {
-  color: #7a8294 !important;
-}
-body.theme-glass .form-label::before {
-  color: #7a8294 !important;
-}
-body.theme-glass .resume-link {
+  background: rgba(255, 255, 255, 0.4) !important;
   border: 1px solid rgba(255, 255, 255, 0.6) !important;
   border-bottom-color: rgba(0, 0, 0, 0.03) !important;
-  color: #5a6270 !important;
+  color: #1a1e2e !important;
+  border-radius: 16px !important;
+  font-family: 'Inter', sans-serif !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+  transition: all 0.3s ease !important;
+}
+body.theme-glass .form-input::placeholder,
+body.theme-glass .form-textarea::placeholder { color: #8a90a4 !important; }
+body.theme-glass .form-input:focus,
+body.theme-glass .form-textarea:focus {
+  border-color: rgba(120, 160, 255, 0.4) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03), 0 0 0 3px rgba(120, 160, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+body.theme-glass .form-submit {
+  background: rgba(255, 255, 255, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+  color: #1a1e2e !important;
+  border-radius: 50px !important;
+  font-family: 'Inter', sans-serif !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+body.theme-glass .form-submit:hover {
+  background: rgba(255, 255, 255, 0.55) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+body.theme-glass .form-submit::before { color: #5a6278 !important; }
+body.theme-glass .form-label { font-family: 'Inter', sans-serif !important; }
+body.theme-glass .form-label::before { color: #5a6278 !important; }
+body.theme-glass .terminal-footer {
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-top: none !important;
+  padding: 3rem 0 !important;
+}
+body.theme-glass .footer-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 1.5rem !important;
+}
+body.theme-glass .footer-links {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.8rem !important;
+}
+body.theme-glass .footer-link {
+  width: 48px !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(16px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  color: #4a5070 !important;
+}
+body.theme-glass .footer-link i { color: #4a5070 !important; font-size: 1.1rem !important; }
+body.theme-glass .footer-link:hover {
+  transform: translateY(-3px) scale(1.08) !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+body.theme-glass .footer-link:hover i { color: #1a1e2e !important; }
+body.theme-glass .resume-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.7rem 1.5rem !important;
   border-radius: 50px !important;
   background: rgba(255, 255, 255, 0.35) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(16px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  color: #3a4058 !important;
+  font-family: 'Inter', sans-serif !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
-body.theme-glass .resume-link::before {
-  color: #7a8294 !important;
-}
+body.theme-glass .resume-link::before { display: none !important; }
 body.theme-glass .resume-link:hover {
-  color: #2c3040 !important;
+  transform: translateY(-2px) !important;
   background: rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  color: #1a1e2e !important;
 }
-body.theme-glass .footer-link,
-body.theme-glass .footer-link i {
-  color: #8890a0 !important;
-}
-body.theme-glass .footer-link:hover,
-body.theme-glass .footer-link:hover i {
-  color: #2c3040 !important;
+body.theme-glass .footer-copyright {
+  color: #6a7290 !important;
+  font-size: 0.8rem !important;
+  font-weight: 300 !important;
 }
 body.theme-glass .window-buttons span {
-  background: rgba(0, 0, 0, 0.08) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.03) !important;
 }
-body.theme-glass .section-divider,
-body.theme-glass hr {
-  border-color: rgba(0, 0, 0, 0.06) !important;
-}
-body.theme-glass .terminal-footer {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border-color: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
-}
-body.theme-glass .social-link {
-  border-radius: 50px !important;
+body.theme-glass ::selection { background: rgba(120, 160, 255, 0.2) !important; color: #1a1e2e !important; }
+body.theme-glass ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.04) !important; }
+body.theme-glass ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1) !important; border-radius: 10px !important; }
+body.theme-glass ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.18) !important; }
+body.theme-glass .skill-icon img,
+body.theme-glass .award-icon img { filter: none !important; }
+body.theme-glass .client-logo img { filter: grayscale(20%) brightness(0.6) contrast(1.3) !important; }
+body.theme-glass {
+  cursor: default !important;
 }
 body.theme-glass a,
 body.theme-glass button,
 body.theme-glass .project-card,
 body.theme-glass .nav-toggle,
 body.theme-glass .form-submit,
-body.theme-glass .client-logo {
+body.theme-glass .client-logo,
+body.theme-glass .skill-item,
+body.theme-glass .award-item,
+body.theme-glass .social-link,
+body.theme-glass .footer-link {
   cursor: pointer !important;
+}
+@keyframes glassBlobs {
+  0% {
+    background:
+      radial-gradient(ellipse 600px 600px at 15% 20%, rgba(180, 120, 255, 0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 500px at 80% 15%, rgba(100, 180, 255, 0.3) 0%, transparent 70%),
+      radial-gradient(ellipse 550px 550px at 70% 75%, rgba(255, 140, 180, 0.3) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 400px at 25% 80%, rgba(100, 220, 200, 0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 450px 450px at 50% 45%, rgba(255, 200, 150, 0.2) 0%, transparent 70%);
+  }
+  100% {
+    background:
+      radial-gradient(ellipse 550px 550px at 30% 35%, rgba(160, 140, 255, 0.3) 0%, transparent 70%),
+      radial-gradient(ellipse 600px 600px at 70% 25%, rgba(120, 200, 255, 0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 500px at 20% 65%, rgba(255, 160, 200, 0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 450px 450px at 75% 80%, rgba(120, 230, 210, 0.3) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 500px at 45% 15%, rgba(255, 180, 130, 0.25) 0%, transparent 70%);
+  }
+}
+@keyframes glassBubbleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
 }
 
 /*# sourceMappingURL=stylecss.css.map */

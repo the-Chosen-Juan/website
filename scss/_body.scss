@@ -790,96 +790,173 @@ body.theme-bluescreen {
 
 // ── Theme: Liquid Glass ──
 body.theme-glass {
-    background: #d8dce4 !important;
+    // ── Iridescent background with animated color blobs ──
+    background: #c8d0de !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    overflow-x: hidden !important;
 
-    // No scanlines — clean surface
+    // No scanlines
     &::before {
         background: none !important;
+        pointer-events: none !important;
     }
 
-    // Subtle prismatic light in corners
+    // Animated iridescent color blobs
     &::after {
-        background: radial-gradient(
-            circle at 85% 8%, rgba(200, 180, 255, 0.25) 0%, transparent 35%
-        ),
-        radial-gradient(
-            circle at 10% 92%, rgba(180, 220, 255, 0.15) 0%, transparent 30%
-        ) !important;
+        content: '' !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 0 !important;
+        pointer-events: none !important;
+        background:
+            radial-gradient(ellipse 600px 600px at 15% 20%, rgba(180, 120, 255, 0.35) 0%, transparent 70%),
+            radial-gradient(ellipse 500px 500px at 80% 15%, rgba(100, 180, 255, 0.3) 0%, transparent 70%),
+            radial-gradient(ellipse 550px 550px at 70% 75%, rgba(255, 140, 180, 0.3) 0%, transparent 70%),
+            radial-gradient(ellipse 400px 400px at 25% 80%, rgba(100, 220, 200, 0.25) 0%, transparent 70%),
+            radial-gradient(ellipse 450px 450px at 50% 45%, rgba(255, 200, 150, 0.2) 0%, transparent 70%) !important;
+        animation: glassBlobs 20s ease-in-out infinite alternate !important;
     }
 
-    .wrapper, .terminal-content, .bio-body, .form-body {
+    .wrapper {
+        position: relative !important;
+        z-index: 1 !important;
         background: transparent !important;
     }
 
-    // ── Typography — dark on light ──
+    .terminal-content, .bio-body, .form-body {
+        background: transparent !important;
+    }
+
+    // ── Typography ──
     &, p, span, div, h1, h2, h3, li, label {
-        color: #2c3040 !important;
+        color: #1a1e2e !important;
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
     pre, code {
-        font-family: 'JetBrains Mono', monospace !important;
+        font-family: 'Inter', sans-serif !important;
     }
 
-    .text-secondary, .section-command, .footer-copyright, .project-client,
-    .form-title, .bio-header .file-name,
-    .clients-header, .awards-header {
-        color: #7a8294 !important;
+    .text-secondary, .footer-copyright, .project-client,
+    .form-title {
+        color: #5a6278 !important;
     }
 
-    .project-title, .nav-path {
-        color: #5a6270 !important;
-    }
+    // ── Hide ALL console terminology ──
+    .ascii-art { display: none !important; }
+    .section-command { display: none !important; }
+    .section-header { display: none !important; }
+    .command-line { display: none !important; }
+    .login-message { display: none !important; }
+    .prompt-symbol, .prompt-user, .prompt-at, .prompt-host { display: none !important; }
+    .bio-header .file-icon, .bio-header .file-name { display: none !important; }
+    .skills-header { display: none !important; }
+    .clients-header { display: none !important; }
+    .awards-header { display: none !important; }
 
-    // ── ASCII art → hidden, clean title ──
-    .ascii-art {
-        display: none !important;
-    }
-
+    // ── Hero: Liquid glass title ──
     .mobile-title {
         display: block !important;
         font-family: 'Inter', sans-serif !important;
-        font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
-        font-weight: 300 !important;
-        letter-spacing: -0.03em !important;
-        color: #2c3040 !important;
-        margin-bottom: 1.5rem !important;
-        line-height: 1.1 !important;
+        font-size: clamp(3rem, 8vw, 6rem) !important;
+        font-weight: 200 !important;
+        letter-spacing: -0.04em !important;
+        color: rgba(255, 255, 255, 0.75) !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+        margin-bottom: 1rem !important;
+        line-height: 1.05 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.85) 0%,
+            rgba(255, 255, 255, 0.5) 30%,
+            rgba(200, 220, 255, 0.6) 50%,
+            rgba(255, 255, 255, 0.7) 70%,
+            rgba(255, 255, 255, 0.9) 100%
+        ) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08)) !important;
     }
 
-    .login-message {
-        color: #7a8294 !important;
-        font-family: 'Inter', sans-serif !important;
-        font-weight: 300 !important;
-        .success-icon { color: #6aaa7a !important; }
+    .hero {
+        text-align: center !important;
+        padding-top: 6rem !important;
     }
 
-    .prompt-symbol, .skill-item::before, .typing-cursor, .cursor {
-        color: #9aa0ae !important;
+    .output-block {
+        text-align: center !important;
+        p {
+            color: #3a4058 !important;
+            font-weight: 300 !important;
+            font-size: 1.05rem !important;
+        }
     }
 
-    a { color: #5570a0 !important; }
-    a:hover { color: #2c3040 !important; }
+    // ── Social links: glass bubbles ──
+    .social-links {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 0.8rem !important;
+        margin-top: 2rem !important;
+    }
 
-    // ── Navigation: Glass pill bar with icons ──
+    .social-link {
+        width: 48px !important;
+        height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        backdrop-filter: blur(16px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    0 1px 3px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                    inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+        color: #4a5070 !important;
+        font-size: 1.1rem !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        overflow: hidden !important;
+
+        &:hover {
+            transform: translateY(-3px) scale(1.08) !important;
+            background: rgba(255, 255, 255, 0.5) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
+                        0 2px 6px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+            color: #1a1e2e !important;
+        }
+
+        // Hide text labels in social links
+        font-size: 0 !important;
+        i { font-size: 1.1rem !important; }
+    }
+
+    // ── Navigation: Glass pill ──
     .terminal-nav {
         top: 1rem !important;
         left: 50% !important;
         right: auto !important;
         transform: translateX(-50%) !important;
         width: auto !important;
-        background: rgba(255, 255, 255, 0.45) !important;
-        backdrop-filter: blur(24px) saturate(1.2) !important;
-        -webkit-backdrop-filter: blur(24px) saturate(1.2) !important;
-        border: 1px solid rgba(255, 255, 255, 0.7) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        backdrop-filter: blur(24px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
         border-radius: 50px !important;
         padding: 0.3rem 0.4rem !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
-                    0 8px 32px rgba(0, 0, 0, 0.06),
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    0 1px 3px rgba(0, 0, 0, 0.04),
                     inset 0 1px 0 rgba(255, 255, 255, 0.8),
                     inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+        z-index: 1000 !important;
     }
 
     .nav-container {
@@ -889,15 +966,19 @@ body.theme-glass {
     .nav-prompt { display: none !important; }
     .nav-toggle { display: none !important; }
 
-    .nav-links { gap: 0.1rem !important; }
+    .nav-links {
+        gap: 0.15rem !important;
+        display: flex !important;
+    }
 
     .nav-links a {
-        color: #8890a0 !important;
-        padding: 0.5rem 0.85rem !important;
+        color: rgba(60, 70, 100, 0.6) !important;
+        padding: 0.55rem 0.9rem !important;
         border-radius: 50px !important;
-        font-size: 0.9rem !important;
-        transition: all 0.25s ease !important;
+        font-size: 0.95rem !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         text-shadow: none !important;
+        position: relative !important;
 
         &::before, &::after { content: none !important; }
         .nav-icon { display: inline-block !important; }
@@ -905,216 +986,516 @@ body.theme-glass {
     }
 
     .nav-links a:hover {
-        color: #4a5060 !important;
-        background: rgba(255, 255, 255, 0.3) !important;
+        color: #2a3050 !important;
+        background: rgba(255, 255, 255, 0.35) !important;
         text-shadow: none !important;
     }
 
     .nav-links a.active {
-        color: #2c3040 !important;
+        color: #1a1e2e !important;
         background: rgba(255, 255, 255, 0.55) !important;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06),
-                    0 4px 12px rgba(0, 0, 0, 0.04),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
+                    0 1px 2px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                    inset 0 -1px 1px rgba(0, 0, 0, 0.02) !important;
         text-shadow: none !important;
     }
 
-    // ── Glass panels — raised with specular highlights ──
-    .project-card, .bio-content, .contact-form, .clients-grid,
-    .section-divider, .skills-header, .award-item, hr {
-        border-color: rgba(255, 255, 255, 0.5) !important;
+    // ── Section dividers — invisible ──
+    .section-divider, hr {
+        border: none !important;
+        height: 0 !important;
+        margin: 2rem 0 !important;
     }
 
+    // ── Project cards — full liquid glass ──
     .project-card {
-        background: rgba(255, 255, 255, 0.4) !important;
-        backdrop-filter: blur(20px) saturate(1.2) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
-        border: 1px solid rgba(255, 255, 255, 0.65) !important;
-        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-        border-radius: 20px !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
-                    0 8px 32px rgba(0, 0, 0, 0.06),
+        background: rgba(255, 255, 255, 0.3) !important;
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.55) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+        border-radius: 24px !important;
+        overflow: hidden !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    0 1px 3px rgba(0, 0, 0, 0.04),
                     inset 0 1px 0 rgba(255, 255, 255, 0.8),
                     inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
-        transition: box-shadow 0.3s ease, transform 0.3s ease !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+        // Specular gloss overlay
+        &::after {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            height: 50% !important;
+            background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                transparent 100%) !important;
+            border-radius: 24px 24px 0 0 !important;
+            pointer-events: none !important;
+            z-index: 2 !important;
+        }
     }
+
     .project-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06),
-                    0 12px 48px rgba(0, 0, 0, 0.08),
+        transform: translateY(-4px) scale(1.01) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+                    0 2px 8px rgba(0, 0, 0, 0.06),
                     inset 0 1px 0 rgba(255, 255, 255, 0.9),
                     inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
-        transform: translateY(-2px) !important;
     }
 
     .project-header {
-        background: rgba(255, 255, 255, 0.2) !important;
-        border-radius: 20px 20px 0 0 !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-radius: 24px 24px 0 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
     }
 
-    .bio-content, .bio-header {
-        background: rgba(255, 255, 255, 0.4) !important;
-        backdrop-filter: blur(20px) saturate(1.2) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
-        border: 1px solid rgba(255, 255, 255, 0.65) !important;
-        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-        border-radius: 20px !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
-                    0 8px 32px rgba(0, 0, 0, 0.06),
+    .project-title {
+        color: #3a4058 !important;
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 400 !important;
+    }
+
+    .project-thumb img {
+        filter: brightness(1) saturate(1) !important;
+        border-radius: 0 0 24px 24px !important;
+    }
+
+    .project-overlay {
+        border-radius: 0 0 24px 24px !important;
+    }
+
+    // ── XP section: floating glass bubbles ──
+    .section-xp {
+        padding: 2rem 0 !important;
+    }
+
+    .skills-section {
+        margin-bottom: 3rem !important;
+    }
+
+    .skills-grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 1.2rem !important;
+        padding: 2rem 0 !important;
+    }
+
+    .skill-item {
+        width: 68px !important;
+        height: 68px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        backdrop-filter: blur(16px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    0 1px 3px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                    inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        padding: 0 !important;
+        position: relative !important;
+
+        // Hide text
+        .skill-name { display: none !important; }
+        &::before { display: none !important; }
+
+        .skill-icon {
+            width: 36px !important;
+            height: 36px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            img {
+                width: 32px !important;
+                height: 32px !important;
+                object-fit: contain !important;
+                filter: none !important;
+            }
+        }
+
+        &:hover {
+            transform: translateY(-4px) scale(1.1) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
+                        0 2px 8px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+        }
+    }
+
+    // ── Clients: floating glass bubbles ──
+    .clients-section {
+        margin-bottom: 2rem !important;
+    }
+
+    .clients-grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+        padding: 2rem 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    .client-logo {
+        width: 72px !important;
+        height: 72px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        backdrop-filter: blur(16px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    0 1px 3px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                    inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        padding: 12px !important;
+        overflow: hidden !important;
+
+        img {
+            width: 40px !important;
+            height: 40px !important;
+            object-fit: contain !important;
+            filter: grayscale(20%) brightness(0.6) contrast(1.3) !important;
+        }
+
+        &:hover {
+            transform: translateY(-4px) scale(1.1) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
+                        0 2px 8px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+            img { filter: none !important; }
+        }
+    }
+
+    // ── Awards: floating glass bubbles ──
+    .awards-section {
+        margin-top: 2rem !important;
+    }
+
+    .awards-grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 1.2rem !important;
+        padding: 2rem 0 !important;
+    }
+
+    .award-item {
+        width: 80px !important;
+        height: 80px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        backdrop-filter: blur(16px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    0 1px 3px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                    inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        padding: 0 !important;
+
+        // Hide text
+        .award-name { display: none !important; }
+
+        .award-icon {
+            width: 48px !important;
+            height: 48px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            img {
+                width: 44px !important;
+                height: 44px !important;
+                object-fit: contain !important;
+                filter: none !important;
+            }
+        }
+
+        &:hover {
+            transform: translateY(-4px) scale(1.1) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
+                        0 2px 8px rgba(0, 0, 0, 0.05),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+        }
+    }
+
+    // ── Bio: clean glass panel ──
+    .bio-content {
+        background: rgba(255, 255, 255, 0.3) !important;
+        backdrop-filter: blur(20px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.55) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+        border-radius: 24px !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    0 1px 3px rgba(0, 0, 0, 0.04),
                     inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+        overflow: hidden !important;
     }
 
     .bio-header {
-        border-radius: 20px 20px 0 0 !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
-        background: rgba(255, 255, 255, 0.2) !important;
+        display: none !important;
     }
 
+    .bio-body {
+        padding: 2rem !important;
+    }
+
+    .bio-text {
+        .highlight, .comment { color: #6a7290 !important; font-style: italic !important; }
+    }
+
+    // ── Contact form: glass panel ──
     .contact-form {
-        background: rgba(255, 255, 255, 0.4) !important;
-        backdrop-filter: blur(20px) saturate(1.2) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
-        border: 1px solid rgba(255, 255, 255, 0.65) !important;
-        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-        border-radius: 20px !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
-                    0 8px 32px rgba(0, 0, 0, 0.06),
+        background: rgba(255, 255, 255, 0.3) !important;
+        backdrop-filter: blur(20px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.55) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+        border-radius: 24px !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    0 1px 3px rgba(0, 0, 0, 0.04),
                     inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
     }
 
     .form-header {
-        background: rgba(255, 255, 255, 0.2) !important;
-        border-radius: 20px 20px 0 0 !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-radius: 24px 24px 0 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
     }
 
-    .clients-grid {
-        background: rgba(255, 255, 255, 0.35) !important;
-        backdrop-filter: blur(16px) saturate(1.2) !important;
-        -webkit-backdrop-filter: blur(16px) saturate(1.2) !important;
-        border: 1px solid rgba(255, 255, 255, 0.6) !important;
-        border-radius: 16px !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
+    .form-title {
+        font-family: 'Inter', sans-serif !important;
     }
 
-    .award-item {
-        background: rgba(255, 255, 255, 0.25) !important;
-        border-radius: 14px !important;
-        border: 1px solid rgba(255, 255, 255, 0.5) !important;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    .form-intro {
+        .cmd { display: none !important; }
     }
 
-    // ── Selection ──
-    ::selection { background: rgba(100, 140, 200, 0.25) !important; color: #2c3040 !important; }
-
-    // ── Scrollbar ──
-    ::-webkit-scrollbar-track { background: #cdd1d9 !important; }
-    ::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.12) !important;
-        border-radius: 10px !important;
-    }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.2) !important; }
-
-    // ── Images — natural look ──
-    .skill-icon img, .award-icon img {
-        filter: none !important;
-    }
-    .client-logo img {
-        filter: grayscale(30%) brightness(0.5) contrast(1.2) !important;
-    }
-    .project-thumb img {
-        filter: brightness(0.95) saturate(0.95) !important;
-        border-radius: 0 0 20px 20px !important;
-    }
-
-    // ── Form inputs — inset glass fields ──
+    // ── Form inputs ──
     .form-input, .form-textarea {
-        background: rgba(255, 255, 255, 0.5) !important;
-        border: 1px solid rgba(255, 255, 255, 0.7) !important;
-        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-        color: #2c3040 !important;
-        border-radius: 12px !important;
+        background: rgba(255, 255, 255, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.03) !important;
+        color: #1a1e2e !important;
+        border-radius: 16px !important;
         font-family: 'Inter', sans-serif !important;
         box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03),
                     inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
-        &::placeholder { color: #9aa0ae !important; }
+        transition: all 0.3s ease !important;
+
+        &::placeholder { color: #8a90a4 !important; }
         &:focus {
-            border-color: rgba(100, 140, 200, 0.4) !important;
+            border-color: rgba(120, 160, 255, 0.4) !important;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03),
-                        0 0 0 3px rgba(100, 140, 200, 0.1) !important;
+                        0 0 0 3px rgba(120, 160, 255, 0.12) !important;
+            background: rgba(255, 255, 255, 0.5) !important;
         }
     }
 
     .form-submit {
-        background: rgba(255, 255, 255, 0.5) !important;
-        border: 1px solid rgba(255, 255, 255, 0.7) !important;
-        border-bottom-color: rgba(0, 0, 0, 0.04) !important;
-        color: #2c3040 !important;
-        border-radius: 50px !important;
-        font-family: 'Inter', sans-serif !important;
-        transition: all 0.25s ease !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
-        &:hover {
-            background: rgba(255, 255, 255, 0.65) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-        }
-        &::before { color: #7a8294 !important; }
-    }
-
-    .form-label::before { color: #7a8294 !important; }
-
-    .resume-link {
+        background: rgba(255, 255, 255, 0.4) !important;
         border: 1px solid rgba(255, 255, 255, 0.6) !important;
         border-bottom-color: rgba(0, 0, 0, 0.03) !important;
-        color: #5a6270 !important;
+        color: #1a1e2e !important;
         border-radius: 50px !important;
-        background: rgba(255, 255, 255, 0.35) !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
-        &::before { color: #7a8294 !important; }
+        font-family: 'Inter', sans-serif !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
         &:hover {
-            color: #2c3040 !important;
+            background: rgba(255, 255, 255, 0.55) !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+        }
+        &::before { color: #5a6278 !important; }
+    }
+
+    .form-label {
+        font-family: 'Inter', sans-serif !important;
+        &::before { color: #5a6278 !important; }
+    }
+
+    // ── Footer: floating glass bubbles ──
+    .terminal-footer {
+        background: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        border-top: none !important;
+        padding: 3rem 0 !important;
+    }
+
+    .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+    }
+
+    .footer-links {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 0.8rem !important;
+    }
+
+    .footer-link {
+        width: 48px !important;
+        height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        backdrop-filter: blur(16px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    0 1px 3px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                    inset 0 -1px 2px rgba(0, 0, 0, 0.02) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        color: #4a5070 !important;
+
+        i { color: #4a5070 !important; font-size: 1.1rem !important; }
+
+        &:hover {
+            transform: translateY(-3px) scale(1.08) !important;
             background: rgba(255, 255, 255, 0.5) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+            i { color: #1a1e2e !important; }
         }
     }
 
-    .footer-link, .footer-link i { color: #8890a0 !important; }
-    .footer-link:hover, .footer-link:hover i { color: #2c3040 !important; }
-
-    // Window buttons — frosted glass dots
-    .window-buttons span {
-        background: rgba(0, 0, 0, 0.08) !important;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                    0 1px 2px rgba(0, 0, 0, 0.04) !important;
-    }
-
-    // Section dividers
-    .section-divider, hr {
-        border-color: rgba(0, 0, 0, 0.06) !important;
-    }
-
-    // Terminal footer
-    .terminal-footer {
-        background: rgba(255, 255, 255, 0.2) !important;
-        border-color: rgba(255, 255, 255, 0.4) !important;
-        backdrop-filter: blur(16px) !important;
-        -webkit-backdrop-filter: blur(16px) !important;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
-    }
-
-    // Social links
-    .social-link {
+    .resume-link {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        padding: 0.7rem 1.5rem !important;
         border-radius: 50px !important;
+        background: rgba(255, 255, 255, 0.35) !important;
+        backdrop-filter: blur(16px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+        color: #3a4058 !important;
+        font-family: 'Inter', sans-serif !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+        &::before { display: none !important; }
+
+        &:hover {
+            transform: translateY(-2px) !important;
+            background: rgba(255, 255, 255, 0.5) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+            color: #1a1e2e !important;
+        }
     }
 
-    // Cursor override
+    .footer-copyright {
+        color: #6a7290 !important;
+        font-size: 0.8rem !important;
+        font-weight: 300 !important;
+    }
+
+    // ── Window buttons — glass dots ──
+    .window-buttons span {
+        background: rgba(0, 0, 0, 0.06) !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                    0 1px 2px rgba(0, 0, 0, 0.03) !important;
+    }
+
+    // ── Selection ──
+    ::selection { background: rgba(120, 160, 255, 0.2) !important; color: #1a1e2e !important; }
+
+    // ── Scrollbar ──
+    ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.04) !important; }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.1) !important;
+        border-radius: 10px !important;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.18) !important; }
+
+    // ── Images ──
+    .skill-icon img, .award-icon img {
+        filter: none !important;
+    }
+    .client-logo img {
+        filter: grayscale(20%) brightness(0.6) contrast(1.3) !important;
+    }
+
+    // ── All glass elements: color glow-through effect ──
+    .project-card,
+    .bio-content,
+    .contact-form,
+    .skill-item,
+    .client-logo,
+    .award-item,
+    .social-link,
+    .footer-link,
+    .terminal-nav,
+    .nav-links a.active,
+    .resume-link {
+        position: relative !important;
+        // The JS will handle the chromatic glow via a ::before pseudo or overlay div
+    }
+
+    // ── Cursor ──
     cursor: default !important;
-    a, button, .project-card, .nav-toggle, .form-submit, .client-logo {
+    a, button, .project-card, .nav-toggle, .form-submit, .client-logo, .skill-item, .award-item, .social-link, .footer-link {
         cursor: pointer !important;
+    }
+
+    // ── Keyframes ──
+    @at-root {
+        @keyframes glassBlobs {
+            0% {
+                background:
+                    radial-gradient(ellipse 600px 600px at 15% 20%, rgba(180, 120, 255, 0.35) 0%, transparent 70%),
+                    radial-gradient(ellipse 500px 500px at 80% 15%, rgba(100, 180, 255, 0.3) 0%, transparent 70%),
+                    radial-gradient(ellipse 550px 550px at 70% 75%, rgba(255, 140, 180, 0.3) 0%, transparent 70%),
+                    radial-gradient(ellipse 400px 400px at 25% 80%, rgba(100, 220, 200, 0.25) 0%, transparent 70%),
+                    radial-gradient(ellipse 450px 450px at 50% 45%, rgba(255, 200, 150, 0.2) 0%, transparent 70%);
+            }
+            100% {
+                background:
+                    radial-gradient(ellipse 550px 550px at 30% 35%, rgba(160, 140, 255, 0.3) 0%, transparent 70%),
+                    radial-gradient(ellipse 600px 600px at 70% 25%, rgba(120, 200, 255, 0.35) 0%, transparent 70%),
+                    radial-gradient(ellipse 500px 500px at 20% 65%, rgba(255, 160, 200, 0.25) 0%, transparent 70%),
+                    radial-gradient(ellipse 450px 450px at 75% 80%, rgba(120, 230, 210, 0.3) 0%, transparent 70%),
+                    radial-gradient(ellipse 500px 500px at 45% 15%, rgba(255, 180, 130, 0.25) 0%, transparent 70%);
+            }
+        }
+
+        @keyframes glassBubbleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
     }
 }
