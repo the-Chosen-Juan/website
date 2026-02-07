@@ -22,7 +22,7 @@ body {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cline x1='8' y1='0' x2='8' y2='16' stroke='%23d08770' stroke-width='1'/%3E%3Cline x1='0' y1='8' x2='16' y2='8' stroke='%23d08770' stroke-width='1'/%3E%3C/svg%3E") 8 8, crosshair;
 }
 
-// CRT Scanline overlay — always visible, soft blended lines
+// CRT Scanline overlay — subtle, blended into screen
 body::before {
     content: '';
     position: fixed;
@@ -35,27 +35,13 @@ body::before {
     background: repeating-linear-gradient(
         0deg,
         transparent 0px,
-        rgba(0, 0, 0, 0.03) 1px,
-        rgba(0, 0, 0, 0.05) 1.5px,
+        rgba(0, 0, 0, 0.025) 1px,
         transparent 2px,
         transparent 4px
     );
-    animation: scanline-flicker 8s linear infinite;
 }
 
-@keyframes scanline-flicker {
-    0%, 100% { opacity: 0.85; }
-    25% { opacity: 0.7; }
-    50% { opacity: 0.9; }
-    75% { opacity: 0.75; }
-}
-
-// CRT Vignette overlay — smooth edge darkening, follows mouse
-body {
-    --vignette-x: 50%;
-    --vignette-y: 50%;
-}
-
+// CRT Vignette overlay
 body::after {
     content: '';
     position: fixed;
@@ -65,7 +51,7 @@ body::after {
     height: 100%;
     pointer-events: none;
     z-index: 9999;
-    background: radial-gradient(ellipse at var(--vignette-x) var(--vignette-y), transparent 60%, rgba(0, 0, 0, 0.25) 100%);
+    background: radial-gradient(ellipse at center, transparent 65%, rgba(0, 0, 0, 0.2) 100%);
 }
 
 // Custom cursors for interactive elements
