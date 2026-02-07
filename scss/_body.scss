@@ -583,7 +583,6 @@ body.hacker-mode {
     transform: translateY(10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
-    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     gap: $spacing-xs;
@@ -730,7 +729,11 @@ body.theme-bluescreen {
         color: #aaaaff !important;
     }
 
-    .ascii-art, .prompt-symbol, .skill-item::before, .typing-cursor, .cursor {
+    .ascii-art {
+        color: #ffffff !important;
+    }
+
+    .prompt-symbol, .skill-item::before, .typing-cursor, .cursor {
         color: #ffff54 !important;
     }
 
@@ -785,96 +788,242 @@ body.theme-bluescreen {
     .window-buttons span { background: #ffffff !important; }
 }
 
-// ── Theme: Paper (Teletype Printout) ──
-body.theme-paper {
-    background-color: #f4f1e8 !important;
+// ── Theme: Liquid Glass ──
+body.theme-glass {
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1035 30%, #0d1b2a 60%, #0a0a1a 100%) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 
+    // Disable CRT scanlines — replaced with glass shimmer
     &::before {
-        background: repeating-linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0.02) 0px,
-            rgba(0, 0, 0, 0.02) 1px,
-            transparent 1px,
-            transparent 3px
+        background: linear-gradient(
+            135deg,
+            rgba(120, 120, 255, 0.03) 0%,
+            transparent 40%,
+            rgba(200, 120, 255, 0.02) 60%,
+            transparent 100%
         ) !important;
     }
 
+    // Soft ambient glow instead of vignette
     &::after {
-        background: radial-gradient(ellipse at center, transparent 60%, rgba(200, 190, 170, 0.3) 100%) !important;
+        background: radial-gradient(
+            ellipse at 30% 20%, rgba(100, 80, 255, 0.08) 0%, transparent 50%
+        ),
+        radial-gradient(
+            ellipse at 70% 80%, rgba(200, 100, 255, 0.06) 0%, transparent 50%
+        ) !important;
     }
 
     .wrapper, .terminal-content, .bio-body, .form-body {
-        background-color: #f4f1e8 !important;
+        background: transparent !important;
     }
 
+    // Typography
     &, p, span, div, h1, h2, h3, li, label {
-        color: #2c2c2c !important;
+        color: rgba(230, 230, 250, 0.92) !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
+    pre, code, .ascii-art {
+        font-family: 'JetBrains Mono', monospace !important;
     }
 
     .text-secondary, .section-command, .footer-copyright, .project-client,
     .project-title, .form-title, .bio-header .file-name, .nav-path,
     .clients-header, .awards-header {
-        color: #666666 !important;
+        color: rgba(180, 180, 220, 0.7) !important;
     }
 
-    .ascii-art, .prompt-symbol, .skill-item::before, .typing-cursor, .cursor {
-        color: #1a1a1a !important;
+    .ascii-art {
+        color: rgba(160, 140, 255, 0.5) !important;
     }
 
-    a { color: #8b4513 !important; }
+    .prompt-symbol, .skill-item::before, .typing-cursor, .cursor {
+        color: rgba(180, 160, 255, 0.85) !important;
+    }
 
+    a { color: rgba(160, 180, 255, 0.9) !important; }
+    a:hover { color: rgba(200, 200, 255, 1) !important; }
+
+    // Glass panels
     .terminal-nav, .project-card, .bio-content, .contact-form, .terminal-footer,
     .section-divider, .skills-header, .clients-grid, .award-item, hr {
-        border-color: #c8c0b0 !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
     }
 
-    .terminal-nav, .project-card, .project-header, .bio-content, .bio-header,
-    .contact-form, .form-header, .award-item {
-        background-color: #ebe8df !important;
+    .terminal-nav {
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: blur(24px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .project-card {
+        background: rgba(255, 255, 255, 0.04) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    .project-card:hover {
+        border-color: rgba(160, 140, 255, 0.3) !important;
+        box-shadow: 0 8px 40px rgba(100, 80, 255, 0.15),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .project-header {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-radius: 16px 16px 0 0 !important;
+    }
+
+    .bio-content, .bio-header {
+        background: rgba(255, 255, 255, 0.04) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+    }
+
+    .bio-header {
+        border-radius: 16px 16px 0 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    }
+
+    .contact-form {
+        background: rgba(255, 255, 255, 0.04) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+    }
+
+    .form-header {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-radius: 16px 16px 0 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
     }
 
     .clients-grid {
-        background-color: #ddd8cb !important;
+        background: rgba(255, 255, 255, 0.04) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border-radius: 12px !important;
     }
 
-    .project-card:hover { border-color: #2c2c2c !important; }
+    .award-item {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-radius: 12px !important;
+    }
 
-    .nav-links a { color: #666666 !important; }
-    .nav-links a::before, .nav-links a::after { color: #c8c0b0 !important; }
-    .nav-links a:hover, .nav-links a.active { color: #2c2c2c !important; }
+    // Nav links
+    .nav-links a {
+        color: rgba(180, 180, 220, 0.6) !important;
+        transition: color 0.3s ease !important;
+    }
+    .nav-links a::before, .nav-links a::after { color: rgba(255, 255, 255, 0.15) !important; }
+    .nav-links a:hover, .nav-links a.active {
+        color: rgba(200, 200, 255, 1) !important;
+        text-shadow: 0 0 20px rgba(160, 140, 255, 0.4) !important;
+    }
 
-    ::selection { background: rgba(44, 44, 44, 0.2) !important; color: #2c2c2c !important; }
-    ::-webkit-scrollbar-track { background: #ebe8df !important; }
-    ::-webkit-scrollbar-thumb { background: #c8c0b0 !important; }
+    // Selection
+    ::selection { background: rgba(140, 120, 255, 0.3) !important; color: #fff !important; }
 
+    // Scrollbar
+    ::-webkit-scrollbar-track { background: rgba(10, 10, 26, 0.8) !important; }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.12) !important;
+        border-radius: 10px !important;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2) !important; }
+
+    // Images — soft desaturated look
     .skill-icon img, .award-icon img {
-        filter: grayscale(100%) contrast(1.1) !important;
+        filter: brightness(0.9) saturate(0.7) !important;
     }
     .client-logo img {
-        filter: grayscale(100%) contrast(1.6) brightness(0.4) !important;
+        filter: brightness(1.6) contrast(1.0) invert(1) !important;
     }
     .project-thumb img {
-        filter: grayscale(100%) contrast(0.9) brightness(1.1) !important;
+        filter: brightness(0.8) saturate(0.8) !important;
+        border-radius: 0 0 16px 16px !important;
     }
 
+    // Form inputs — glass fields
     .form-input, .form-textarea {
-        background-color: #ffffff !important; border-color: #c8c0b0 !important; color: #2c2c2c !important;
-        &::placeholder { color: #aaa !important; }
-        &:focus { border-color: #2c2c2c !important; }
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: rgba(230, 230, 250, 0.92) !important;
+        border-radius: 10px !important;
+        font-family: 'Inter', sans-serif !important;
+        &::placeholder { color: rgba(180, 180, 220, 0.35) !important; }
+        &:focus {
+            border-color: rgba(160, 140, 255, 0.4) !important;
+            box-shadow: 0 0 20px rgba(140, 120, 255, 0.1) !important;
+        }
     }
-    .form-submit {
-        background-color: #ebe8df !important; border-color: #2c2c2c !important; color: #2c2c2c !important;
-        &:hover { background-color: #2c2c2c !important; color: #f4f1e8 !important; }
-        &::before { color: #8b4513 !important; }
-    }
-    .form-label::before { color: #8b4513 !important; }
-    .resume-link {
-        border-color: #c8c0b0 !important; color: #666666 !important;
-        &::before { color: #8b4513 !important; }
-        &:hover { border-color: #2c2c2c !important; color: #2c2c2c !important; }
-    }
-    .footer-link, .footer-link i { color: #666666 !important; }
-    .footer-link:hover, .footer-link:hover i { color: #2c2c2c !important; }
 
-    .window-buttons span { background: #8b4513 !important; }
+    .form-submit {
+        background: rgba(140, 120, 255, 0.15) !important;
+        border: 1px solid rgba(160, 140, 255, 0.3) !important;
+        color: rgba(220, 210, 255, 0.95) !important;
+        border-radius: 10px !important;
+        font-family: 'Inter', sans-serif !important;
+        transition: all 0.3s ease !important;
+        &:hover {
+            background: rgba(140, 120, 255, 0.3) !important;
+            border-color: rgba(160, 140, 255, 0.5) !important;
+            box-shadow: 0 4px 24px rgba(140, 120, 255, 0.2) !important;
+        }
+        &::before { color: rgba(180, 160, 255, 0.8) !important; }
+    }
+
+    .form-label::before { color: rgba(160, 140, 255, 0.6) !important; }
+
+    .resume-link {
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: rgba(180, 180, 220, 0.7) !important;
+        border-radius: 10px !important;
+        &::before { color: rgba(160, 140, 255, 0.6) !important; }
+        &:hover {
+            border-color: rgba(160, 140, 255, 0.3) !important;
+            color: rgba(220, 210, 255, 0.95) !important;
+        }
+    }
+
+    .footer-link, .footer-link i { color: rgba(180, 180, 220, 0.5) !important; }
+    .footer-link:hover, .footer-link:hover i {
+        color: rgba(200, 200, 255, 1) !important;
+        text-shadow: 0 0 12px rgba(160, 140, 255, 0.3) !important;
+    }
+
+    // Window buttons — soft glass dots
+    .window-buttons span {
+        background: rgba(255, 255, 255, 0.2) !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    }
+
+    // Section dividers
+    .section-divider, hr {
+        border-color: rgba(255, 255, 255, 0.06) !important;
+    }
+
+    // Terminal footer
+    .terminal-footer {
+        background: rgba(255, 255, 255, 0.02) !important;
+        border-color: rgba(255, 255, 255, 0.06) !important;
+    }
+
+    // Custom cursor override
+    cursor: default !important;
+    a, button, .project-card, .nav-toggle, .form-submit, .client-logo {
+        cursor: pointer !important;
+    }
 }
