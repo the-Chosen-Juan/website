@@ -1076,47 +1076,49 @@
             decryptObserver.observe(card);
         });
 
-        // ── Animated ASCII Art: Occasional Random Glitch ──
+        // ── Animated ASCII Art: Random Glitch on ALL ascii headers ──
         (function initAsciiGlitch() {
-            const asciiEl = document.querySelector('.hero .ascii-art');
-            if (!asciiEl) return;
-
-            const originalChars = asciiEl.textContent.split('');
             const glitchChars = ['░', '▒', '·', '¤', '×', ':', '%', '~', '▓'];
+            const asciiEls = document.querySelectorAll('.ascii-art, .project-ascii-title');
+            if (!asciiEls.length) return;
 
-            // Find positions of solid/border characters we can glitch
-            const glitchable = [];
-            originalChars.forEach((c, i) => {
-                if ('█▓▒░╗╔╚╝║═╠╣╬'.includes(c)) glitchable.push(i);
+            // Set up each element with its own original text and glitchable positions
+            const targets = [];
+            asciiEls.forEach(el => {
+                const original = el.textContent.split('');
+                const positions = [];
+                original.forEach((c, i) => {
+                    if ('█▓▒░╗╔╚╝║═╠╣╬'.includes(c)) positions.push(i);
+                });
+                if (positions.length) targets.push({ el, original, positions });
             });
 
             function doGlitch() {
                 if (document.hidden) { scheduleNext(); return; }
 
+                // Pick a random ascii element
+                const target = targets[Math.floor(Math.random() * targets.length)];
+                const { el, original, positions } = target;
+
                 // Pick 1-3 random characters to glitch
                 const count = 1 + Math.floor(Math.random() * 3);
-                const positions = [];
+                const output = original.slice();
                 for (let i = 0; i < count; i++) {
-                    positions.push(glitchable[Math.floor(Math.random() * glitchable.length)]);
-                }
-
-                // Show glitched version
-                const output = originalChars.slice();
-                positions.forEach(pos => {
+                    const pos = positions[Math.floor(Math.random() * positions.length)];
                     output[pos] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
-                });
-                asciiEl.textContent = output.join('');
+                }
+                el.textContent = output.join('');
 
                 // Snap back after 80-200ms
                 setTimeout(() => {
-                    asciiEl.textContent = originalChars.join('');
+                    el.textContent = original.join('');
                 }, 80 + Math.random() * 120);
 
                 scheduleNext();
             }
 
             function scheduleNext() {
-                setTimeout(doGlitch, 4000 + Math.random() * 8000);
+                setTimeout(doGlitch, 2000 + Math.random() * 4000);
             }
 
             // Start after boot
@@ -1131,24 +1133,59 @@
             startWhenReady();
         })();
 
-        // ── Subtle Tilt on "window" elements (cards, bio, contact) ──
-        (function initCardTilt() {
-            const tiltEls = document.querySelectorAll('.project-card, .bio-content, .contact-form');
+        // ── Global Motion Parallax on window elements ──
+        (function initMotionParallax() {
+            let mouseX = 0.5, mouseY = 0.5;
+            let smoothX = 0.5, smoothY = 0.5;
+            let ticking = false;
 
-            tiltEls.forEach(el => {
-                el.addEventListener('mousemove', (e) => {
-                    const rect = el.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width;  // 0 to 1
-                    const y = (e.clientY - rect.top) / rect.height;
-                    const rotY = (x - 0.5) * 4;   // max ±2 degrees
-                    const rotX = (y - 0.5) * -4;   // max ±2 degrees
-                    el.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-                });
-
-                el.addEventListener('mouseleave', () => {
-                    el.style.transform = '';
-                });
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX / window.innerWidth;
+                mouseY = e.clientY / window.innerHeight;
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(update);
+                }
             });
+
+            function update() {
+                smoothX += (mouseX - smoothX) * 0.08;
+                smoothY += (mouseY - smoothY) * 0.08;
+
+                const mx = (smoothX - 0.5) * 2; // -1 to 1
+                const my = (smoothY - 0.5) * 2;
+
+                // Foreground: project cards — move more (3px)
+                document.querySelectorAll('.project-card').forEach((card, i) => {
+                    const rect = card.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        card.style.transform = `translate(${mx * -3}px, ${my * -2}px)`;
+                    }
+                });
+
+                // Mid: bio panel, contact form — move less (2px)
+                const bio = document.querySelector('.bio-content');
+                if (bio) {
+                    const rect = bio.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        bio.style.transform = `translate(${mx * -2}px, ${my * -1.5}px)`;
+                    }
+                }
+                const contact = document.querySelector('.contact-form');
+                if (contact) {
+                    const rect = contact.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        contact.style.transform = `translate(${mx * -2}px, ${my * -1.5}px)`;
+                    }
+                }
+
+                // Keep interpolating until settled
+                if (Math.abs(mouseX - smoothX) > 0.001 || Math.abs(mouseY - smoothY) > 0.001) {
+                    requestAnimationFrame(update);
+                } else {
+                    ticking = false;
+                }
+            }
         })();
 
         // ── Startup: boot sequence or skip ──

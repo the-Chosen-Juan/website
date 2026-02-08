@@ -155,6 +155,33 @@
             const nav = document.getElementById('nav');
             nav.classList.toggle('nav-open');
         }
+
+        // ASCII Art Glitch
+        (function() {
+            const glitchChars = ['░', '▒', '·', '¤', '×', ':', '%', '~', '▓'];
+            const el = document.querySelector('.project-ascii-title');
+            if (!el) return;
+            const original = el.textContent.split('');
+            const positions = [];
+            original.forEach((c, i) => {
+                if ('█▓▒░╗╔╚╝║═╠╣╬'.includes(c)) positions.push(i);
+            });
+            if (!positions.length) return;
+            function doGlitch() {
+                if (document.hidden) { next(); return; }
+                const count = 1 + Math.floor(Math.random() * 3);
+                const output = original.slice();
+                for (let i = 0; i < count; i++) {
+                    const pos = positions[Math.floor(Math.random() * positions.length)];
+                    output[pos] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                }
+                el.textContent = output.join('');
+                setTimeout(() => { el.textContent = original.join(''); }, 80 + Math.random() * 120);
+                next();
+            }
+            function next() { setTimeout(doGlitch, 2000 + Math.random() * 4000); }
+            next();
+        })();
     </script>
 </body>
 
