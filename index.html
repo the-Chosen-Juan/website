@@ -1140,20 +1140,7 @@
                 setTimeout(() => { el.textContent = original; }, 80 + Math.random() * 120);
             }
 
-            // Effect 4: Flicker — element briefly goes dim then back
-            function flicker(target) {
-                const { el } = target;
-                el.style.opacity = '0.3';
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                    setTimeout(() => {
-                        el.style.opacity = '0.7';
-                        setTimeout(() => { el.style.opacity = ''; }, 40);
-                    }, 30);
-                }, 30 + Math.random() * 50);
-            }
-
-            const effects = [charSwap, charSwap, lineShift, blockCorrupt, flicker];
+            const effects = [charSwap, charSwap, lineShift, blockCorrupt];
 
             function doGlitch() {
                 if (document.hidden) { scheduleNext(); return; }

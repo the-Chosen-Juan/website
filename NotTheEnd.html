@@ -204,12 +204,7 @@
                 setTimeout(() => { el.textContent = originalText; }, 80 + Math.random() * 120);
             }
 
-            function flicker() {
-                el.style.opacity = '0.3';
-                setTimeout(() => { el.style.opacity = '1'; setTimeout(() => { el.style.opacity = '0.7'; setTimeout(() => { el.style.opacity = ''; }, 40); }, 30); }, 30 + Math.random() * 50);
-            }
-
-            const effects = [charSwap, charSwap, lineShift, blockCorrupt, flicker];
+            const effects = [charSwap, charSwap, lineShift, blockCorrupt];
             function doGlitch() {
                 if (document.hidden) { next(); return; }
                 effects[Math.floor(Math.random() * effects.length)]();
