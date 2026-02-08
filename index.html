@@ -877,7 +877,7 @@
         let visitorCooldown = false;
 
         const visitorPaths = [
-            '~/', '~/work/', '~/xp/', '~/bio/', '~/contact/',
+            '~/work/', '~/xp/', '~/bio/', '~/contact/',
             '~/work/philco_tenes-un-aire.exe',
             '~/work/patagonia_incendios.exe',
             '~/work/gatorade_cool-seats.exe',
@@ -1076,49 +1076,107 @@
             decryptObserver.observe(card);
         });
 
-        // ── Animated ASCII Art: Random Glitch on ALL ascii headers ──
+        // ── Animated ASCII Art: Glitch Effects on ALL ascii headers ──
         (function initAsciiGlitch() {
-            const glitchChars = ['░', '▒', '·', '¤', '×', ':', '%', '~', '▓'];
+            const glitchChars = ['░', '▒', '·', '¤', '×', ':', '%', '~', '▓', '?', '#'];
             const asciiEls = document.querySelectorAll('.ascii-art, .project-ascii-title');
             if (!asciiEls.length) return;
 
-            // Set up each element with its own original text and glitchable positions
             const targets = [];
             asciiEls.forEach(el => {
-                const original = el.textContent.split('');
-                const positions = [];
-                original.forEach((c, i) => {
-                    if ('█▓▒░╗╔╚╝║═╠╣╬'.includes(c)) positions.push(i);
+                const original = el.textContent;
+                const lines = original.split('\n');
+                const charPositions = [];
+                original.split('').forEach((c, i) => {
+                    if ('█▓▒░╗╔╚╝║═╠╣╬'.includes(c)) charPositions.push(i);
                 });
-                if (positions.length) targets.push({ el, original, positions });
+                if (charPositions.length) targets.push({ el, original, lines, charPositions });
             });
+
+            // Effect 1: Character swap — replace a few chars with noise
+            function charSwap(target) {
+                const { el, original, charPositions } = target;
+                const output = original.split('');
+                const count = 1 + Math.floor(Math.random() * 4);
+                for (let i = 0; i < count; i++) {
+                    const pos = charPositions[Math.floor(Math.random() * charPositions.length)];
+                    output[pos] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                }
+                el.textContent = output.join('');
+                setTimeout(() => { el.textContent = original; }, 60 + Math.random() * 140);
+            }
+
+            // Effect 2: Line shift — one line briefly offsets horizontally
+            function lineShift(target) {
+                const { el, original, lines } = target;
+                const nonEmpty = [];
+                lines.forEach((l, i) => { if (l.trim().length > 3) nonEmpty.push(i); });
+                if (!nonEmpty.length) return;
+                const lineIdx = nonEmpty[Math.floor(Math.random() * nonEmpty.length)];
+                const shifted = lines.slice();
+                const dir = Math.random() > 0.5 ? 1 : -1;
+                const amount = 1 + Math.floor(Math.random() * 2);
+                if (dir > 0) {
+                    shifted[lineIdx] = ' '.repeat(amount) + shifted[lineIdx];
+                } else {
+                    shifted[lineIdx] = shifted[lineIdx].substring(amount);
+                }
+                el.textContent = shifted.join('\n');
+                setTimeout(() => { el.textContent = original; }, 50 + Math.random() * 100);
+            }
+
+            // Effect 3: Block corrupt — small cluster of chars goes noisy
+            function blockCorrupt(target) {
+                const { el, original, charPositions } = target;
+                if (charPositions.length < 5) return charSwap(target);
+                const output = original.split('');
+                const startIdx = Math.floor(Math.random() * (charPositions.length - 4));
+                for (let i = startIdx; i < startIdx + 3 + Math.floor(Math.random() * 3); i++) {
+                    if (i < charPositions.length) {
+                        output[charPositions[i]] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                    }
+                }
+                el.textContent = output.join('');
+                setTimeout(() => { el.textContent = original; }, 80 + Math.random() * 120);
+            }
+
+            // Effect 4: Flicker — element briefly goes dim then back
+            function flicker(target) {
+                const { el } = target;
+                el.style.opacity = '0.3';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    setTimeout(() => {
+                        el.style.opacity = '0.7';
+                        setTimeout(() => { el.style.opacity = ''; }, 40);
+                    }, 30);
+                }, 30 + Math.random() * 50);
+            }
+
+            const effects = [charSwap, charSwap, lineShift, blockCorrupt, flicker];
 
             function doGlitch() {
                 if (document.hidden) { scheduleNext(); return; }
 
-                // Pick a random ascii element
-                const target = targets[Math.floor(Math.random() * targets.length)];
-                const { el, original, positions } = target;
+                // Pick a random target — bias toward visible ones
+                let target;
+                const visible = targets.filter(t => {
+                    const rect = t.el.getBoundingClientRect();
+                    return rect.top < window.innerHeight && rect.bottom > 0;
+                });
+                target = visible.length
+                    ? visible[Math.floor(Math.random() * visible.length)]
+                    : targets[Math.floor(Math.random() * targets.length)];
 
-                // Pick 1-3 random characters to glitch
-                const count = 1 + Math.floor(Math.random() * 3);
-                const output = original.slice();
-                for (let i = 0; i < count; i++) {
-                    const pos = positions[Math.floor(Math.random() * positions.length)];
-                    output[pos] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
-                }
-                el.textContent = output.join('');
-
-                // Snap back after 80-200ms
-                setTimeout(() => {
-                    el.textContent = original.join('');
-                }, 80 + Math.random() * 120);
+                // Pick a random effect
+                const effect = effects[Math.floor(Math.random() * effects.length)];
+                effect(target);
 
                 scheduleNext();
             }
 
             function scheduleNext() {
-                setTimeout(doGlitch, 2000 + Math.random() * 4000);
+                setTimeout(doGlitch, 800 + Math.random() * 2500);
             }
 
             // Start after boot

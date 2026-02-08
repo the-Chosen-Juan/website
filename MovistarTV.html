@@ -171,28 +171,64 @@
 
         // ASCII Art Glitch
         (function() {
-            const glitchChars = ['░', '▒', '·', '¤', '×', ':', '%', '~', '▓'];
+            const glitchChars = ['░', '▒', '·', '¤', '×', ':', '%', '~', '▓', '?', '#'];
             const el = document.querySelector('.project-ascii-title');
             if (!el) return;
-            const original = el.textContent.split('');
-            const positions = [];
-            original.forEach((c, i) => {
-                if ('█▓▒░╗╔╚╝║═╠╣╬'.includes(c)) positions.push(i);
+            const originalText = el.textContent;
+            const lines = originalText.split('\n');
+            const charPos = [];
+            originalText.split('').forEach((c, i) => {
+                if ('█▓▒░╗╔╚╝║═╠╣╬'.includes(c)) charPos.push(i);
             });
-            if (!positions.length) return;
-            function doGlitch() {
-                if (document.hidden) { next(); return; }
-                const count = 1 + Math.floor(Math.random() * 3);
-                const output = original.slice();
+            if (!charPos.length) return;
+
+            function charSwap() {
+                const output = originalText.split('');
+                const count = 1 + Math.floor(Math.random() * 4);
                 for (let i = 0; i < count; i++) {
-                    const pos = positions[Math.floor(Math.random() * positions.length)];
+                    const pos = charPos[Math.floor(Math.random() * charPos.length)];
                     output[pos] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
                 }
                 el.textContent = output.join('');
-                setTimeout(() => { el.textContent = original.join(''); }, 80 + Math.random() * 120);
+                setTimeout(() => { el.textContent = originalText; }, 60 + Math.random() * 140);
+            }
+
+            function lineShift() {
+                const nonEmpty = [];
+                lines.forEach((l, i) => { if (l.trim().length > 3) nonEmpty.push(i); });
+                if (!nonEmpty.length) return;
+                const idx = nonEmpty[Math.floor(Math.random() * nonEmpty.length)];
+                const shifted = lines.slice();
+                const dir = Math.random() > 0.5 ? 1 : -1;
+                const amt = 1 + Math.floor(Math.random() * 2);
+                shifted[idx] = dir > 0 ? ' '.repeat(amt) + shifted[idx] : shifted[idx].substring(amt);
+                el.textContent = shifted.join('\n');
+                setTimeout(() => { el.textContent = originalText; }, 50 + Math.random() * 100);
+            }
+
+            function blockCorrupt() {
+                if (charPos.length < 5) return charSwap();
+                const output = originalText.split('');
+                const start = Math.floor(Math.random() * (charPos.length - 4));
+                for (let i = start; i < start + 3 + Math.floor(Math.random() * 3); i++) {
+                    if (i < charPos.length) output[charPos[i]] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                }
+                el.textContent = output.join('');
+                setTimeout(() => { el.textContent = originalText; }, 80 + Math.random() * 120);
+            }
+
+            function flicker() {
+                el.style.opacity = '0.3';
+                setTimeout(() => { el.style.opacity = '1'; setTimeout(() => { el.style.opacity = '0.7'; setTimeout(() => { el.style.opacity = ''; }, 40); }, 30); }, 30 + Math.random() * 50);
+            }
+
+            const effects = [charSwap, charSwap, lineShift, blockCorrupt, flicker];
+            function doGlitch() {
+                if (document.hidden) { next(); return; }
+                effects[Math.floor(Math.random() * effects.length)]();
                 next();
             }
-            function next() { setTimeout(doGlitch, 2000 + Math.random() * 4000); }
+            function next() { setTimeout(doGlitch, 800 + Math.random() * 2500); }
             next();
         })();
     </script>
