@@ -1286,8 +1286,10 @@
                 var nw = pre.scrollWidth;
                 var nh = pre.scrollHeight;
                 if (nw === 0 || nh === 0) return;
+                // Calculate font size that fits the container
+                var currentSize = parseFloat(getComputedStyle(pre).fontSize);
                 var s = Math.min(cw / nw, ch / nh) * 0.95;
-                pre.style.transform = 'scale(' + s + ')';
+                pre.style.fontSize = (currentSize * s) + 'px';
                 pre.style.opacity = '1';
             }
 

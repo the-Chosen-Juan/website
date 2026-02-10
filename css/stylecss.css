@@ -405,10 +405,6 @@ body.hacker-mode .typing-cursor,
 body.hacker-mode .cursor {
   color: #00ff41 !important;
 }
-body.hacker-mode .ascii-animation-container {
-  background-color: #000 !important;
-  border-color: #004d00 !important;
-}
 body.hacker-mode a {
   color: #39ff14 !important;
 }
@@ -958,23 +954,23 @@ body.theme-bluescreen .window-buttons span {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0d0d0d;
-  border: 1px solid #404040;
-  border-radius: 4px;
+  background: transparent;
+  border: none;
 }
 .ascii-animation-container pre {
   font-family: "JetBrains Mono", "Fira Code", "Consolas", "Monaco", "Courier New", monospace;
-  line-height: 1;
+  font-size: 0.28rem;
+  line-height: 1.05;
   letter-spacing: 0;
   white-space: pre;
   margin: 0;
   padding: 0;
   color: #d08770;
   opacity: 0;
-  transform-origin: center center;
   transition: opacity 0.5s ease-in;
   background: transparent;
   border: none;
+  overflow: hidden;
 }
 
 .ascii-art {
@@ -2224,8 +2220,8 @@ body.theme-bluescreen .window-buttons span {
     font-size: clamp(0.3rem, 1vw, 0.6rem);
   }
   .ascii-animation-container {
-    width: 280px;
-    height: 280px;
+    width: 250px;
+    height: 250px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -2263,7 +2259,7 @@ body.theme-bluescreen .window-buttons span {
   }
   .ascii-animation-container {
     width: 100%;
-    height: 250px;
+    height: 200px;
   }
   .ascii-art {
     font-size: clamp(0.25rem, 0.9vw, 0.5rem);
