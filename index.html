@@ -80,7 +80,9 @@
     <div class="wrapper">
         <!-- Hero Section -->
         <section class="hero" id="home">
-            <!-- ASCII Art Name -->
+            <div class="hero-row">
+                <div class="hero-left">
+                    <!-- ASCII Art Name -->
 <pre class="ascii-art">
  ███╗   ██╗ █████╗  ██████╗██╗  ██╗ ██████╗
  ████╗  ██║██╔══██╗██╔════╝██║  ██║██╔═══██╗
@@ -95,7 +97,15 @@
  ╚██████╔╝██║  ██║╚██████╔╝███████║██║ ╚═╝ ██║██║  ██║██║ ╚████║
   ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
 </pre>
-            <h1 class="mobile-title" style="display: none;">Nacho Grosman</h1>
+                    <h1 class="mobile-title" style="display: none;">Nacho Grosman</h1>
+                </div>
+
+                <div class="hero-right">
+                    <div id="ascii-animation" class="ascii-animation-container">
+                        <pre></pre>
+                    </div>
+                </div>
+            </div>
 
             <p class="login-message">
                 <span class="success-icon">*</span> Login successful. Welcome to my portfolio.
@@ -1248,6 +1258,97 @@
                 initRevealSystem();
             });
         }
+
+        // ── ASCII Animation Player ──
+        (function() {
+            var container = document.getElementById('ascii-animation');
+            if (!container) return;
+
+            var pre = container.querySelector('pre');
+            var frames = [];
+            var currentFrame = 0;
+            var lastFrameTime = -1;
+            var frameTime = 1000 / 15;
+            var animationId = null;
+            var frameCount = 81;
+            var quality = 'high';
+
+            function pad(n, len) {
+                var s = String(n);
+                while (s.length < len) s = '0' + s;
+                return s;
+            }
+
+            function updateScale() {
+                if (!pre || frames.length === 0) return;
+                var cw = container.clientWidth;
+                var ch = container.clientHeight;
+                var nw = pre.scrollWidth;
+                var nh = pre.scrollHeight;
+                if (nw === 0 || nh === 0) return;
+                var s = Math.min(cw / nw, ch / nh) * 0.95;
+                pre.style.transform = 'scale(' + s + ')';
+                pre.style.opacity = '1';
+            }
+
+            function tick(time) {
+                if (frames.length === 0) {
+                    animationId = requestAnimationFrame(tick);
+                    return;
+                }
+                if (lastFrameTime === -1) {
+                    lastFrameTime = time;
+                } else {
+                    var delta = time - lastFrameTime;
+                    while (delta >= frameTime) {
+                        currentFrame = (currentFrame + 1) % frames.length;
+                        delta -= frameTime;
+                        lastFrameTime += frameTime;
+                    }
+                    if (pre) pre.textContent = frames[currentFrame];
+                }
+                animationId = requestAnimationFrame(tick);
+            }
+
+            function start() {
+                if (animationId !== null) return;
+                lastFrameTime = -1;
+                animationId = requestAnimationFrame(tick);
+            }
+
+            function pause() {
+                if (animationId === null) return;
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+
+            var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting && !reducedMotion) {
+                        start();
+                    } else {
+                        pause();
+                    }
+                });
+            }, { threshold: 0.1 });
+            observer.observe(container);
+
+            window.addEventListener('resize', updateScale);
+
+            // Load frames
+            var promises = [];
+            for (var i = 1; i <= frameCount; i++) {
+                var url = 'animations/custom/' + quality + '/frame_' + pad(i, 5) + '.txt';
+                promises.push(fetch(url).then(function(r) { return r.text(); }));
+            }
+            Promise.all(promises).then(function(loaded) {
+                frames = loaded;
+                currentFrame = 0;
+                if (pre) pre.textContent = frames[0];
+                updateScale();
+            });
+        })();
     </script>
 </body>
 

@@ -409,12 +409,18 @@ body.hacker-mode {
 
     // Accent elements
     .ascii-art,
+    .ascii-animation-container pre,
     .accent-primary,
     .prompt-symbol,
     .skill-item::before,
     .typing-cursor,
     .cursor {
         color: #00ff41 !important;
+    }
+
+    .ascii-animation-container {
+        background-color: #000 !important;
+        border-color: #004d00 !important;
     }
 
     a {

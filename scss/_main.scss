@@ -27,6 +27,51 @@
     }
 }
 
+// Hero two-column layout
+.hero-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $spacing-xl;
+}
+
+.hero-left {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.hero-right {
+    flex: 0 0 auto;
+}
+
+// ASCII Animation Container
+.ascii-animation-container {
+    width: 350px;
+    height: 350px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bg-terminal;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+
+    pre {
+        font-family: $font-mono;
+        line-height: 1;
+        letter-spacing: 0;
+        white-space: pre;
+        margin: 0;
+        padding: 0;
+        color: $accent-primary;
+        opacity: 0;
+        transform-origin: center center;
+        transition: opacity 0.5s ease-in;
+        background: transparent;
+        border: none;
+    }
+}
+
 // ASCII Art Title
 .ascii-art {
     color: $accent-primary;
