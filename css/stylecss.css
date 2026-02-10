@@ -933,9 +933,8 @@ body.theme-bluescreen .window-buttons span {
 
 .hero-row {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2rem;
+  align-items: center;
+  gap: 1rem;
 }
 
 .hero-left {
@@ -948,8 +947,8 @@ body.theme-bluescreen .window-buttons span {
 }
 
 .ascii-animation-container {
-  width: 350px;
-  height: 350px;
+  width: 500px;
+  height: 450px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -959,7 +958,7 @@ body.theme-bluescreen .window-buttons span {
 }
 .ascii-animation-container pre {
   font-family: "JetBrains Mono", "Fira Code", "Consolas", "Monaco", "Courier New", monospace;
-  font-size: 0.28rem;
+  font-size: 0.35rem;
   line-height: 1.05;
   letter-spacing: 0;
   white-space: pre;
@@ -2220,8 +2219,8 @@ body.theme-bluescreen .window-buttons span {
     font-size: clamp(0.3rem, 1vw, 0.6rem);
   }
   .ascii-animation-container {
-    width: 250px;
-    height: 250px;
+    width: 380px;
+    height: 350px;
   }
 }
 @media screen and (max-width: 768px) {

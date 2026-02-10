@@ -1270,7 +1270,8 @@
             var lastFrameTime = -1;
             var frameTime = 1000 / 15;
             var animationId = null;
-            var frameCount = 81;
+            var firstFrame = 3;
+            var lastFrame = 81;
             var quality = 'high';
 
             function pad(n, len) {
@@ -1338,9 +1339,9 @@
 
             window.addEventListener('resize', updateScale);
 
-            // Load frames
+            // Load frames (skip blank frames 1-2)
             var promises = [];
-            for (var i = 1; i <= frameCount; i++) {
+            for (var i = firstFrame; i <= lastFrame; i++) {
                 var url = 'animations/custom/' + quality + '/frame_' + pad(i, 5) + '.txt';
                 promises.push(fetch(url).then(function(r) { return r.text(); }));
             }
