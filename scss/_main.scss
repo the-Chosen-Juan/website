@@ -1,12 +1,12 @@
 // Main Hero Section - Terminal Style
 
 .hero {
-    padding-top: 60px;
+    padding-top: 30px;
     min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-bottom: $spacing-xl;
+    padding-bottom: $spacing-sm;
 
     .welcome-box {
         @include terminal-border;
@@ -31,22 +31,22 @@
 .hero-row {
     display: flex;
     align-items: center;
-    gap: $spacing-md;
+    gap: 0;
 }
 
 .hero-left {
+    flex: 0 0 auto;
+}
+
+.hero-right {
     flex: 1 1 auto;
     min-width: 0;
 }
 
-.hero-right {
-    flex: 0 0 auto;
-}
-
 // ASCII Animation Container
 .ascii-animation-container {
-    width: 500px;
-    height: 450px;
+    width: 550px;
+    height: 500px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -56,7 +56,7 @@
 
     pre {
         font-family: $font-mono;
-        font-size: 0.35rem;
+        font-size: 0.38rem;
         line-height: 1.05;
         letter-spacing: 0;
         white-space: pre;
@@ -68,6 +68,23 @@
         background: transparent;
         border: none;
         overflow: hidden;
+        animation: neon-flicker 4s ease-in-out infinite;
+    }
+}
+
+// Subtle neon sign flicker effect
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0.92;
+    }
+    24% {
+        opacity: 0.95;
+    }
+    55% {
+        opacity: 0.94;
     }
 }
 

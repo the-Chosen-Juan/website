@@ -645,7 +645,7 @@ body.theme-amber {
         color: #b07800 !important;
     }
 
-    .ascii-art, .prompt-symbol, .skill-item::before, .typing-cursor, .cursor {
+    .ascii-art, .ascii-animation-container pre, .prompt-symbol, .skill-item::before, .typing-cursor, .cursor {
         color: #ffb000 !important;
     }
 
@@ -733,7 +733,7 @@ body.theme-bluescreen {
         color: #aaaaff !important;
     }
 
-    .ascii-art {
+    .ascii-art, .ascii-animation-container pre {
         color: #ffffff !important;
     }
 
