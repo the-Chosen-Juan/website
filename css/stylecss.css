@@ -908,12 +908,12 @@ body.theme-bluescreen .window-buttons span {
 }
 
 .hero {
-  padding-top: 50px;
+  padding-top: 60px;
   min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
 }
 .hero .welcome-box {
   border: 1px solid #d08770;
@@ -934,7 +934,7 @@ body.theme-bluescreen .window-buttons span {
 .hero-row {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 3rem;
 }
 
 .hero-left {
@@ -2267,6 +2267,9 @@ body.theme-bluescreen .window-buttons span {
     padding-top: 50px;
     min-height: auto;
     padding-bottom: 0.5rem;
+  }
+  .hero-row {
+    gap: 1.5rem;
   }
   .ascii-animation-container {
     width: 130px;

@@ -1,12 +1,12 @@
 // Main Hero Section - Terminal Style
 
 .hero {
-    padding-top: 50px;
+    padding-top: 60px;
     min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-bottom: $spacing-sm;
+    padding-bottom: $spacing-md;
 
     .welcome-box {
         @include terminal-border;
@@ -31,7 +31,7 @@
 .hero-row {
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 3rem;
 }
 
 .hero-left {
