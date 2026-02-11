@@ -1308,7 +1308,17 @@
                         delta -= frameTime;
                         lastFrameTime += frameTime;
                     }
-                    if (pre) pre.textContent = frames[currentFrame];
+                }
+                if (pre) {
+                    var displayText = frames[currentFrame];
+                    // Apply matrix decode overlay on live animation
+                    if (decodeActive) {
+                        if (!decodeStart) decodeStart = time;
+                        var dp = Math.min((time - decodeStart) / DECODE_DURATION, 1);
+                        displayText = applyDecode(displayText, dp);
+                        if (dp >= 1) decodeActive = false;
+                    }
+                    pre.textContent = displayText;
                 }
                 animationId = requestAnimationFrame(tick);
             }
@@ -1339,6 +1349,65 @@
 
             window.addEventListener('resize', updateScale);
 
+            // Matrix decode state — overlays on live animation
+            var decodeActive = false;
+            var decodeStart = null;
+            var DECODE_DURATION = 1000;
+            var charThresholds = null;
+            var mchars = '0123456789@#$%&*=+:;<>/|\\[]{}~`^';
+
+            function initDecode(sampleFrame) {
+                var lines = sampleFrame.split('\n');
+                var numRows = lines.length;
+                var maxCols = 0;
+                for (var k = 0; k < lines.length; k++) {
+                    if (lines[k].length > maxCols) maxCols = lines[k].length;
+                }
+                // Column rain: each column has a random start delay
+                var colDelay = [];
+                for (var c = 0; c < maxCols; c++) {
+                    colDelay[c] = Math.random() * 0.3;
+                }
+                charThresholds = [];
+                for (var r = 0; r < numRows; r++) {
+                    var row = [];
+                    for (var c = 0; c < maxCols; c++) {
+                        // Top-to-bottom rain per column + staggered columns
+                        var t = colDelay[c] + (r / numRows) * 0.55 + Math.random() * 0.08;
+                        row.push(Math.min(t, 0.92));
+                    }
+                    charThresholds.push(row);
+                }
+                decodeActive = true;
+                decodeStart = null;
+            }
+
+            function applyDecode(frameText, progress) {
+                if (progress >= 1) return frameText;
+                var lines = frameText.split('\n');
+                var result = [];
+                for (var r = 0; r < lines.length; r++) {
+                    var line = '';
+                    var threshRow = charThresholds[r];
+                    for (var c = 0; c < lines[r].length; c++) {
+                        var actual = lines[r][c];
+                        var threshold = threshRow && c < threshRow.length ? threshRow[c] : 0;
+                        if (actual === ' ') {
+                            line += ' ';
+                        } else if (progress >= threshold) {
+                            line += actual;
+                        } else if (progress >= threshold - 0.15) {
+                            // Near-decode zone: random char cycling
+                            line += mchars.charAt(Math.floor(Math.random() * mchars.length));
+                        } else {
+                            line += '.';
+                        }
+                    }
+                    result.push(line);
+                }
+                return result.join('\n');
+            }
+
             // Load frames (skip blank frames 1-2)
             var promises = [];
             for (var i = firstFrame; i <= lastFrame; i++) {
@@ -1349,84 +1418,13 @@
                 frames = loaded;
                 currentFrame = 0;
 
-                // Set first frame for scaling, then run matrix reveal
                 if (pre) {
                     pre.textContent = frames[0];
                     updateScale();
-                    matrixReveal(frames[0], function() {
-                        // After reveal, start normal animation
-                        pre.textContent = frames[0];
-                    });
+                    pre.style.opacity = '1';
+                    initDecode(frames[0]);
                 }
             });
-
-            function matrixReveal(targetFrame, onComplete) {
-                var lines = targetFrame.split('\n');
-                var rows = lines.length;
-                var cols = 0;
-                for (var k = 0; k < lines.length; k++) {
-                    if (lines[k].length > cols) cols = lines[k].length;
-                }
-
-                // Pad lines to uniform width
-                var grid = [];
-                for (var k = 0; k < rows; k++) {
-                    var ln = lines[k] || '';
-                    while (ln.length < cols) ln += ' ';
-                    grid.push(ln);
-                }
-
-                var mchars = '0123456789@#$%&*=+:;</>';
-
-                // Random start delay per column (staggered rain)
-                var colDelay = [];
-                for (var c = 0; c < cols; c++) {
-                    colDelay[c] = Math.random() * 0.35;
-                }
-
-                var DURATION = 900;
-                var startT = null;
-
-                function step(time) {
-                    if (!startT) startT = time;
-                    var progress = Math.min((time - startT) / DURATION, 1);
-
-                    var result = [];
-                    for (var r = 0; r < rows; r++) {
-                        var line = '';
-                        for (var c = 0; c < cols; c++) {
-                            var cp = (progress - colDelay[c]) / 0.65;
-                            if (cp < 0) cp = 0;
-                            if (cp > 1) cp = 1;
-
-                            var headPos = cp;
-                            var rowPos = r / rows;
-                            var actual = grid[r][c];
-
-                            if (rowPos < headPos - 0.06) {
-                                line += actual;
-                            } else if (rowPos < headPos + 0.12 && actual !== ' ' && actual !== '.') {
-                                line += mchars.charAt(Math.floor(Math.random() * mchars.length));
-                            } else {
-                                line += (actual === ' ') ? ' ' : '.';
-                            }
-                        }
-                        result.push(line);
-                    }
-
-                    pre.textContent = result.join('\n');
-
-                    if (progress < 1) {
-                        requestAnimationFrame(step);
-                    } else {
-                        if (onComplete) onComplete();
-                    }
-                }
-
-                // Make visible and start
-                pre.style.opacity = '1';
-                requestAnimationFrame(step);
-            }
         })();
     </script>
 </body>

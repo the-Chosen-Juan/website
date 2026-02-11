@@ -41,12 +41,16 @@
 .hero-right {
     flex: 1 1 auto;
     min-width: 0;
+
+    .ascii-art {
+        margin-bottom: 0;
+    }
 }
 
 // ASCII Animation Container
 .ascii-animation-container {
-    width: 240px;
-    height: 230px;
+    width: 270px;
+    height: 260px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -64,7 +68,6 @@
         padding: 0;
         color: $accent-primary;
         opacity: 0;
-        transition: opacity 0.5s ease-in;
         background: transparent;
         border: none;
         overflow: hidden;

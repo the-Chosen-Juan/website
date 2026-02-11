@@ -945,10 +945,13 @@ body.theme-bluescreen .window-buttons span {
   flex: 1 1 auto;
   min-width: 0;
 }
+.hero-right .ascii-art {
+  margin-bottom: 0;
+}
 
 .ascii-animation-container {
-  width: 240px;
-  height: 230px;
+  width: 270px;
+  height: 260px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -966,7 +969,6 @@ body.theme-bluescreen .window-buttons span {
   padding: 0;
   color: #d08770;
   opacity: 0;
-  transition: opacity 0.5s ease-in;
   background: transparent;
   border: none;
   overflow: hidden;
@@ -2234,8 +2236,8 @@ body.theme-bluescreen .window-buttons span {
     font-size: clamp(0.3rem, 1vw, 0.6rem);
   }
   .ascii-animation-container {
-    width: 200px;
-    height: 195px;
+    width: 230px;
+    height: 225px;
   }
 }
 @media screen and (max-width: 768px) {
