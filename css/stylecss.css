@@ -908,7 +908,7 @@ body.theme-bluescreen .window-buttons span {
 }
 
 .hero {
-  padding-top: 30px;
+  padding-top: 50px;
   min-height: auto;
   display: flex;
   flex-direction: column;
@@ -947,8 +947,8 @@ body.theme-bluescreen .window-buttons span {
 }
 
 .ascii-animation-container {
-  width: 550px;
-  height: 500px;
+  width: 180px;
+  height: 200px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -2234,8 +2234,8 @@ body.theme-bluescreen .window-buttons span {
     font-size: clamp(0.3rem, 1vw, 0.6rem);
   }
   .ascii-animation-container {
-    width: 420px;
-    height: 400px;
+    width: 160px;
+    height: 180px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -2264,13 +2264,13 @@ body.theme-bluescreen .window-buttons span {
     display: block;
   }
   .hero {
-    padding-top: 40px;
+    padding-top: 50px;
     min-height: auto;
     padding-bottom: 0.5rem;
   }
   .ascii-animation-container {
-    width: 280px;
-    height: 260px;
+    width: 130px;
+    height: 150px;
   }
   .ascii-art {
     font-size: clamp(0.2rem, 0.8vw, 0.45rem);
@@ -2336,8 +2336,8 @@ body.theme-bluescreen .window-buttons span {
     margin-bottom: 1.5rem;
   }
   .ascii-animation-container {
-    width: 200px;
-    height: 190px;
+    width: 100px;
+    height: 120px;
   }
   .welcome-box {
     padding: 0.5rem 1rem;
@@ -2406,8 +2406,8 @@ body.theme-bluescreen .window-buttons span {
     display: block;
   }
   .ascii-animation-container {
-    width: 150px;
-    height: 140px;
+    width: 80px;
+    height: 100px;
   }
   .clients-section .clients-grid {
     grid-template-columns: repeat(3, 1fr);
