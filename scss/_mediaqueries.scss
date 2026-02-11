@@ -11,12 +11,12 @@
     }
 
     .ascii-art {
-        font-size: clamp(0.25rem, 0.45vw, 0.45rem);
+        font-size: clamp(0.3rem, 1vw, 0.6rem);
     }
 
     .ascii-animation-container {
-        width: 250px;
-        height: 210px;
+        width: 200px;
+        height: 195px;
     }
 }
 
@@ -62,16 +62,16 @@
     }
 
     .hero-row {
-        gap: 1rem;
+        gap: 0.25rem;
     }
 
     .ascii-animation-container {
-        width: 180px;
-        height: 160px;
+        width: 150px;
+        height: 145px;
     }
 
     .ascii-art {
-        font-size: clamp(0.2rem, 0.4vw, 0.38rem);
+        font-size: clamp(0.2rem, 0.8vw, 0.45rem);
         overflow: hidden;
     }
 
@@ -161,8 +161,8 @@
     }
 
     .ascii-animation-container {
-        width: 140px;
-        height: 130px;
+        width: 120px;
+        height: 115px;
     }
 
     // Welcome box
@@ -267,8 +267,8 @@
     }
 
     .ascii-animation-container {
-        width: 110px;
-        height: 100px;
+        width: 90px;
+        height: 85px;
     }
 
     .clients-section .clients-grid {
