@@ -1349,38 +1349,29 @@
 
             window.addEventListener('resize', updateScale);
 
-            // Matrix decode state — overlays on live animation
+            // Terminal decode — only on first visit (boot sequence)
+            var isFirstVisit = !sessionStorage.getItem('nachoos-booted');
             var decodeActive = false;
             var decodeStart = null;
-            var DECODE_DURATION = 1000;
-            var charThresholds = null;
-            var mchars = '0123456789@#$%&*=+:;<>/|\\[]{}~`^';
+            var DECODE_DURATION = 1200;
+            var settleMap = null;
 
             function initDecode(sampleFrame) {
                 var lines = sampleFrame.split('\n');
-                var numRows = lines.length;
-                var maxCols = 0;
-                for (var k = 0; k < lines.length; k++) {
-                    if (lines[k].length > maxCols) maxCols = lines[k].length;
-                }
-                // Column rain: each column has a random start delay
-                var colDelay = [];
-                for (var c = 0; c < maxCols; c++) {
-                    colDelay[c] = Math.random() * 0.3;
-                }
-                charThresholds = [];
-                for (var r = 0; r < numRows; r++) {
+                settleMap = [];
+                for (var r = 0; r < lines.length; r++) {
                     var row = [];
-                    for (var c = 0; c < maxCols; c++) {
-                        // Top-to-bottom rain per column + staggered columns
-                        var t = colDelay[c] + (r / numRows) * 0.55 + Math.random() * 0.08;
-                        row.push(Math.min(t, 0.92));
+                    for (var c = 0; c < (lines[r] || '').length; c++) {
+                        // Each character settles at a random time (0.1 to 0.9)
+                        row.push(0.1 + Math.random() * 0.8);
                     }
-                    charThresholds.push(row);
+                    settleMap.push(row);
                 }
                 decodeActive = true;
                 decodeStart = null;
             }
+
+            var decodeChars = '/#$@&%!=+-:;|\\<>[]{}0123456789abcdef';
 
             function applyDecode(frameText, progress) {
                 if (progress >= 1) return frameText;
@@ -1388,19 +1379,18 @@
                 var result = [];
                 for (var r = 0; r < lines.length; r++) {
                     var line = '';
-                    var threshRow = charThresholds[r];
+                    var sRow = settleMap[r];
                     for (var c = 0; c < lines[r].length; c++) {
                         var actual = lines[r][c];
-                        var threshold = threshRow && c < threshRow.length ? threshRow[c] : 0;
-                        if (actual === ' ') {
-                            line += ' ';
-                        } else if (progress >= threshold) {
+                        if (actual === ' ' || actual === '.') {
                             line += actual;
-                        } else if (progress >= threshold - 0.15) {
-                            // Near-decode zone: random char cycling
-                            line += mchars.charAt(Math.floor(Math.random() * mchars.length));
+                            continue;
+                        }
+                        var settle = sRow && c < sRow.length ? sRow[c] : 0;
+                        if (progress >= settle) {
+                            line += actual;
                         } else {
-                            line += '.';
+                            line += decodeChars.charAt(Math.floor(Math.random() * decodeChars.length));
                         }
                     }
                     result.push(line);
@@ -1422,7 +1412,9 @@
                     pre.textContent = frames[0];
                     updateScale();
                     pre.style.opacity = '1';
-                    initDecode(frames[0]);
+                    if (isFirstVisit) {
+                        initDecode(frames[0]);
+                    }
                 }
             });
         })();
