@@ -29,7 +29,7 @@
     },
     {
       "source": "/NotTheEnd.html",
-      "destination": "/not-the-end",
+      "destination": "/notco",
       "permanent": true
     },
     {
@@ -50,6 +50,11 @@
     {
       "source": "/Unicenter.html",
       "destination": "/unicenter",
+      "permanent": true
+    },
+    {
+      "source": "/not-the-end",
+      "destination": "/notco",
       "permanent": true
     }
   ]
