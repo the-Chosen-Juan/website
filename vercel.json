@@ -1,0 +1,56 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/AlmaMora.html",
+      "destination": "/alma-mora",
+      "permanent": true
+    },
+    {
+      "source": "/CoolSeats.html",
+      "destination": "/cool-seats",
+      "permanent": true
+    },
+    {
+      "source": "/DarEsDar.html",
+      "destination": "/dar-es-dar",
+      "permanent": true
+    },
+    {
+      "source": "/Isenbeck.html",
+      "destination": "/isenbeck",
+      "permanent": true
+    },
+    {
+      "source": "/MovistarTV.html",
+      "destination": "/movistar-tv",
+      "permanent": true
+    },
+    {
+      "source": "/NotTheEnd.html",
+      "destination": "/not-the-end",
+      "permanent": true
+    },
+    {
+      "source": "/Nutshot.html",
+      "destination": "/nutshot",
+      "permanent": true
+    },
+    {
+      "source": "/Patagonia.html",
+      "destination": "/patagonia",
+      "permanent": true
+    },
+    {
+      "source": "/Philco.html",
+      "destination": "/philco",
+      "permanent": true
+    },
+    {
+      "source": "/Unicenter.html",
+      "destination": "/unicenter",
+      "permanent": true
+    }
+  ]
+}

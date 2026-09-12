@@ -161,7 +161,7 @@
 
             <div class="projects-grid">
                 <!-- Philco -->
-                <a href="Philco.html" class="project-card">
+                <a href="/philco" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -177,7 +177,7 @@
                 </a>
 
                 <!-- Alma Mora -->
-                <a href="AlmaMora.html" class="project-card">
+                <a href="/alma-mora" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -193,7 +193,7 @@
                 </a>
 
                 <!-- Gatorade -->
-                <a href="CoolSeats.html" class="project-card">
+                <a href="/cool-seats" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -209,7 +209,7 @@
                 </a>
 
                 <!-- Patagonia -->
-                <a href="Patagonia.html" class="project-card">
+                <a href="/patagonia" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -225,7 +225,7 @@
                 </a>
 
                 <!-- DarEsDar -->
-                <a href="DarEsDar.html" class="project-card">
+                <a href="/dar-es-dar" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -241,7 +241,7 @@
                 </a>
 
                 <!-- Movistar TV -->
-                <a href="MovistarTV.html" class="project-card">
+                <a href="/movistar-tv" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -257,7 +257,7 @@
                 </a>
 
                 <!-- Unicenter -->
-                <a href="Unicenter.html" class="project-card">
+                <a href="/unicenter" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -273,7 +273,7 @@
                 </a>
 
                 <!-- Nutshot -->
-                <a href="Nutshot.html" class="project-card">
+                <a href="/nutshot" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -289,7 +289,7 @@
                 </a>
 
                 <!-- Isenbeck -->
-                <a href="Isenbeck.html" class="project-card">
+                <a href="/isenbeck" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -305,7 +305,7 @@
                 </a>
 
                 <!-- NotCo -->
-                <a href="NotTheEnd.html" class="project-card">
+                <a href="/not-the-end" class="project-card">
                     <div class="project-header">
                         <div class="window-buttons">
                             <span></span><span></span><span></span>
@@ -602,6 +602,23 @@
                 }
             });
         });
+
+        // Arriving with a hash (e.g. /#work from a project page): scroll there,
+        // then drop the hash so the address bar stays clean.
+        (function () {
+            const hash = location.hash;
+            if (hash.length < 2) return;
+            let target = null;
+            try { target = document.querySelector(hash); } catch (e) { return; }
+            history.replaceState(null, '', location.pathname + location.search);
+            if (!target) return;
+            const boot = document.getElementById('bootScreen');
+            (function scrollWhenReady() {
+                const booting = boot && getComputedStyle(boot).display !== 'none';
+                if (booting) return setTimeout(scrollWhenReady, 200);
+                target.scrollIntoView({ behavior: 'auto' });
+            })();
+        })();
 
         // Active nav link on scroll
         window.addEventListener('scroll', () => {
