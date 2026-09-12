@@ -183,6 +183,11 @@
     gap: $spacing-md;
 }
 
+// Stacked variant - one full-width video per row
+.video-grid--stacked {
+    grid-template-columns: 1fr;
+}
+
 // Campaign description - terminal output style
 .campaign-section {
     @include terminal-box;
@@ -242,6 +247,23 @@
             content: '>';
             color: $accent-success;
         }
+    }
+}
+
+// Two-up variant - prints laid out 2 x 2 instead of full width
+.gallery-section--2up {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+    align-items: start;
+
+    .gallery-header {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+    }
+
+    .image-container {
+        margin-bottom: 0;
     }
 }
 
